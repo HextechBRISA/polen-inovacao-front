@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Alef } from 'next/font/google';
+import "../styles/global.css"
 
 export const metadata: Metadata = {
   title: "Pólen Inovação"
 };
+
+const alef = Alef({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap"
+})
 
 export default function RootLayout({
   children,
@@ -13,8 +18,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <>
+      <html lang="en">
+        <body className={alef.className}>{children}</body>
+      </html>
+    </>
   );
 }
