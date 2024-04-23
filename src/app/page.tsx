@@ -1,5 +1,10 @@
-export default function Home() {
+"use client"
+import React from 'react';
+
+export default function MyApp() {
   return (
-    <h1>Área Pública</h1>
+    <>
+      <h1>Página Principal - Área Pública</h1>
+    </>
   );
 }
