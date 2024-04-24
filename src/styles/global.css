@@ -44,3 +44,16 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+* {
+	box-sizing: border-box;
+}
+a {
+	color: inherit;
+}
+button {
+	border: 0px;
+	cursor: pointer;
+}
+strong {
+	font-weight: bold;	
+}

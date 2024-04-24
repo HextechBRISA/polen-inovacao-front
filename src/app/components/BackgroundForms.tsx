@@ -33,7 +33,6 @@ const BackgroundFormsContainer = styled.div`
   }
 `;
 
-
 const ImageContainer = styled.div`
   max-width: 100%;
   display: flex;
