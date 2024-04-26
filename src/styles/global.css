@@ -26,7 +26,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
     height: 100vh;
-    margin: 0;
+    margin-bottom: 100px;
 	background: linear-gradient(to bottom, #EE7A3C, #EA5E53);
 }
 ol, ul {
@@ -49,6 +49,7 @@ table {
 }
 a {
 	color: inherit;
+	text-decoration: none;
 }
 button {
 	border: 0px;
