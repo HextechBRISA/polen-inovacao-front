@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Alef } from 'next/font/google';
 import "../styles/global.css"
+import React from "react";
+import Header from "./components/Header";
 
 export const metadata: Metadata = {
   title: "Pólen Inovação"
@@ -20,7 +22,10 @@ export default function RootLayout({
   return (
     <>
       <html lang="en">
-        <body className={alef.className}>{children}</body>
+        <body className={alef.className}> 
+         <Header />
+        {children}
+        </body>
       </html>
     </>
   );
