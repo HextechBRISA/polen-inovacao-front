@@ -33,7 +33,8 @@ const NewsLetterPageContainer= styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-   
+    font-family: "Alef", sans-serif;
+    font-weight: 100;
     ;
     button {
         width: 300px;
@@ -56,7 +57,7 @@ const NewsLetterPageContainer= styled.div`
         text-align: left;
         color: #635A56;
         font-size: 24px;
-        font-weight: 700;
+        font-weight: 500;
     }
     .email {
         text-align: center;
@@ -116,7 +117,7 @@ const NewsLetterPageContainer= styled.div`
     label.checkbox::after {
         content: attr(data-label);
         font-size: 24px;
-        font-weight: 700;
+        font-weight: 500;
         display: block;
         margin-left: 25px; /* Espaço após o círculo */
         color: #635A56; /* Cor do texto */
