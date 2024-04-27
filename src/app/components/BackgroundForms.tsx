@@ -2,7 +2,6 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import LogoPolen from '../../../public/LogoPolen.png';
-import Link from 'next/link';
 
 interface BackgroundFormsProps {
   children?: ReactNode;

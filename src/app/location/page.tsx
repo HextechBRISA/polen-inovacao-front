@@ -97,7 +97,11 @@ const LocationCard = styled.div`
   }
 
   @media (max-width: 930px) {
-    width: 100%;
+    width: 300px;
+  }
+  
+  @media (max-width: 420px) {
+    width: 250px;
   }
 `;
 
@@ -109,7 +113,10 @@ const Image = styled.img`
 `;
 
 const Spaces = styled.div`
+  width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
 
   @media (max-width: 930px) {
     flex-direction: column;

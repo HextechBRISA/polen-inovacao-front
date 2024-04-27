@@ -13,14 +13,16 @@ export default function Header() {
           <Image src={LogoHeader.src} alt="logoheader" />
         </Link>
       </div>
+
       <NavWeb>
         <LinkLogin>
           <Link href={"/login"}>Sou Pólen</Link>
         </LinkLogin>
         <LinkSubscript>
-          <Link href={"/"}>Inscreva-se</Link>
+          <Link href={"/newsletter"}>Inscreva-se</Link>
         </LinkSubscript>
       </NavWeb>
+
       <NavMobile>
         <Link className="icon" href={"/login"}>
           <RiAccountPinCircleLine />
@@ -36,7 +38,7 @@ export default function Header() {
 const HeaderContainer = styled.div`
   width: 100%;
   background-color: #EA5E53;
-  height: 60px;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -105,5 +107,3 @@ const LinkSubscript = styled.div`
   align-items: center;
   text-align: center;
 `;
-
-// colocar endereço das outras páginas corretamente
