@@ -20,14 +20,17 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/app/components/RouterSwitch.js"  ],
+    "**/*.tsx", 
+    "src/app/payment/style.js",
+"src/app/components/RouterSwitch.js",  
+  ],
   "exclude": [
     "node_modules"
   ]
