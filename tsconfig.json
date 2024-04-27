@@ -27,8 +27,10 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/app/payment/style.js"  ],
+    "**/*.tsx", 
+    "src/app/payment/style.js",
+"src/app/components/RouterSwitch.js",  
+  ],
   "exclude": [
     "node_modules"
   ]
