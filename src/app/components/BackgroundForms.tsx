@@ -23,13 +23,13 @@ const BackgroundFormsContainer = styled.div`
   width: 60%;
   margin: 130px auto;
   border-radius: 20px;
-  padding: 40px;
+  padding: 20px;
 
   h1 {
     font-weight: 700;
     font-size: 26px;
     color: #635A56;
-    text-align: center;
+    text-align: left;
   }
 `;
 
@@ -42,5 +42,5 @@ const ImageContainer = styled.div`
 const Image = styled.img`
   max-width: 100%;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 05px;
 `;
