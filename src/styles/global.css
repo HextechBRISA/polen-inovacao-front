@@ -26,7 +26,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
     height: 100vh;
-    margin-bottom: 100px;
+    margin-bottom: 300px;
 	background: linear-gradient(to bottom, #EE7A3C, #EA5E53);
 }
 ol, ul {

@@ -10,6 +10,7 @@ const PaymentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 
   h1, h2, label {
     font-weight: 700;

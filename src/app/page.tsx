@@ -1,11 +1,11 @@
 "use client"
 import React from 'react';
-import { Topbanner } from './components/Topbanner';
+import { TopBanner } from './components/TopBanner';
 
 export default function MyApp() {
   return (
     <>
-      <Topbanner/>
+      <TopBanner/>
     </>
   );
 }
