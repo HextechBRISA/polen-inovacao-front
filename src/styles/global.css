@@ -25,8 +25,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-    height: 100vh;
-    margin-bottom: 300px;
+    height: auto;
+	margin-bottom: 250px;
 	background: linear-gradient(to bottom, #EE7A3C, #EA5E53);
 }
 ol, ul {
@@ -58,3 +58,20 @@ button {
 strong {
 	font-weight: bold;	
 }
+
+::-webkit-scrollbar {
+	width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+	background-color: #EA5E53;
+	border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+	background-color: #C44138;
+  }
+  ::-webkit-scrollbar-track {
+	background-color: transparent;
+  }
+  ::-webkit-scrollbar-corner {
+	background-color: transparent; 
+  }

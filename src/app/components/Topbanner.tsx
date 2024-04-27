@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Banner from "../../../public/Banner.jpg";
+import Banner from "../../../public/Banner.png";
 import Link from "next/link";
 
 export function TopBanner() {
@@ -19,14 +19,15 @@ export function TopBanner() {
 }
 
 const Top = styled.div`
-  background-color: white 20;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
 `;
 
 const ImgBanner = styled.div`
   width: 100%;
-  height: 300px;
+  height: 350px;
   position: relative;
-  margin-top: 60px;
+  margin-top: 70px;
 `;
 
 const Image = styled.img`
