@@ -21,7 +21,7 @@ export default function BackgroundForms({ children }: BackgroundFormsProps) {
 const BackgroundFormsContainer = styled.div`
   background-color: rgba(255, 255, 255, 0.3);
   width: 60%;
-  margin: 130px auto;
+  margin: 15px auto;
   border-radius: 20px;
   padding: 20px;
 
