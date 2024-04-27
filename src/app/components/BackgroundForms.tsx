@@ -35,7 +35,7 @@ const BackgroundFormsContainer = styled.div`
     font-weight: 700;
     font-size: 26px;
     color: #635A56;
-    text-align: center;
+    text-align: left;
   }
 
   @media (max-width: 850px) {
@@ -53,5 +53,5 @@ const ImageContainer = styled.div`
 const Image = styled.img`
   max-width: 100%;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 05px;
 `;
