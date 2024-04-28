@@ -10,6 +10,7 @@ import {
   Input,
   ExpiryInput,
   CVCInput,
+  PaymentPix,
 } from "./style";
 import PaymentSuccess from "./components/PaymentSuccess";
 
@@ -36,13 +37,6 @@ export default function PaymentPage() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const body = {
-      cvc: cardData.cvc,
-      expiry: cardData.expiry,
-      issuer: cardData.name,
-      number: cardData.number,
-    };
-
     setIsPaymentSuccessful(true);
   }
 
@@ -53,6 +47,7 @@ export default function PaymentPage() {
       ) : (
         <PaymentContainer>
           <h1>Realize o pagamento para confirmar sua reserva:</h1>
+          <h2>Valor da reserva: R$ 00,00</h2>
 
           <PaymentCard>
             <Cards
@@ -64,7 +59,7 @@ export default function PaymentPage() {
             />
 
             <PaymentForm>
-              <h2>Pagar com cartão:</h2>
+              <h3>Pagar com cartão:</h3>
               <InputMask
                 mask="9999 9999 9999 9999"
                 maskChar=""
@@ -122,13 +117,15 @@ export default function PaymentPage() {
               </div>
             </PaymentForm>
           </PaymentCard>
-          <div className="pix-container">
-            <input type="checkbox" />
-            <label>
-              <strong>Pagar com pix!</strong> (Seu pagamento deverá ser
-              confirmado em até 24h)
-            </label>
-          </div>
+
+          <PaymentPix>
+            <input type="checkbox" id="pixCheckbox" className="group" />
+            <label
+              htmlFor="pixCheckbox"
+              className="checkbox"
+              data-label="Pagar com pix! (Seu pagamento deverá ser confirmado em até 24h)"
+            ></label>
+          </PaymentPix>
           <button type="submit" onClick={handleSubmit}>
             Confirmar pagamento
           </button>

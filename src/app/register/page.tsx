@@ -1,7 +1,6 @@
 "use client"
 import React from 'react';
 import BackgroundForms from '../components/BackgroundForms';
-import ButtonStyle from '../components/ButtonStyle';
 import styled from "styled-components";
 
 export default function RegisterPage() {
@@ -28,7 +27,6 @@ export default function RegisterPage() {
             <Upload> 
               Fazer Upload
             </Upload>
-            <ButtonStyle>Cadastrar</ButtonStyle>
             <Link href={"/login"}>Já possui uma conta? Faça login!</Link>
           </Form>
       </BackgroundForms>
