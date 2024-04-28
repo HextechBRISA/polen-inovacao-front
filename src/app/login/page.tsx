@@ -1,10 +1,13 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import BackgroundForms from "../components/BackgroundForms";
 import ButtonStyle from "../components/ButtonStyle";
+import LoginSuccess from "./components/loginSuccess";
 
 export default function Login() {
+  const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
+  
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const username = event.currentTarget.username.value;
@@ -16,8 +19,14 @@ export default function Login() {
       },
       body: JSON.stringify({ username, password }),
     });
+    setIsLoginSuccessful(true);
   }
+ 
   return (
+    <>
+      {isLoginSuccessful ? (
+        <LoginSuccess />
+      ) : (
     <BackgroundForms>
       <h1>Login</h1>
       <LoginForm onSubmit={handleSubmit}>
@@ -29,6 +38,8 @@ export default function Login() {
         <Link href={"/register"}>Não possui uma conta? Cadastre-se aqui!</Link>
       </LoginForm>
     </BackgroundForms>
+     )}
+     </>
   );
 }
 
