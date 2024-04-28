@@ -15,19 +15,20 @@ export default function Header() {
       </div>
 
       <NavWeb>
-        <LinkLogin>
+        <LinkCard className="hvr-wobble-horizontal">
           <Link href={"/login"}>Sou Pólen</Link>
-        </LinkLogin>
-        <LinkSubscript>
+        </LinkCard>
+        <Line />
+        <LinkCard className="hvr-wobble-horizontal">
           <Link href={"/newsletter"}>Inscreva-se</Link>
-        </LinkSubscript>
+        </LinkCard>
       </NavWeb>
 
       <NavMobile>
         <Link className="icon" href={"/login"}>
           <RiAccountPinCircleLine />
         </Link>
-        <Link className="icon" href={"/"}>
+        <Link className="icon" href={"/newsletter"}>
           <MdOutlineMarkEmailUnread />
         </Link>
       </NavMobile>
@@ -42,14 +43,14 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 20px 0px 20px 20px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   position: fixed;
   top: 0;
 
   .img-card {
-    border-right: 1px solid white;
+    border-right: 2px solid white;
     width: 165px;
     height: 30px;
     display: flex;
@@ -78,6 +79,7 @@ const NavMobile = styled.div`
   @media (max-width: 500px) {
     display: flex;
     align-items: center;
+    padding-right: 15px;
   }
 `;
 
@@ -85,25 +87,19 @@ const Image = styled.img`
   width: 150px;
 `;
 
-const LinkLogin = styled.div`
+const LinkCard = styled.div`
   width: auto;
   height: 30px;
-  padding-right: 15px;
+  margin: 0px 20px;
   color: white;
   font-size: 18px;
   display: flex;
   align-items: center;
   text-align: center;
-  border-right: 1px solid white;
 `;
 
-const LinkSubscript = styled.div`
-  width: auto;
+const Line = styled.div`
+  width: 2px;
   height: 30px;
-  padding-left: 15px;
-  color: white;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  text-align: center;
+  background-color: white;
 `;

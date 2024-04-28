@@ -10,7 +10,7 @@ export default function LocationPage() {
 
       <Spaces>
         <Link href={"/payment"}>
-          <LocationCard>
+          <LocationCard className="hvr-float">
             <Image
               src="https://cdn.pixabay.com/photo/2019/04/23/08/49/movie-4148841_1280.jpg"
               alt="Auditório"
@@ -20,7 +20,7 @@ export default function LocationPage() {
         </Link>
 
         <Link href={"/payment"}>
-          <LocationCard>
+          <LocationCard className="hvr-float">
             <Image
               src="https://cdn2.hubspot.net/hubfs/6155957/Imported_Blog_Media/2c4844e1ebded52468fc083986fc6c20-1.jpg"
               alt="Studio de TV"
@@ -30,7 +30,7 @@ export default function LocationPage() {
         </Link>
 
         <Link href={"/payment"}>
-          <LocationCard>
+          <LocationCard className="hvr-float">
             <Image
               src="https://avatars.mds.yandex.net/i?id=e54527383f65740aad5a1af3f891846dd7ba093b-10104781-images-thumbs&n=13"
               alt="Studio de Podcast"
@@ -84,7 +84,6 @@ const LocationCard = styled.div`
   align-items: center;
   margin: 10px 10px;
   cursor: pointer;
-  transition: background-color 0.5s ease;
 
   &:hover {
     background-color: #e74c3c;

@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Newsletter() {
   return (
-      <NewsLetterContainer>
+      <NewsLetterContainer className="animate__animated animate__pulse">
         <div className="left ">
           <h1>Inscreva-se em nossa NewsLetter!</h1>
           <h2>E receba todas as nossas novidades em primeira mão!</h2>
