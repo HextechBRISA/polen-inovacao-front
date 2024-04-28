@@ -1,81 +1,95 @@
 "use client";
-import React from "react";
 import styled from "styled-components";
 import BackgroundForms from "../components/BackgroundForms";
+import React, { useState } from 'react';
+import NewsletterSubscript from "./components/SubscriptSuccess";
 import ButtonStyle from "../components/ButtonStyle";
 
 export default function NewsLetterPage() {
+  const [isSubscriptSuccessful, setIsSubscriptSuccessful] = useState(false);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const body = {
+    };
+    setIsSubscriptSuccessful(true);
+  }
   return (
-    <BackgroundForms>
-      <NewsLetterPageContainer>
-        <form>
-          <h1>Inscreva-se na NewsLetter:</h1>
-          <h2>Eu sou:</h2>
-          <div>
-            <input
-              type="checkbox"
-              id="checkbox1"
-              name="checkbox"
-              className="group"
-            />
-            <label
-              htmlFor="checkbox1"
-              className="checkbox"
-              data-label="Empresa Parceira"
-            ></label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="checkbox2"
-              name="checkbox"
-              className="group"
-            />
-            <label
-              htmlFor="checkbox2"
-              className="checkbox"
-              data-label="Aluno"
-            ></label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="checkbox3"
-              name="checkbox"
-              className="group"
-            />
-            <label
-              htmlFor="checkbox3"
-              className="checkbox"
-              data-label="Professor"
-            ></label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="checkbox4"
-              name="checkbox"
-              className="group"
-            />
-            <label
-              htmlFor="checkbox4"
-              className="checkbox"
-              data-label="Aspirante a residente"
-            ></label>
-          </div>
-          <div>
-            <input
-              className="email"
-              type="email"
-              placeholder="Insira seu e-mail"
-            />
-          </div>
-        </form>
-        <ButtonStyle type="submit">
+    <>
+      {isSubscriptSuccessful ? (
+        <NewsletterSubscript />
+      ) : (
+        <BackgroundForms>
+          <NewsLetterPageContainer>
+            <form>
+              <h1>Inscreva-se na NewsLetter:</h1>
+              <h2>Eu sou:</h2>
+              <div>
+                <input
+                  type="checkbox"
+                  id="checkbox1"
+                  name="checkbox"
+                  className="group"
+                />
+                <label
+                  htmlFor="checkbox1"
+                  className="checkbox"
+                  data-label="Empresa Parceira"
+                ></label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="checkbox2"
+                  name="checkbox"
+                  className="group"
+                />
+                <label
+                  htmlFor="checkbox2"
+                  className="checkbox"
+                  data-label="Aluno"
+                ></label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="checkbox3"
+                  name="checkbox"
+                  className="group"
+                />
+                <label
+                  htmlFor="checkbox3"
+                  className="checkbox"
+                  data-label="Professor"
+                ></label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="checkbox4"
+                  name="checkbox"
+                  className="group"
+                />
+                <label
+                  htmlFor="checkbox4"
+                  className="checkbox"
+                  data-label="Aspirante a residente"
+                ></label>
+              </div>
+              <div>
+                <input
+                  className="email"
+                  type="email"
+                  placeholder="Insira seu e-mail"
+                />
+              </div>
+            </form>
+            <button type="submit" onClick={handleSubmit}>
             Enviar
-        </ButtonStyle>
-      </NewsLetterPageContainer>
-    </BackgroundForms>
+          </button>
+          </NewsLetterPageContainer>
+        </BackgroundForms>
+      )}
+    </>
   );
 }
 
@@ -117,6 +131,16 @@ const NewsLetterPageContainer = styled.div`
   form {
     width: 100%;
   }
+   button{
+    width: 200px;
+    height: 30px;
+    background-color: #EA5E53;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 20px;
+    margin: 10px 0px;
+   }
 
   /* Estilo para esconder o checkbox padrão */
   input[type="checkbox"] {
