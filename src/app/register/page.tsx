@@ -18,10 +18,10 @@ export default function RegisterPage() {
             <Label> Sou: </Label>
             <SelectContainer>
               <select className="select-box"> Sou:
-                <option value="first"></option>
-                <option value="second"> Admin </option>
-                <option value="third"> Mentor </option>
-                <option value="fourth"> Residente </option>
+                <option value="" disabled selected hidden>Escolher categoria</option>
+                <option value="first"> Admin </option>
+                <option value="second"> Mentor </option>
+                <option value="third"> Residente </option>
               </select>
             </SelectContainer>
             <Label> Foto de Perfil </Label>
@@ -73,6 +73,7 @@ const Upload = styled.div`
   margin: 10px 0px;
   padding-top: 15px;
   color: #635A56;
+  cursor: pointer;
 `;
 
 const Link = styled.a`
@@ -83,20 +84,17 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
-const SelectContainer = styled.label`
+const SelectContainer = styled.div`
   width: 100%;
-  padding: 0px 30px 0px 5px;
   margin-bottom: 20px;
-  color: black;
-  border: none;
-  appearance: none;
 
-   .select-box {
-  width: 20%;
-  padding: 0px 30px 0px 5px;
-  margin-bottom: 5px;
-  color: black;
-  border-radius: 5px;
+  .select-box {
+  width: 100%;
+  height: 35px;
+  padding: 0px 5px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #635A56;
+  border: 1px solid #ccc;
   }
-
 `;

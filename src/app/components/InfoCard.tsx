@@ -4,7 +4,7 @@ import Techillustration from "../../../public/Techillustration.png";
 
 export default function InfoCard() {
   return (
-    <InfoContainer>
+    <InfoContainer className="animate__animated animate__pulse">
       <ImageContainer>
         <Image src={Techillustration.src} alt="Logo Polen" />
       </ImageContainer>
