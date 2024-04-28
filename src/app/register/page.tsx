@@ -15,6 +15,15 @@ export default function RegisterPage() {
             <Input type="text" placeholder="Name" />
             <Label> Senha </Label> 
             <Input type="password" placeholder="Password" /> 
+            <Label> Sou: </Label>
+            <SelectContainer>
+              <select className="select-box"> Sou:
+                <option value="first"></option>
+                <option value="second"> Admin </option>
+                <option value="third"> Mentor </option>
+                <option value="fourth"> Residente </option>
+              </select>
+            </SelectContainer>
             <Label> Foto de Perfil </Label>
             <Upload> 
               Fazer Upload
@@ -72,4 +81,22 @@ const Link = styled.a`
   text-decoration: underline;
   margin-top: 10px;
   cursor: pointer;
+`;
+
+const SelectContainer = styled.label`
+  width: 100%;
+  padding: 0px 30px 0px 5px;
+  margin-bottom: 20px;
+  color: black;
+  border: none;
+  appearance: none;
+
+   .select-box {
+  width: 20%;
+  padding: 0px 30px 0px 5px;
+  margin-bottom: 5px;
+  color: black;
+  border-radius: 5px;
+  }
+
 `;
