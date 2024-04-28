@@ -25,53 +25,57 @@ export default function NewsLetterPage() {
               <h2>Eu sou:</h2>
               <div>
                 <input
-                  type="checkbox"
-                  id="checkbox1"
-                  name="checkbox"
+                  type="radio"
+                  id="radio1"
+                  name="category"
                   className="group"
+                  value="empresa"
                 />
                 <label
-                  htmlFor="checkbox1"
-                  className="checkbox"
+                  htmlFor="radio1"
+                  className="radio"
                   data-label="Empresa Parceira"
                 ></label>
               </div>
               <div>
                 <input
-                  type="checkbox"
-                  id="checkbox2"
-                  name="checkbox"
+                  type="radio"
+                  id="radio2"
+                  name="category"
                   className="group"
+                  value="aluno"
                 />
                 <label
-                  htmlFor="checkbox2"
-                  className="checkbox"
+                  htmlFor="radio2"
+                  className="radio"
                   data-label="Aluno"
                 ></label>
               </div>
               <div>
                 <input
-                  type="checkbox"
-                  id="checkbox3"
-                  name="checkbox"
+                  type="radio"
+                  id="radio3"
+                  name="category"
                   className="group"
+                  value="professor"
                 />
                 <label
-                  htmlFor="checkbox3"
-                  className="checkbox"
+                  htmlFor="radio3"
+                  className="radio"
                   data-label="Professor"
                 ></label>
               </div>
               <div>
                 <input
-                  type="checkbox"
-                  id="checkbox4"
-                  name="checkbox"
+                  type="radio"
+                  id="radio4"
+                  name="category"
                   className="group"
+                  value="aspirante"
                 />
                 <label
-                  htmlFor="checkbox4"
-                  className="checkbox"
+                  htmlFor="radio4"
+                  className="radio"
                   data-label="Aspirante a residente"
                 ></label>
               </div>
@@ -84,8 +88,8 @@ export default function NewsLetterPage() {
               </div>
             </form>
             <button type="submit" onClick={handleSubmit}>
-            Enviar
-          </button>
+              Enviar
+            </button>
           </NewsLetterPageContainer>
         </BackgroundForms>
       )}
@@ -142,49 +146,49 @@ const NewsLetterPageContainer = styled.div`
     margin: 10px 0px;
    }
 
-  /* Estilo para esconder o checkbox padrão */
-  input[type="checkbox"] {
-    display: none;
-  }
+  /*Estilo para esconder o radio button padrão */
+input[type="radio"] {
+  display: none;
+}
 
-  /* Estilo para o rótulo do checkbox */
-  label.checkbox {
-    position: relative;
-    display: inline-block;
-    padding-left: 30px; /* Espaço para o círculo */
-    cursor: pointer;
-    margin-right: 10px; /* Espaço entre os checkboxes */
-  }
+/* Estilo para o rótulo do radio button */
+label.radio {
+  position: relative;
+  display: inline-block;
+  padding-left: 30px;
+  cursor: pointer;
+  margin-right: 10px; /* Espaço entre os radio buttons */
+}
 
-  /* Estilo para o círculo */
-  label.checkbox::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 10px;
-    height: 10px;
-    border: 2px solid #635a56; /* Borda do círculo */
-    border-radius: 50%; /* Borda arredondada */
-  }
+/* Estilo para o círculo */
+label.radio::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #635a56; /* Borda do círculo */
+  border-radius: 50%; /* Borda arredondada */
+}
 
-  /* Estilo para o círculo quando o checkbox está marcado */
-  input[type="checkbox"]:checked + label.checkbox::before {
-    background-color: #635a56; /* Cor de fundo do círculo */
-  }
+/*Estilo para o círculo quando o radio button está marcado */
+input[type="radio"]:checked + label.radio::before {
+  background-color: #635a56; /* Cor de fundo do círculo */
+}
 
-  /* Estilo para o texto do rótulo */
-  label.checkbox::after {
-    content: attr(data-label);
-    font-weight: 500;
-    display: block;
-    font-size: 18px;
-    margin: 0px; /* Espaço após o círculo */
-    color: #635a56; /* Cor do texto */
-  }
-  /*
+/* Estilo para o texto do rótulo */
+label.radio::after {
+  content: attr(data-label); /* Corrigido para exibir o texto do rótulo */
+  font-weight: 500;
+  display: block;
+  font-size: 18px;
+  margin: 0px; /* Espaço após o círculo */
+  color: #635a56; /* Cor do texto */
+}
 
 
+/*
 <!-- Checkboxes -->
 <input type="checkbox" id="checkbox1" name="checkbox" class="group">
 <label for="checkbox1" class="checkbox" data-label="Opção 1"></label>
