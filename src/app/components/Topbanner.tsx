@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Banner from "../../../public/Banner.png";
 import Link from "next/link";
+import ButtonStyleDiv from "../components/ButtonStyle"
 
 export function TopBanner() {
   return (
@@ -8,15 +9,17 @@ export function TopBanner() {
       <ImgBanner>
         <Image src={Banner.src} alt="logoheader" />
         <BannerText>
-          <h1>Locação de Espaços</h1>
+          <h3>Locação de Espaços</h3>
           <Link href={"/location"}>
-            <button>Faça seu evento conosco</button>
+            <ButtonStyleDiv>Faça seu evento conosco</ButtonStyleDiv>
           </Link>
         </BannerText>
       </ImgBanner>
     </Top>
   );
 }
+
+export default TopBanner
 
 const Top = styled.div`
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
