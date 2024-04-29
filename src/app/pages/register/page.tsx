@@ -1,7 +1,8 @@
 "use client"
 import React from 'react';
-import BackgroundForms from '../components/BackgroundForms';
+import BackgroundForms from '../../components/BackgroundForms';
 import styled from "styled-components";
+import ButtonStyle from '../../components/ButtonStyle';
 
 export default function RegisterPage() {
     return (
@@ -27,7 +28,8 @@ export default function RegisterPage() {
             <Upload> 
               Fazer Upload
             </Upload>
-            <Link href={"/login"}>Já possui uma conta? Faça login!</Link>
+            <ButtonStyle>Cadastrar</ButtonStyle>
+            <Link href={"/pages/login"}>Já possui uma conta? Faça login!</Link>
           </Form>
       </BackgroundForms>
     );

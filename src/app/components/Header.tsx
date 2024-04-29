@@ -16,19 +16,19 @@ export default function Header() {
 
       <NavWeb>
         <LinkCard className="hvr-wobble-horizontal">
-          <Link href={"/login"}>Sou Pólen</Link>
+          <Link href={"/pages/login"}>Sou Pólen</Link>
         </LinkCard>
         <Line />
         <LinkCard className="hvr-wobble-horizontal">
-          <Link href={"/newsletter"}>Inscreva-se</Link>
+          <Link href={"/pages/newsletter"}>Inscreva-se</Link>
         </LinkCard>
       </NavWeb>
 
       <NavMobile>
-        <Link className="icon" href={"/login"}>
+        <Link className="icon" href={"/pages/login"}>
           <RiAccountPinCircleLine />
         </Link>
-        <Link className="icon" href={"/newsletter"}>
+        <Link className="icon" href={"/pages/newsletter"}>
           <MdOutlineMarkEmailUnread />
         </Link>
       </NavMobile>
