@@ -1,4 +1,5 @@
 "use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import LogoHeader from "../../../public/LogoHeader.png";
@@ -6,39 +7,47 @@ import { RiAccountPinCircleLine } from "react-icons/ri";
 import { MdOutlineMarkEmailUnread } from "react-icons/md";
 
 export default function Header() {
+  const [SSR, setSSR] = useState(false);
+
+  useEffect(() => {
+    setSSR(true);
+  }, []);
+
   return (
-    <HeaderContainer>
-      <div className="img-card">
-        <Link href={"/"}>
-          <Image src={LogoHeader.src} alt="logoheader" />
-        </Link>
-      </div>
+    SSR && (
+      <HeaderContainer>
+        <div className="img-card">
+          <Link href={"/"}>
+            <Image src={LogoHeader.src} alt="logoheader" />
+          </Link>
+        </div>
 
-      <NavWeb>
-        <LinkCard className="hvr-wobble-horizontal">
-          <Link href={"/pages/login"}>Sou Pólen</Link>
-        </LinkCard>
-        <Line />
-        <LinkCard className="hvr-wobble-horizontal">
-          <Link href={"/pages/newsletter"}>Inscreva-se</Link>
-        </LinkCard>
-      </NavWeb>
+        <NavWeb>
+          <LinkCard className="hvr-wobble-horizontal">
+            <Link href={"/pages/login"}>Sou Pólen</Link>
+          </LinkCard>
+          <Line />
+          <LinkCard className="hvr-wobble-horizontal">
+            <Link href={"/pages/newsletter"}>Inscreva-se</Link>
+          </LinkCard>
+        </NavWeb>
 
-      <NavMobile>
-        <Link className="icon" href={"/pages/login"}>
-          <RiAccountPinCircleLine />
-        </Link>
-        <Link className="icon" href={"/pages/newsletter"}>
-          <MdOutlineMarkEmailUnread />
-        </Link>
-      </NavMobile>
-    </HeaderContainer>
+        <NavMobile>
+          <Link className="icon" href={"/pages/login"}>
+            <RiAccountPinCircleLine />
+          </Link>
+          <Link className="icon" href={"/pages/newsletter"}>
+            <MdOutlineMarkEmailUnread />
+          </Link>
+        </NavMobile>
+      </HeaderContainer>
+    )
   );
 }
 
 const HeaderContainer = styled.div`
   width: 100%;
-  background-color: #EA5E53;
+  background-color: #ea5e53;
   height: 70px;
   display: flex;
   justify-content: space-between;
