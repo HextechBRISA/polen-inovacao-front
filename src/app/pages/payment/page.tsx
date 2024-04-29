@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cards, { Focused } from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import InputMask from "react-input-mask";
@@ -15,6 +15,7 @@ import {
 import PaymentSuccess from "./components/PaymentSuccess";
 
 export default function PaymentPage() {
+  const [SSR, setSSR] = useState(false);
   const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
   const [cardData, setCardData] = useState({
     number: "",
@@ -40,12 +41,16 @@ export default function PaymentPage() {
     setIsPaymentSuccessful(true);
   }
 
+  useEffect(() => {
+    setSSR(true);
+  }, []);
+
   return (
     <>
       {isPaymentSuccessful ? (
         <PaymentSuccess />
       ) : (
-        <PaymentContainer>
+        SSR && <PaymentContainer>
           <h1>Realize o pagamento para confirmar sua reserva:</h1>
           <h2>Valor da reserva: R$ 00,00</h2>
 
