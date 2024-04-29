@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import styled from "styled-components";
-import BackgroundForms from "../../components/BackgroundForms";
+import BackgroundForms from "../../../components/BackgroundForms";
 
 export default function LoginSuccess() {
   return (

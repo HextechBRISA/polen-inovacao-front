@@ -11,7 +11,7 @@ export default function TopBanner() {
       <BannerText>
         <h1>LOCAÇÃO DE ESPAÇOS</h1>
         <p>Conheça nossos espaços e confira nossa agenda!</p>
-        <Link href={"/location"}>
+        <Link href={"/pages/location"}>
           <Button className="button hvr-pulse-shrink">
             Faça seu evento conosco 
             <IoIosArrowForward className="arrow" />
