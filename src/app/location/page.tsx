@@ -16,7 +16,7 @@ export default function LocationPage() {
         <h1>Escolha o espaço que deseja reservar:</h1>
 
         <Spaces>
-          <Link href={"/pages/payment"}>
+          <Link href={"/payment"}>
             <LocationCard className="hvr-float">
               <Image
                 src="https://cdn.pixabay.com/photo/2019/04/23/08/49/movie-4148841_1280.jpg"
@@ -26,7 +26,7 @@ export default function LocationPage() {
             </LocationCard>
           </Link>
 
-          <Link href={"/pages/payment"}>
+          <Link href={"/payment"}>
             <LocationCard className="hvr-float">
               <Image
                 src="https://cdn2.hubspot.net/hubfs/6155957/Imported_Blog_Media/2c4844e1ebded52468fc083986fc6c20-1.jpg"
@@ -36,7 +36,7 @@ export default function LocationPage() {
             </LocationCard>
           </Link>
 
-          <Link href={"/pages/payment"}>
+          <Link href={"/payment"}>
             <LocationCard className="hvr-float">
               <Image
                 src="https://avatars.mds.yandex.net/i?id=e54527383f65740aad5a1af3f891846dd7ba093b-10104781-images-thumbs&n=13"

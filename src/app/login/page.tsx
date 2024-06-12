@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import BackgroundForms from "../../components/BackgroundForms";
-import ButtonStyle from "../../components/ButtonStyle";
+import BackgroundForms from "../components/BackgroundForms";
+import ButtonStyle from "../components/ButtonStyle";
 
 export default function Login() {
   const [SSR, setSSR] = useState(false);
@@ -34,7 +34,7 @@ export default function Login() {
           <Label htmlFor="password">Senha</Label>
           <Input type="password" id="password" name="password" />
           <ButtonStyle>Entrar</ButtonStyle>
-          <Link href={"/pages/register"}>
+          <Link href={"/register"}>
             Não possui uma conta? Cadastre-se aqui!
           </Link>
         </LoginForm>

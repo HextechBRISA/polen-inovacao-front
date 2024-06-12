@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import styled from "styled-components";
-import BackgroundForms from "../../../components/BackgroundForms";
+import BackgroundForms from "../../components/BackgroundForms";
 import { FaCheck } from "react-icons/fa";
 
 export default function NewsletterSubscript() {

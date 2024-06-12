@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import BackgroundForms from "../../components/BackgroundForms";
+import BackgroundForms from "../components/BackgroundForms";
 import styled from "styled-components";
-import ButtonStyle from "../../components/ButtonStyle";
+import ButtonStyle from "../components/ButtonStyle";
 
 export default function RegisterPage() {
   const [SSR, setSSR] = useState(false);
@@ -38,7 +38,7 @@ export default function RegisterPage() {
           <Label> Foto de Perfil </Label>
           <Upload>Fazer Upload</Upload>
           <ButtonStyle>Cadastrar</ButtonStyle>
-          <Link href={"/pages/login"}>Já possui uma conta? Faça login!</Link>
+          <Link href={"/login"}>Já possui uma conta? Faça login!</Link>
         </Form>
       </BackgroundForms>
     )

@@ -1,9 +1,8 @@
 "use client";
 import styled from "styled-components";
-import BackgroundForms from "../../components/BackgroundForms";
+import BackgroundForms from "../components/BackgroundForms";
 import React, { useEffect, useState } from "react";
 import NewsletterSubscript from "./components/SubscriptSuccess";
-import ButtonStyle from "../../components/ButtonStyle";
 
 export default function NewsLetterPage() {
   const [SSR, setSSR] = useState(false);

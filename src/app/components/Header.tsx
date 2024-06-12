@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import styled from "styled-components";
+import Image from "next/image";
 import LogoHeader from "../../../public/LogoHeader.png";
 import { RiAccountPinCircleLine } from "react-icons/ri";
 import { MdOutlineMarkEmailUnread } from "react-icons/md";
@@ -15,100 +15,33 @@ export default function Header() {
 
   return (
     SSR && (
-      <HeaderContainer>
-        <div className="img-card">
+      <div className="fixed top-0 z-50 flex w-full items-center justify-between bg-[#ea5e53] p-5 shadow-md">
+        <div className="flex h-8 w-[165px] items-center border-r-2 border-white">
           <Link href={"/"}>
-            <Image src={LogoHeader.src} alt="logoheader" />
+            <Image src={LogoHeader.src} alt="logoheader" width={150} height={30} />
           </Link>
+          <div className="h-8 ml-4 w-[2px] bg-white" />
         </div>
 
-        <NavWeb>
-          <LinkCard className="hvr-wobble-horizontal">
-            <Link href={"/pages/login"}>Sou Pólen</Link>
-          </LinkCard>
-          <Line />
-          <LinkCard className="hvr-wobble-horizontal">
-            <Link href={"/pages/newsletter"}>Inscreva-se</Link>
-          </LinkCard>
-        </NavWeb>
+        <div className="hidden md:flex">
+          <div className="mx-5 flex h-8 items-center text-white hover:animate-wobble">
+            <Link href={"/login"}>Sou Pólen</Link>
+          </div>
+          <div className="h-8 w-[2px] bg-white" />
+          <div className="mx-5 flex h-8 items-center text-white hover:animate-wobble">
+            <Link href={"/newsletter"}>Inscreva-se</Link>
+          </div>
+        </div>
 
-        <NavMobile>
-          <Link className="icon" href={"/pages/login"}>
+        <div className="flex items-center pr-4 text-white md:hidden">
+          <Link className="mx-1 text-3xl" href={"/login"}>
             <RiAccountPinCircleLine />
           </Link>
-          <Link className="icon" href={"/pages/newsletter"}>
+          <Link className="mx-1 text-3xl" href={"/newsletter"}>
             <MdOutlineMarkEmailUnread />
           </Link>
-        </NavMobile>
-      </HeaderContainer>
+        </div>
+      </div>
     )
   );
 }
-
-const HeaderContainer = styled.div`
-  width: 100%;
-  background-color: #ea5e53;
-  height: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0px 20px 20px;
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-
-  .img-card {
-    border-right: 2px solid white;
-    width: 165px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-  }
-`;
-
-const NavWeb = styled.div`
-  width: auto;
-  display: flex;
-
-  @media (max-width: 500px) {
-    display: none;
-  }
-`;
-
-const NavMobile = styled.div`
-  display: none;
-  color: white;
-  font-size: 35px;
-
-  .icon {
-    margin: 0px 5px;
-  }
-
-  @media (max-width: 500px) {
-    display: flex;
-    align-items: center;
-    padding-right: 15px;
-  }
-`;
-
-const Image = styled.img`
-  width: 150px;
-`;
-
-const LinkCard = styled.div`
-  width: auto;
-  height: 30px;
-  margin: 0px 20px;
-  color: white;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-`;
-
-const Line = styled.div`
-  width: 2px;
-  height: 30px;
-  background-color: white;
-`;
