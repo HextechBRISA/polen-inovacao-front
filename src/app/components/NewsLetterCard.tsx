@@ -11,7 +11,7 @@ export default function Newsletter() {
         <div className="left ">
           <h1>Inscreva-se em nossa NewsLetter!</h1>
           <h2>E receba todas as nossas novidades em primeira mão!</h2>
-          <Link href={"/pages/newsletter"}>
+          <Link href={"/newsletter"}>
             <Image className="arrow" src={Seta.src} alt="seta" />
           </Link>
         </div>

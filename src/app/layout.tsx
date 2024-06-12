@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Alef } from 'next/font/google';
-import "../styles/global.css";
+import "../styles/globals.css";
 import 'animate.css';
 import 'hover.css';
 import React from "react";
