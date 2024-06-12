@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import styled from "styled-components";
-import Envelope from "../../../public/envelope.png";
-import Seta from "../../../public/seta.png";
+import NewsletterImage from "../../../public/NewsletterImage.png";
+import Arrow from "../../../public/Arrow.png";
 import Link from "next/link";
 
 export default function Newsletter() {
@@ -12,11 +12,11 @@ export default function Newsletter() {
           <h1>Inscreva-se em nossa NewsLetter!</h1>
           <h2>E receba todas as nossas novidades em primeira mão!</h2>
           <Link href={"/newsletter"}>
-            <Image className="arrow" src={Seta.src} alt="seta" />
+            <Image className="arrow" src={Arrow.src} alt="Arrow" />
           </Link>
         </div>
         <div className="right">
-          <Image src={Envelope.src} alt="Envelope" />
+          <Image src={NewsletterImage.src} alt="Envelope" />
         </div>
       </NewsLetterContainer>
   );

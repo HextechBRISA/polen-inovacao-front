@@ -5,7 +5,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 export default function TopBanner() {
   return (
-    <div className="relative overflow-hidden mt-[70px] shadow-xl w-full h-80 font-sans">
+    <div className="relative overflow-hidden mt-[70px] shadow-xl w-full h-80 xs:h-60 font-sans">
       <Image
         src={Banner}
         alt="Pólen Inovação"

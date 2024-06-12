@@ -20,6 +20,9 @@ module.exports = {
           '75%': { transform: 'translateX(-5%) rotate(-1deg)' },
         },
       },
+      screens: {
+        'xs': {'max': '500px'},
+      },
     },
   },
   plugins: [],
