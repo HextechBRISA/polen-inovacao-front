@@ -23,17 +23,17 @@ export default function Header() {
           <div className="h-8 ml-4 w-[2px] bg-white" />
         </div>
 
-        <div className="hidden md:flex">
+        <div className="hidden md:flex text-[18px]">
           <div className="mx-5 flex h-8 items-center text-white hover:animate-wobble">
             <Link href={"/login"}>Sou Pólen</Link>
           </div>
           <div className="h-8 w-[2px] bg-white" />
-          <div className="mx-5 flex h-8 items-center text-white hover:animate-wobble">
+          <div className="ml-5 mr-2 flex h-8 items-center text-white hover:animate-wobble">
             <Link href={"/newsletter"}>Inscreva-se</Link>
           </div>
         </div>
 
-        <div className="flex items-center pr-4 text-white md:hidden">
+        <div className="flex items-center pr-0 text-white md:hidden">
           <Link className="mx-1 text-3xl" href={"/login"}>
             <RiAccountPinCircleLine />
           </Link>
