@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import styled from "styled-components";
-import NewsletterImage from "../../../public/NewsletterImage.png";
-import Arrow from "../../../public/Arrow.png";
+import NewsletterImage from "../../../../public/NewsletterImage.png";
+import Arrow from "../../../../public/Arrow.png";
 import Link from "next/link";
 
 export default function Newsletter() {

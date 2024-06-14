@@ -37,7 +37,6 @@ export default function PaymentPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     setIsPaymentSuccessful(true);
   }
 
@@ -50,91 +49,107 @@ export default function PaymentPage() {
       {isPaymentSuccessful ? (
         <PaymentSuccess />
       ) : (
-        SSR && <PaymentContainer>
-          <h1>Realize o pagamento para confirmar sua reserva:</h1>
-          <h2>Valor da reserva: R$ 00,00</h2>
+        SSR && (
+          <PaymentContainer>
+            <h1 className="font-bold text-xl mb-2">
+              Realize o pagamento para confirmar sua reserva
+            </h1>
 
-          <PaymentCard>
-            <Cards
-              cvc={cardData.cvc}
-              expiry={cardData.expiry}
-              focused={cardData.focus}
-              name={cardData.name}
-              number={cardData.number}
-            />
+            <h2 className="font-normal text-lg mb-8">
+              Valor da reserva: R$ 00,00
+            </h2>
 
-            <PaymentForm>
-              <h3>Pagar com cartão:</h3>
-              <InputMask
-                mask="9999 9999 9999 9999"
-                maskChar=""
-                value={cardData.number}
-                onChange={handleInputChange}
-                onFocus={handleInputFocus}
-              >
-                {() => (
-                  <Input
-                    type="tel"
-                    name="number"
-                    placeholder="Card Number"
-                    required
-                  />
-                )}
-              </InputMask>
+            <h3 className="font-normal text-base mb-2">
+              Pagar com cartão:
+            </h3>
 
-              <Input
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={cardData.name}
-                onChange={handleInputChange}
-                onFocus={handleInputFocus}
-                required
+            <PaymentCard>
+              <Cards
+                cvc={cardData.cvc}
+                expiry={cardData.expiry}
+                focused={cardData.focus}
+                name={cardData.name}
+                number={cardData.number}
               />
 
-              <div>
+              <PaymentForm>
                 <InputMask
-                  mask="99/99"
+                  mask="9999 9999 9999 9999"
                   maskChar=""
-                  value={cardData.expiry}
+                  value={cardData.number}
                   onChange={handleInputChange}
                   onFocus={handleInputFocus}
                 >
                   {() => (
-                    <ExpiryInput
+                    <Input
                       type="tel"
-                      name="expiry"
-                      placeholder="Valid Thru"
+                      name="number"
+                      placeholder="Card Number"
                       required
                     />
                   )}
                 </InputMask>
 
-                <CVCInput
-                  type="tel"
-                  name="cvc"
-                  placeholder="CVC"
-                  value={cardData.cvc}
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={cardData.name}
                   onChange={handleInputChange}
                   onFocus={handleInputFocus}
                   required
                 />
-              </div>
-            </PaymentForm>
-          </PaymentCard>
 
-          <PaymentPix>
-            <input type="checkbox" id="pixCheckbox" className="group" />
-            <label
-              htmlFor="pixCheckbox"
-              className="checkbox"
-              data-label="Pagar com pix! (Seu pagamento deverá ser confirmado em até 24h)"
-            ></label>
-          </PaymentPix>
-          <button type="submit" onClick={handleSubmit}>
-            Confirmar pagamento
-          </button>
-        </PaymentContainer>
+                <div className="flex">
+                  <InputMask
+                    mask="99/99"
+                    maskChar=""
+                    value={cardData.expiry}
+                    onChange={handleInputChange}
+                    onFocus={handleInputFocus}
+                  >
+                    {() => (
+                      <ExpiryInput
+                        type="tel"
+                        name="expiry"
+                        placeholder="Valid Thru"
+                        required
+                      />
+                    )}
+                  </InputMask>
+
+                  <CVCInput
+                    type="tel"
+                    name="cvc"
+                    placeholder="CVC"
+                    value={cardData.cvc}
+                    onChange={handleInputChange}
+                    onFocus={handleInputFocus}
+                    required
+                  />
+                </div>
+              </PaymentForm>
+            </PaymentCard>
+
+            <PaymentPix>
+              <input type="checkbox" id="pixCheckbox" className="group" />
+              <label
+                htmlFor="pixCheckbox"
+                className="checkbox"
+                data-label="Pagar com pix! (Seu pagamento deverá ser confirmado em até
+                  24h)"
+              ></label>
+            </PaymentPix>
+            
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className="w-52 h-7 bg-[#ea5e53] text-white border-0 rounded-full"
+            >
+              Confirmar pagamento
+            </button>
+          </PaymentContainer>
+        )
       )}
     </>
   );

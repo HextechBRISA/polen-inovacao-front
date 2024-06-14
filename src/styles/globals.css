@@ -29,7 +29,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-    height: auto;
+  height: auto;
 	margin-bottom: 500px;
 	background: linear-gradient(to bottom, #EE7A3C, #EA5E53);
 }
@@ -78,4 +78,34 @@ strong {
   }
   ::-webkit-scrollbar-corner {
 	background-color: transparent; 
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+  label.checkbox {
+    position: relative;
+    display: inline-block;
+    padding-left: 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  label.checkbox::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 11px;
+    height: 11px;
+    border: 2px solid #635a56;
+    border-radius: 50%;
+  }
+  input[type="checkbox"]:checked + label.checkbox::before {
+    background-color: #635a56;
+  }
+  label.checkbox::after {
+    content: attr(data-label);
+    display: block;
+    font-size: 16px;
   }

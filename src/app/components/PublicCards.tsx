@@ -1,6 +1,6 @@
 import React from "react";
 import InfoCard from "./InfoCard";
-import Newsletter from "./NewsLetterCard";
+import Newsletter from "../newsletter/components/NewsLetterCard";
 
 export default function PublicCards() {
   return (
