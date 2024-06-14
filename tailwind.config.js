@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        wobble: 'wobble 1s ease-in-out infinite',
+        wobble: 'wobble 1s ease-in-out',
       },
       keyframes: {
         wobble: {
@@ -22,6 +22,7 @@ module.exports = {
       },
       screens: {
         'xs': {'max': '500px'},
+        'sm': {'max': '700px'},
       },
     },
   },

@@ -13,10 +13,10 @@ export default function TopBanner() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-red-500 via-transparent to-black opacity-60"></div>
       <div className="absolute inset-0 flex flex-col justify-center items-start text-white z-10 px-10">
-        <h1 className="text-2xl md:text-2xl lg:text-4xl font-bold mb-4 opacity-80">
+        <h1 className="text-2xl md:text-2xl lg:text-4xl xs:text-[20px] font-bold mb-4 opacity-80">
           LOCAÇÃO DE ESPAÇOS
         </h1>
-        <p className="opacity-80 mb-4 md:mb-6 lg:mb-8">
+        <p className="opacity-80 mb-4 md:mb-6 lg:mb-8 xs:text-[16px] xs:w-[180px]">
           Conheça nossos espaços e confira nossa agenda!
         </p>
         <Link href="/location">
