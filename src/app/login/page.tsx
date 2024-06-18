@@ -1,16 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React from "react";
 import BackgroundForms from "../components/BackgroundForms";
-import ButtonStyle from "../components/ButtonStyle";
 
 export default function Login() {
-  const [SSR, setSSR] = useState(false);
-
-  useEffect(() => {
-    setSSR(true);
-  }, []);
-
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const username = event.currentTarget.username.value;
@@ -25,55 +17,36 @@ export default function Login() {
   }
 
   return (
-    SSR && (
-      <BackgroundForms>
-        <h1>Login</h1>
-        <LoginForm onSubmit={handleSubmit}>
-          <Label htmlFor="username">Usuário</Label>
-          <Input type="text" id="username" name="username" />
-          <Label htmlFor="password">Senha</Label>
-          <Input type="password" id="password" name="password" />
-          <ButtonStyle>Entrar</ButtonStyle>
-          <Link href={"/register"}>
-            Não possui uma conta? Cadastre-se aqui!
-          </Link>
-        </LoginForm>
-      </BackgroundForms>
-    )
+    <BackgroundForms>
+      <h1 className="text-3xl font-bold text-center mb-10">Login</h1>
+      <form onSubmit={handleSubmit} className="flex flex-col">
+        {" "}
+        <label htmlFor="username" className="text-gray-700 font-medium mb-2">
+          Usuário
+        </label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          className="bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4"
+        />
+        <label htmlFor="password" className="text-gray-700 font-medium mb-2">
+          Senha
+        </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          className="bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4"
+        />
+        <button
+          type="submit"
+          className="w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[20px] my-2"
+        >
+          Login
+        </button>
+        <p className="text-center text-gray-500 mt-4">Cadastre-se aqui</p>
+      </form>
+    </BackgroundForms>
   );
 }
-
-const LoginForm = styled.form`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-`;
-
-const Link = styled.a`
-  color: #635a56;
-  font-size: 15px;
-  text-decoration: underline;
-  margin-top: 10px;
-  cursor: pointer;
-`;
-
-const Label = styled.label`
-  width: 100%;
-  font-size: 16px;
-  margin-bottom: 5px;
-  text-align: left;
-  color: #635a56;
-  font-size: 15px;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  outline-color: #c0431dc3;
-  border-radius: 20px;
-`;
