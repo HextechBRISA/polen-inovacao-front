@@ -1,110 +1,80 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import BackgroundForms from "../components/BackgroundForms";
-import styled from "styled-components";
-import ButtonStyle from "../components/ButtonStyle";
 
-export default function RegisterPage() {
-  const [SSR, setSSR] = useState(false);
+export default function Login() {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const username = event.currentTarget.username.value;
+    const password = event.currentTarget.password.value;
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+  }
 
-  useEffect(() => {
-    setSSR(true);
-  }, []);
 
   return (
-    SSR && (
-      <BackgroundForms>
-        <h1>Cadastre-se</h1>
-        <Form>
-          <Label> Email </Label>
-          <Input type="text" placeholder="Email@gmail.com" />
-          <Label> Nome </Label>
-          <Input type="text" placeholder="Name" />
-          <Label> Senha </Label>
-          <Input type="password" placeholder="Password" />
-          <Label> Sou: </Label>
-          <SelectContainer>
-            <select className="select-box">
-              {" "}
-              Sou:
-              <option value="" disabled selected hidden>
-                Escolher categoria
-              </option>
-              <option value="first"> Admin </option>
-              <option value="second"> Mentor </option>
-              <option value="third"> Residente </option>
-            </select>
-          </SelectContainer>
-          <Label> Foto de Perfil </Label>
-          <Upload>Fazer Upload</Upload>
-          <ButtonStyle>Cadastrar</ButtonStyle>
-          <Link href={"/login"}>Já possui uma conta? Faça login!</Link>
-        </Form>
-      </BackgroundForms>
-    )
+    <BackgroundForms>
+      <h1 className="text-3xl font-bold text-center mb-10"> Cadastre-se </h1>
+      <form onSubmit={handleSubmit} className="flex flex-col">
+        {" "}
+
+        <label htmlFor="Email" className="text-gray-700 font-medium mb-2">
+          Email
+        </label>
+        <input
+          type="text"
+          id="Email"
+          name="Email"
+          className="bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4"
+        />
+
+        <label htmlFor="username" className="text-gray-700 font-medium mb-2">
+          Usuário
+        </label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          className="bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4"/>
+
+        <label htmlFor="password" className="text-gray-700 font-medium mb-2">
+          Senha
+        </label>
+
+        <input
+          type="password"
+          id="password"
+          name="password"
+          className="bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4"/>
+
+        <label htmlFor="função" className="text-gray-700 font-medium mb-2">
+          Sou:
+        </label>
+          <select id="função" className="text-sm bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4">
+            <option selected> Escolher Categoria </option>
+            <option value="Admin">Admin</option>
+            <option value="Mentor">Mentor</option>
+            <option value="Residente">Residente</option>
+          </select>
+
+          <label className="text-sm text-gray-700 font-medium mb-1" htmlFor="user_avatar"> Foto de Perfil </label>
+          
+          <input className="text-center border rounded-md dark:text-gray-800 dark:bg-orange-400 dark:border-orange-600" id="user_avatar" type="file"/>
+
+            <p className="mt-1 mb-3 text-sm text-gray-700" id="user_avatar_help ">Utilizado para confirmação da sua identidade!</p>
+
+            <button type="submit" className="text-gray-100 bg-red-500 bg-opacity-75 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center me-2 mb-2">Confirmar cadastro</button>
+
+            <button type="submit" className="text-gray-700 underline rounded-lg px-4 py-2 text-center m-2">
+              Já possui uma conta? Faça Login !
+            </button>
+
+      </form>
+    </BackgroundForms>
   );
 }
-
-const Form = styled.form`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-`;
-
-const Label = styled.label`
-  width: 100%;
-  font-size: 16px;
-  margin-bottom: 5px;
-  text-align: left;
-  color: #635a56;
-  font-size: 15px;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  outline-color: #c0431dc3;
-  border-radius: 20px;
-`;
-
-const Upload = styled.div`
-  width: 100%;
-  height: 3em;
-  border-radius: 5em;
-  border-width: 2px;
-  border-style: dashed;
-  border-color: #ffffff;
-  text-align: center;
-  margin: 10px 0px;
-  padding-top: 15px;
-  color: #635a56;
-  cursor: pointer;
-`;
-
-const Link = styled.a`
-  color: #635a56;
-  font-size: 15px;
-  text-decoration: underline;
-  margin-top: 10px;
-  cursor: pointer;
-`;
-
-const SelectContainer = styled.div`
-  width: 100%;
-  margin-bottom: 20px;
-
-  .select-box {
-    width: 100%;
-    height: 35px;
-    padding: 0px 5px;
-    border-radius: 20px;
-    font-size: 14px;
-    color: #635a56;
-    border: 1px solid #ccc;
-  }
-`;
