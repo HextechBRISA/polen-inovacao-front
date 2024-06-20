@@ -2,7 +2,7 @@
 import React from "react";
 import BackgroundForms from "../components/BackgroundForms";
 
-export default function Login() {
+export default function Cadastro() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const username = event.currentTarget.username.value;
@@ -19,17 +19,17 @@ export default function Login() {
 
   return (
     <BackgroundForms>
-      <h1 className="text-3xl font-bold text-center mb-10"> Cadastre-se </h1>
+      <h1 className="text-3xl font-bold text-center mb-10">Cadastre-se</h1>
       <form onSubmit={handleSubmit} className="flex flex-col">
         {" "}
 
-        <label htmlFor="Email" className="text-gray-700 font-medium mb-2">
-          Email
+        <label htmlFor="email" className="text-gray-700 font-medium mb-2">
+          E-mail
         </label>
         <input
           type="text"
-          id="Email"
-          name="Email"
+          id="email"
+          name="email"
           className="bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4"
         />
 
@@ -40,39 +40,71 @@ export default function Login() {
           type="text"
           id="username"
           name="username"
-          className="bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4"/>
+          className="bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4"
+        />
 
         <label htmlFor="password" className="text-gray-700 font-medium mb-2">
           Senha
         </label>
-
         <input
           type="password"
           id="password"
           name="password"
-          className="bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4"/>
+          className="bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4"
+        />
 
+        <label htmlFor="password" className="text-gray-700 font-medium mb-2">
+          Repita sua senha
+        </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          className="bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4"
+        />
+        
         <label htmlFor="função" className="text-gray-700 font-medium mb-2">
           Sou:
         </label>
-          <select id="função" className="text-sm bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4">
-            <option selected> Escolher Categoria </option>
+          <select 
+        id="função" 
+        className="text-xs bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4">
+            <option selected> Escolher uma Categoria </option>
             <option value="Admin">Admin</option>
             <option value="Mentor">Mentor</option>
             <option value="Residente">Residente</option>
           </select>
 
-          <label className="text-sm text-gray-700 font-medium mb-1" htmlFor="user_avatar"> Foto de Perfil </label>
-          
-          <input className="text-center border rounded-md dark:text-gray-800 dark:bg-orange-400 dark:border-orange-600" id="user_avatar" type="file"/>
+        <label htmlFor="função" className="text-gray-700 font-medium mb-2">
+          Curso:
+        </label>
+          <select 
+        id="função" 
+        className=" text-xs bg-gray-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mb-4">
+            <option selected> Escolha uma área de ensino </option>
+            <option value="ADS">Análise de Sistemas</option>
+            <option value="CC">Ciência da Computação</option>
+            <option value="ES">Engenharia de Software</option>
+            <option value="SI">Sistemas de Informação</option>
+          </select>
 
-            <p className="mt-1 mb-3 text-sm text-gray-700" id="user_avatar_help ">Utilizado para confirmação da sua identidade!</p>
+        <label htmlFor="função" className="text-gray-700 font-medium mb-2">
+          Foto de perfil:
+        </label>
 
-            <button type="submit" className="text-gray-100 bg-red-500 bg-opacity-75 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center me-2 mb-2">Confirmar cadastro</button>
+        <button
+          type="submit"
+          className="w-[200px] h-[30px] bg-[#EA5E53] text-gray-100 text-sm font-bold rounded-[20px] my-2"
+        >
+          Sign Up
+        </button>
 
-            <button type="submit" className="text-gray-700 underline rounded-lg px-4 py-2 text-center m-2">
-              Já possui uma conta? Faça Login !
-            </button>
+        <button
+          type="submit"
+          className="w-[200px] h-[30px] text-gray-700 text-xs font-bold rounded-[20px] my-0 underline"
+        >
+          Já possui uma conta? Faça Login
+        </button>
 
       </form>
     </BackgroundForms>
