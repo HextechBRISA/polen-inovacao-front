@@ -1,80 +1,50 @@
 "use client";
 import React from "react";
-import styled from "styled-components";
-import NewsletterImage from "../../../../public/NewsletterImage.png";
-import Arrow from "../../../../public/Arrow.png";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Newsletter() {
   return (
-      <NewsLetterContainer className="animate__animated animate__pulse">
-        <div className="left ">
-          <h1>Inscreva-se em nossa NewsLetter!</h1>
-          <h2>E receba todas as nossas novidades em primeira mão!</h2>
-          <Link href={"/newsletter"}>
-            <Image className="arrow" src={Arrow.src} alt="Arrow" />
-          </Link>
+    <div> <Link href="/newsletter">
+      <div
+        className="
+          flex 
+          justify 
+          items-center 
+          text-[25px]
+          text-[white]
+          bg-[#ea5e53]
+          w-[435px] h-[256px]
+          border rounded-[8px]
+          p-[20px]
+          shadow-md animate__animated animate__pulse"
+      >
+        <div>
+          <h1>
+            Inscreva-se em nossa NewsLetter!
+          </h1>
+          <h2 className="mt-5">
+            E receba todas as nossas novidades em primeira mão!
+          </h2>
+          <div className="mt-5">
+            <Image
+              src="/Arrow.png"
+              width={200}
+              height={200} alt="seta"
+            />
+          </div>
         </div>
-        <div className="right">
-          <Image src={NewsletterImage.src} alt="Envelope" />
+        <div>
+          <Image
+            src="/NewsletterImage.png"
+            width={295}
+            height={295}
+            alt="ícone de envelope"
+          />
         </div>
-      </NewsLetterContainer>
+      </div>
+    </Link>
+    </div>
   );
 }
 
-const NewsLetterContainer = styled.div`
-  background-color: #ea5e53;
-  width: 350px;
-  height: 220px;
-  border-radius: 20px;
-  padding: 20px;
-  margin: 0px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-
-  @media (max-width: 950px) {
-    width: 60%;
-    margin: 30px 0px;
-  }
-
-  @media (max-width: 630px) {
-    width: 80%;
-  }
-
-  h1,
-  h2 {
-    font-weight: 700;
-    font-size: 16px;
-    color: white;
-    text-align: left;
-    margin-bottom: 10px;
-  }
-
-  h2 {
-    font-weight: 400;
-  }
-
-  .left {
-    width: 170px;
-    margin-right: 5px;
-  }
-  
-  .arrow {
-    margin-top: 5px;
-    width: 100px;
-  }
-
-  .right {
-    width: 150px;
-    height: auto;
-    align-content: center;
-  }
-`;
-
-const Image = styled.img`
-  width: 150px;
-  align-content: center;
-`;

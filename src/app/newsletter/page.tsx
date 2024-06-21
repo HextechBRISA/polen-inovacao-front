@@ -1,221 +1,133 @@
 "use client";
-import styled from "styled-components";
+import React, { useState } from "react";
 import BackgroundForms from "../components/BackgroundForms";
-import React, { useEffect, useState } from "react";
 import NewsletterSubscript from "./components/SubscriptSuccess";
 
-export default function NewsLetterPage() {
-  const [SSR, setSSR] = useState(false);
-
-  useEffect(() => {
-    setSSR(true);
-  }, []);
-
+const App = () => {
+  const [selectedOption, setSelectedOption] = useState('');
   const [isSubscriptSuccessful, setIsSubscriptSuccessful] = useState(false);
-  async function handleSubmit(e) {
+  async function handleSubmit2(e) {
     e.preventDefault();
     const body = {};
     setIsSubscriptSuccessful(true);
   }
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle form submission
+    console.log('Selected option:', selectedOption);
+  };
+
   return (
     <>
       {isSubscriptSuccessful ? (
         <NewsletterSubscript />
       ) : (
-        SSR && (
+        <div className="flex items-center text-center font-normal  text-[16px] justify-center min-h-screen ">
           <BackgroundForms>
-            <NewsLetterPageContainer>
-              <form>
-                <h1>Inscreva-se na NewsLetter:</h1>
-                <h2>Eu sou:</h2>
-                <div>
-                  <input
-                    type="radio"
-                    id="radio1"
-                    name="category"
-                    className="group"
-                    value="empresa"
-                  />
-                  <label
-                    htmlFor="radio1"
-                    className="radio"
-                    data-label="Empresa Parceira"
-                  ></label>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    id="radio2"
-                    name="category"
-                    className="group"
-                    value="aluno"
-                  />
-                  <label
-                    htmlFor="radio2"
-                    className="radio"
-                    data-label="Aluno"
-                  ></label>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    id="radio3"
-                    name="category"
-                    className="group"
-                    value="professor"
-                  />
-                  <label
-                    htmlFor="radio3"
-                    className="radio"
-                    data-label="Professor"
-                  ></label>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    id="radio4"
-                    name="category"
-                    className="group"
-                    value="aspirante"
-                  />
-                  <label
-                    htmlFor="radio4"
-                    className="radio"
-                    data-label="Aspirante a residente"
-                  ></label>
-                </div>
-                <div>
-                  <input
-                    className="email"
-                    type="email"
-                    placeholder="Insira seu e-mail"
-                  />
-                </div>
-              </form>
-              <button type="submit" onClick={handleSubmit}>
+            <form onSubmit={handleSubmit2} className=" rounded-[20px] text-center w-full max-w-sm">
+              <h2 className="text-2xl font-bold ">Inscreva-se na NewsLetter<br />Eu sou:</h2>
+              <div className="mb-1">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="options"
+                  value="Option 1"
+                  checked={selectedOption === 'Option 1'}
+                  onChange={handleOptionChange}
+                  className="hidden"
+                />
+                <label
+                  htmlFor="option1"
+                  className={`block cursor-pointer p-2 text-center rounded-[20px] hover:bg-[#ea5e53] ${selectedOption === 'Option 1' ? 'bg-[#ea5e53] text-white' : ''}`}
+                >
+                  Empresa Parceira
+                </label>
+              </div>
+              <div  className="mb-1">
+                <input
+                  type="radio"
+                  id="option2"
+                  name="options"
+                  value="Option 2"
+                  checked={selectedOption === 'Option 2'}
+                  onChange={handleOptionChange}
+                  className="hidden"
+                />
+                <label
+                  htmlFor="option2"
+                  className={`block cursor-pointer p-2 text-center rounded-[20px] hover:bg-[#ea5e53] ${selectedOption === 'Option 2' ? 'bg-[#ea5e53] text-white' : ''}`}
+                >
+                  Aluno
+                </label>
+              </div>
+              <div className="mb-1">
+                <input
+                  type="radio"
+                  id="option3"
+                  name="options"
+                  value="Option 3"
+                  checked={selectedOption === 'Option 3'}
+                  onChange={handleOptionChange}
+                  className="hidden"
+                />
+                <label
+                  htmlFor="option3"
+                  className={`block cursor-pointer p-2 text-center rounded-[20px] hover:bg-[#ea5e53] ${selectedOption === 'Option 3' ? 'bg-[#ea5e53] text-white' : ''}`}
+                >
+                  Professor
+                </label>
+              </div>
+              <div className="mb-1">
+                <input
+                  type="radio"
+                  id="option4"
+                  name="options"
+                  value="Option 4"
+                  checked={selectedOption === 'Option 4'}
+                  onChange={handleOptionChange}
+                  className="hidden"
+                />
+                <label
+                  htmlFor="option4"
+                  className={`block cursor-pointer p-2 text-center rounded-[20px] hover:bg-[#ea5e53] ${selectedOption === 'Option 4' ? 'bg-[#ea5e53] text-white' : ''}`}
+                >
+
+                  Aspirante a residente
+                </label>
+              </div>
+              <div>
+              </div>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Insira seu e-mail"
+                className=" block  w-full cursor-pointer p-[10] text-center border  bg-gray-100 rounded-[20px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc  mb-2"
+              />
+              <button type="submit" onClick={handleSubmit2} className= " flex-col w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[20px] ">
                 Enviar
               </button>
-            </NewsLetterPageContainer>
+            </form>
           </BackgroundForms>
-        )
-      )}
+        </div>
+      )
+      }
     </>
   );
 }
 
-const NewsLetterPageContainer = styled.div`
+export default App;
+
+/*const Input = styled.input`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  h1 {
-    text-align: center;
-    margin: 10px 0px 15px 0px;
-    font-size: 22px;
-  }
-
-  h2 {
-    text-align: left;
-    color: #635a56;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 15px;
-  }
-
-  .email {
-    text-align: center;
-    width: 100%;
-    height: 35px;
-    border-radius: 20px;
-    margin: 10px 0px;
-    font-size: 16px;
-    border: 0px;
-  }
-
-  div {
-    margin: 10px 0px;
-  }
-
-  form {
-    width: 100%;
-  }
-  button {
-    width: 200px;
-    height: 30px;
-    background-color: #ea5e53;
-    color: white;
-    font-size: 14px;
-    font-weight: 700;
-    border-radius: 20px;
-    margin: 10px 0px;
-  }
-
-  /*Estilo para esconder o radio button padrão */
-  input[type="radio"] {
-    display: none;
-  }
-
-  /* Estilo para o rótulo do radio button */
-  label.radio {
-    position: relative;
-    display: inline-block;
-    padding-left: 30px;
-    cursor: pointer;
-    margin-right: 10px; /* Espaço entre os radio buttons */
-  }
-
-  /* Estilo para o círculo */
-  label.radio::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 10px;
-    height: 10px;
-    border: 2px solid #635a56; /* Borda do círculo */
-    border-radius: 50%; /* Borda arredondada */
-  }
-
-  /*Estilo para o círculo quando o radio button está marcado */
-  input[type="radio"]:checked + label.radio::before {
-    background-color: #635a56; /* Cor de fundo do círculo */
-  }
-
-  /* Estilo para o texto do rótulo */
-  label.radio::after {
-    content: attr(data-label); /* Corrigido para exibir o texto do rótulo */
-    font-weight: 500;
-    display: block;
-    font-size: 18px;
-    margin: 0px; /* Espaço após o círculo */
-    color: #635a56; /* Cor do texto */
-  }
-
-  /*
-<!-- Checkboxes -->
-<input type="checkbox" id="checkbox1" name="checkbox" class="group">
-<label for="checkbox1" class="checkbox" data-label="Opção 1"></label>
-
-<input type="checkbox" id="checkbox2" name="checkbox" class="group">
-<label for="checkbox2" class="checkbox" data-label="Opção 2"></label>
-
-<input type="checkbox" id="checkbox3" name="checkbox" class="group">
-<label for="checkbox3" class="checkbox" data-label="Opção 3"></label>
-
-<!-- JavaScript para permitir apenas uma seleção -->
-<script>
-    const checkboxes = document.querySelectorAll('.group');
-
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            checkboxes.forEach(cb => {
-                if (cb !== checkbox) {
-                    cb.checked = false;
-                }
-            });
-        });
-    });
-</script>*/
-`;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  outline-color: #c0431dc3;
+  border-radius: 20px;
+`;*/
