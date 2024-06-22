@@ -2,49 +2,49 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import NewsletterImage from "../../../../public/NewsletterImage.png";
+import Arrow from "../../../../public/Arrow.png";
 
-export default function Newsletter() {
+export default function NewsletterCard() {
   return (
-    <div> <Link href="/newsletter">
+    <Link href="/newsletter">
       <div
         className="
           flex 
-          justify 
+          justify-center
           items-center 
-          text-[25px]
+          text-[18px]
           text-[white]
-          bg-[#ea5e53]
-          w-[435px] h-[256px]
-          border rounded-[8px]
-          p-[20px]
-          shadow-md animate__animated animate__pulse"
+          bg-gradient-to-r from-[rgba(234,94,83,1.0)] to-[#ea6d29]
+          w-50%
+          h-[220px]
+          rounded-lg 
+          shadow-md
+          p-6 
+          ml-4 mr-4
+          animate__animated animate__pulse"
       >
-        <div>
-          <h1>
+        <div className="w-64 mr-4">
+          <h1 className="font-bold text-18px text-white">
             Inscreva-se em nossa NewsLetter!
           </h1>
-          <h2 className="mt-5">
+          <h2 className="mt-4">
             E receba todas as nossas novidades em primeira mão!
+            <br />
+            #SejaPólen
           </h2>
-          <div className="mt-5">
-            <Image
-              src="/Arrow.png"
-              width={200}
-              height={200} alt="seta"
-            />
+          <div className="mt-4">
+            <Image src={Arrow} alt="Arrow" className="w-32" />
           </div>
         </div>
         <div>
           <Image
-            src="/NewsletterImage.png"
-            width={295}
-            height={295}
-            alt="ícone de envelope"
+            src={NewsletterImage}
+            alt="Newsletter Image"
+            className="w-48"
           />
         </div>
       </div>
     </Link>
-    </div>
   );
 }
-
