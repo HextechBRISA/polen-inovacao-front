@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -33,6 +32,7 @@ body {
   height: auto;
 	margin-bottom: 500px;
 	background: linear-gradient(to bottom, #EE7A3C, #EA5E53);
+  color: #635a56;
 }
 ol, ul {
 	list-style: none;
