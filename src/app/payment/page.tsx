@@ -51,11 +51,11 @@ export default function PaymentPage() {
       ) : (
         SSR && (
           <PaymentContainer>
-            <h1 className="font-bold text-xl mb-2">
+            <h1 className="font-bold text-center text-xl mb-2">
               Realize o pagamento para confirmar sua reserva
             </h1>
 
-            <h2 className="font-normal text-lg mb-8">
+            <h2 className="font-normal text-center text-lg mb-8">
               Valor da reserva: R$ 00,00
             </h2>
 
