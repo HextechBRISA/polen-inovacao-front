@@ -1,8 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Cards, { Focused } from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import InputMask from "react-input-mask";
+import QRCode from "qrcode.react";
 import {
   PaymentContainer,
   PaymentCard,
@@ -27,6 +28,12 @@ export default function PaymentPage() {
     focus: "" as Focused,
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [payWithPix, setPayWithPix] = useState(false);
+  const [pixData, setPixData] = useState({
+    chave: "sua-chave-pix",
+    valor: "00.00",
+    recebedor: "Nome do Recebedor",
+  });
 
   function handleInputFocus(e) {
     const { name } = e.target;
@@ -40,6 +47,11 @@ export default function PaymentPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (payWithPix) {
+      setIsPaymentSuccessful(true);
+      return;
+    }
+
     const formattedCardData = {
       number: cardData.number.trim(),
       expiry: cardData.expiry.trim(),
@@ -62,37 +74,44 @@ export default function PaymentPage() {
     }
   }
 
-  useEffect(() => {
-    setSSR(true);
-  }, []);
+  const pixQRCodeData = `00020126580014BR.GOV.BCB.PIX0114${pixData.chave}5204000053039865802BR5925${pixData.recebedor}6009SAO PAULO61080540900062070503***6304`;
 
   return (
     <>
       {isPaymentSuccessful ? (
         <PaymentSuccess />
       ) : (
-        SSR && (
-          <PaymentContainer>
-            <h1 className="font-bold text-center text-xl mb-2">
-              Realize o pagamento para confirmar sua reserva
-            </h1>
+        <PaymentContainer>
+          <h1 className="font-bold text-center text-xl mb-2">
+            Realize o pagamento para confirmar sua reserva
+          </h1>
 
-            <h2 className="font-normal text-center text-lg mb-8">
-              Valor da reserva: R$ 00,00
-            </h2>
+          <h2 className="font-normal text-center text-lg mb-8">
+            Valor da reserva: R$ {pixData.valor}
+          </h2>
 
-            <h3 className="font-normal text-base mb-2">Pagar com cartão:</h3>
+          <PaymentCard>
+            {payWithPix ? (
+              <div className="flex items-center justify-center mb-4">
+                <QRCode value={pixQRCodeData} size={200} />
+              </div>
+            ) : (
+              <>
+                <h3 className="font-normal text-base mb-2">
+                  Pagar com cartão:
+                </h3>
+                <Cards
+                  cvc={cardData.cvc}
+                  expiry={cardData.expiry}
+                  focused={cardData.focus}
+                  name={cardData.name}
+                  number={cardData.number}
+                />
+              </>
+            )}
 
-            <PaymentCard>
-              <Cards
-                cvc={cardData.cvc}
-                expiry={cardData.expiry}
-                focused={cardData.focus}
-                name={cardData.name}
-                number={cardData.number}
-              />
-
-              <PaymentForm>
+            <PaymentForm>
+              {!payWithPix && (
                 <div className="mb-1">
                   <InputMask
                     mask="9999 9999 9999 9999"
@@ -106,7 +125,7 @@ export default function PaymentPage() {
                         <Input
                           type="tel"
                           name="number"
-                          placeholder="Card Number"
+                          placeholder="Número do cartão"
                           required
                           className={errors.number ? "border-red-500" : ""}
                         />
@@ -119,12 +138,14 @@ export default function PaymentPage() {
                     )}
                   </InputMask>
                 </div>
+              )}
 
+              {!payWithPix && (
                 <div className="mb-1">
                   <Input
                     type="text"
                     name="name"
-                    placeholder="Name"
+                    placeholder="Nome no cartão"
                     value={cardData.name}
                     onChange={handleInputChange}
                     onFocus={handleInputFocus}
@@ -137,7 +158,9 @@ export default function PaymentPage() {
                     </p>
                   )}
                 </div>
+              )}
 
+              {!payWithPix && (
                 <div className="flex mb-4">
                   <div className="mr-2">
                     <InputMask
@@ -152,7 +175,7 @@ export default function PaymentPage() {
                           <ExpiryInput
                             type="tel"
                             name="expiry"
-                            placeholder="Valid Thru"
+                            placeholder="Validade"
                             required
                             className={errors.expiry ? "border-red-500" : ""}
                           />
@@ -196,28 +219,32 @@ export default function PaymentPage() {
                     </InputMask>
                   </div>
                 </div>
-              </PaymentForm>
-            </PaymentCard>
+              )}
+            </PaymentForm>
+          </PaymentCard>
 
-            <PaymentPix>
-              <input type="checkbox" id="pixCheckbox" className="group" />
-              <label
-                htmlFor="pixCheckbox"
-                className="checkbox"
-                data-label="Pagar com pix! (Seu pagamento deverá ser confirmado em até
-                  24h)"
-              ></label>
-            </PaymentPix>
+          <PaymentPix>
+            <input
+              type="checkbox"
+              id="pixCheckbox"
+              className="group"
+              onChange={(e) => setPayWithPix(e.target.checked)}
+            />
+            <label
+              htmlFor="pixCheckbox"
+              className="checkbox cursor-pointer"
+              data-label="Pagar com PIX! (Seu pagamento deverá ser confirmado em até 24h)"
+            ></label>
+          </PaymentPix>
 
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              className="w-52 h-7 bg-[#ea5e53] text-white border-0 rounded-full"
-            >
-              Confirmar pagamento
-            </button>
-          </PaymentContainer>
-        )
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="w-52 h-7 bg-[#ea5e53] text-white border-0 rounded-full"
+          >
+            Confirmar pagamento
+          </button>
+        </PaymentContainer>
       )}
     </>
   );
