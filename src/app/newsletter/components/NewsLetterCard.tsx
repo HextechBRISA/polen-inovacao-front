@@ -25,10 +25,10 @@ export default function NewsletterCard() {
           animate__animated animate__pulse"
       >
         <div className="w-64 mr-4">
-          <h1 className="font-bold text-[#EA5E53] text-20px">
+          <h1 className="font-bold text-[#EA5E53] text-[20px] xs:text-[18px]">
             Inscreva-se em nossa NewsLetter!
           </h1>
-          <h2 className="mt-4">
+          <h2 className="mt-4 xs:text-[15px]">
             E receba todas as nossas novidades em primeira mão!
             <br />
             #SejaPólen
