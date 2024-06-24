@@ -17,21 +17,21 @@ const PaymentForm = ({ children }) => (
 const Input = ({ ...props }) => (
   <input
     {...props}
-    className="w-full h-9 mb-4 pl-2 rounded border border-gray-400 text-lg placeholder-gray-400"
+    className="w-full h-9 mb-2 pl-5 rounded-[50px] text-lg placeholder-gray-400"
   />
 );
 
 const ExpiryInput = ({ ...props }) => (
   <input
     {...props}
-    className="w-full h-9 mb-4 pl-2 rounded border border-gray-400 text-lg placeholder-gray-400"
+    className="w-[166px] h-9 mb-2 pl-5 rounded-[50px] text-lg placeholder-gray-400"
   />
 );
 
 const CVCInput = ({ ...props }) => (
   <input
     {...props}
-    className="w-1/2 h-9 mb-4 pl-2 rounded border border-gray-400 text-lg placeholder-gray-400 ml-4"
+    className="w-[110px] h-9 mb-2 pl-5 rounded-[50px] text-lg placeholder-gray-400 ml-1"
   />
 );
 
