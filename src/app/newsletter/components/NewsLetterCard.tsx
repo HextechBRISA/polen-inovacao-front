@@ -15,7 +15,7 @@ export default function NewsletterCard() {
           items-center 
           text-[18px]
           text-[white]
-          bg-gradient-to-r from-[rgba(234,94,83,1.0)] to-[#ea6d29]
+          bg-gradient-to-r from-[rgba(255,255,255,0.3)] to-[rgba(234,94,83,1.0)]
           w-50%
           h-[220px]
           rounded-lg 
@@ -25,7 +25,7 @@ export default function NewsletterCard() {
           animate__animated animate__pulse"
       >
         <div className="w-64 mr-4">
-          <h1 className="font-bold text-18px text-white">
+          <h1 className="font-bold text-[#EA5E53] text-20px">
             Inscreva-se em nossa NewsLetter!
           </h1>
           <h2 className="mt-4">

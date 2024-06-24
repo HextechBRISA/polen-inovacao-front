@@ -13,6 +13,8 @@ import {
   PaymentPix,
 } from "./style";
 import PaymentSuccess from "./components/PaymentSuccess";
+import { cardSchema } from "./validationSchema";
+import { z } from "zod";
 
 export default function PaymentPage() {
   const [SSR, setSSR] = useState(false);
@@ -24,6 +26,7 @@ export default function PaymentPage() {
     name: "",
     focus: "" as Focused,
   });
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   function handleInputFocus(e) {
     const { name } = e.target;
@@ -37,7 +40,26 @@ export default function PaymentPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setIsPaymentSuccessful(true);
+    const formattedCardData = {
+      number: cardData.number.trim(),
+      expiry: cardData.expiry.trim(),
+      cvc: cardData.cvc.trim(),
+      name: cardData.name.trim(),
+    };
+
+    try {
+      cardSchema.parse(formattedCardData);
+      setIsPaymentSuccessful(true);
+      setErrors({});
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: { [key: string]: string } = {};
+        error.errors.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+      }
+    }
   }
 
   useEffect(() => {
@@ -59,9 +81,7 @@ export default function PaymentPage() {
               Valor da reserva: R$ 00,00
             </h2>
 
-            <h3 className="font-normal text-base mb-2">
-              Pagar com cartão:
-            </h3>
+            <h3 className="font-normal text-base mb-2">Pagar com cartão:</h3>
 
             <PaymentCard>
               <Cards
@@ -73,60 +93,108 @@ export default function PaymentPage() {
               />
 
               <PaymentForm>
-                <InputMask
-                  mask="9999 9999 9999 9999"
-                  maskChar=""
-                  value={cardData.number}
-                  onChange={handleInputChange}
-                  onFocus={handleInputFocus}
-                >
-                  {() => (
-                    <Input
-                      type="tel"
-                      name="number"
-                      placeholder="Card Number"
-                      required
-                    />
-                  )}
-                </InputMask>
-
-                <Input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  value={cardData.name}
-                  onChange={handleInputChange}
-                  onFocus={handleInputFocus}
-                  required
-                />
-
-                <div className="flex">
+                <div className="mb-1">
                   <InputMask
-                    mask="99/99"
+                    mask="9999 9999 9999 9999"
                     maskChar=""
-                    value={cardData.expiry}
+                    value={cardData.number}
                     onChange={handleInputChange}
                     onFocus={handleInputFocus}
                   >
                     {() => (
-                      <ExpiryInput
-                        type="tel"
-                        name="expiry"
-                        placeholder="Valid Thru"
-                        required
-                      />
+                      <div>
+                        <Input
+                          type="tel"
+                          name="number"
+                          placeholder="Card Number"
+                          required
+                          className={errors.number ? "border-red-500" : ""}
+                        />
+                        {errors.number && (
+                          <p className="text-[#EA5E53] font-bold text-sm">
+                            {errors.number}
+                          </p>
+                        )}
+                      </div>
                     )}
                   </InputMask>
+                </div>
 
-                  <CVCInput
-                    type="tel"
-                    name="cvc"
-                    placeholder="CVC"
-                    value={cardData.cvc}
+                <div className="mb-1">
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    value={cardData.name}
                     onChange={handleInputChange}
                     onFocus={handleInputFocus}
                     required
+                    className={errors.name ? "border-red-500" : ""}
                   />
+                  {errors.name && (
+                    <p className="text-[#EA5E53] font-bold text-sm">
+                      {errors.name}
+                    </p>
+                  )}
+                </div>
+
+                <div className="flex mb-4">
+                  <div className="mr-2">
+                    <InputMask
+                      mask="99/99"
+                      maskChar=""
+                      value={cardData.expiry}
+                      onChange={handleInputChange}
+                      onFocus={handleInputFocus}
+                    >
+                      {() => (
+                        <div>
+                          <ExpiryInput
+                            type="tel"
+                            name="expiry"
+                            placeholder="Valid Thru"
+                            required
+                            className={errors.expiry ? "border-red-500" : ""}
+                          />
+                          {errors.expiry && (
+                            <p className="text-[#EA5E53] font-bold text-sm">
+                              {errors.expiry}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </InputMask>
+                  </div>
+
+                  <div>
+                    <InputMask
+                      mask="999"
+                      maskChar=""
+                      value={cardData.cvc}
+                      onChange={handleInputChange}
+                      onFocus={handleInputFocus}
+                    >
+                      {() => (
+                        <div>
+                          <CVCInput
+                            type="tel"
+                            name="cvc"
+                            placeholder="CVC"
+                            value={cardData.cvc}
+                            onChange={handleInputChange}
+                            onFocus={handleInputFocus}
+                            required
+                            className={errors.cvc ? "border-red-500" : ""}
+                          />
+                          {errors.cvc && (
+                            <p className="text-[#EA5E53] font-bold text-sm">
+                              {errors.cvc}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </InputMask>
+                  </div>
                 </div>
               </PaymentForm>
             </PaymentCard>
@@ -140,7 +208,7 @@ export default function PaymentPage() {
                   24h)"
               ></label>
             </PaymentPix>
-            
+
             <button
               type="submit"
               onClick={handleSubmit}
