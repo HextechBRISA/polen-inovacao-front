@@ -1,27 +1,81 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import Cards, { Focused } from "react-credit-cards-2";
 import BackgroundForms from "../components/BackgroundForms";
+import RegisterSuccess from "./components/RegisterSuccess"
+import { validationSchema } from "./validationSchema"
+import { z } from "zod";
 
-export default function Cadastro() {
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const username = event.currentTarget.username.value;
-    const password = event.currentTarget.password.value;
-    const response = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    });
+export default function RegisterPage() {
+  const [SSR, setSSR] = useState(false);
+  const [isRegisterSuccessfull, setIsRegisterSuccessfull] = useState(false);
+  const [cardData, setCardData] = useState({
+    email: "",
+    username: "",
+    password: "",
+    category: "",
+    course: "",
+    picture: "",
+    focus: "" as Focused,
+  });
+
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [payWithPix, setPayWithPix] = useState(false);
+  const [pixData, setPixData] = useState({
+    chave: "sua-chave-pix",
+    valor: "00.00",
+    recebedor: "Nome do Recebedor",
+  });
+
+  function handleInputFocus(e) {
+    const { name } = e.target;
+    setCardData({ ...cardData, focus: name });
   }
 
+  function handleInputChange(e) {
+    const { name, value } = e.target;
+    setCardData({ ...cardData, [name]: value });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (payWithPix) {
+      setIsRegisterSuccessfull(true);
+      return;
+    }
+
+    const formattedCardData = {
+      email: cardData.email.trim(),
+      username: cardData.username.trim(),
+      password: cardData.password.trim(),
+      category: cardData.category.trim(),
+      course: cardData.course.trim(),
+      picture: cardData.picture.trim(),
+    };
+
+    try {
+      validationSchema.parse(formattedCardData);
+      setIsRegisterSuccessfull(true);
+      setErrors({});
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: { [key: string]: string } = {};
+        error.errors.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+      }
+    }
+  }
 
   return (
+    <>
+      {isRegisterSuccessfull ? (
+        <RegisterSuccess />
+      ) : (
     <BackgroundForms>
       <h1 className="text-3xl font-bold text-center mb-10">Cadastre-se</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col">
-        {" "}
+      <form className="flex flex-col">
 
         <label htmlFor="email" className="text-gray-700 font-medium mb-2">
           E-mail
@@ -122,13 +176,17 @@ export default function Cadastro() {
 
         </div>
 
+          <div>
           <button
           type="submit"
+          onClick={handleSubmit}
           className="w-full h-[30px] bg-[#EA5E53] text-gray-100 text-sm font-bold rounded-[20px] my-2"
           >
           Sign Up
           </button>
+          </div>
 
+          
           <button
           type="submit"
           className="w-full h-[30px] text-gray-700 text-xs font-bold rounded-[20px] my-0 underline"
@@ -137,6 +195,9 @@ export default function Cadastro() {
           </button>
 
       </form>
+
     </BackgroundForms>
+      )}
+    </>
   );
 }
