@@ -23,6 +23,8 @@ module.exports = {
       screens: {
         'xs': {'max': '500px'},
         'sm': {'max': '700px'},
+        'lg': {'min': '1200px'},
+        'xl': {'min': '1300px'},
       },
     },
   },

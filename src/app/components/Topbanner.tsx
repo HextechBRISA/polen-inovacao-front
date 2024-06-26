@@ -12,7 +12,7 @@ export default function TopBanner() {
         className="object-cover w-full h-full"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-red-500 via-transparent to-black opacity-60"></div>
-      <div className="absolute inset-0 flex flex-col justify-center items-start text-white z-10 px-10">
+      <div className="absolute inset-0 flex flex-col justify-center items-start text-white z-10 px-10 xs:px-6">
         <h1 className="text-2xl md:text-2xl lg:text-4xl xs:text-[20px] font-bold mb-4 opacity-80">
           LOCAÇÃO DE ESPAÇOS
         </h1>
