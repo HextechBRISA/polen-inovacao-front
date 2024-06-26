@@ -1,30 +1,71 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import Cards, { Focused } from "react-credit-cards-2";
 import BackgroundForms from "../components/BackgroundForms";
+import RegisterSuccess from "./components/RegisterSuccess";
+import { validationSchema } from "./validationSchema";
 import Link from "next/link";
+import { z } from "zod";
 
 export default function RegisterPage() {
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const username = event.currentTarget.username.value;
-    const password = event.currentTarget.password.value;
-    const response = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    });
+  const [isRegisterSuccessfull, setIsRegisterSuccessfull] = useState(false);
+  const [registerData, setRegisterData] = useState({
+    email: "",
+    username: "",
+    password: "",
+    category: "",
+    course: "",
+    picture: "",
+    focus: "" as Focused,
+  });
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  function handleInputFocus(e) {
+    const { name } = e.target;
+    setRegisterData({ ...registerData, focus: name });
+  }
+
+  function handleInputChange(e) {
+    const { name, value } = e.target;
+    setRegisterData({ ...registerData, [name]: value });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const formattedRegisterData = {
+      email: registerData.email.trim(),
+      username: registerData.username.trim(),
+      password: registerData.password.trim(),
+      category: registerData.category.trim(),
+      course: registerData.course.trim(),
+      picture: registerData.picture.trim(),
+    };
+
+    try {
+      validationSchema.parse(formattedRegisterData);
+      setIsRegisterSuccessfull(true);
+      setErrors({});
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: { [key: string]: string } = {};
+        error.errors.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+      }
+    }
   }
 
   return (
+    <>
+      {isRegisterSuccessfull ? (
+        <RegisterSuccess />
+      ) : (
     <BackgroundForms>
       <h1 className="text-3xl font-bold text-center mb-6">Cadastre-se</h1>
-
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col justify-center items-center w-full"
-      >
+      <form className="flex flex-col justify-center items-center w-full">
+        
         <label htmlFor="email" className="w-full items-start font-medium mb-2">
           E-mail
         </label>
@@ -126,14 +167,16 @@ export default function RegisterPage() {
             <input id="dropzone-file" type="file" className="hidden" />
           </label>
         </div>
-
+        
         <button
           type="submit"
+          onClick={handleSubmit}
           className="shadow-md mt-2 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
-        >
+          >
           Sign Up
-        </button>
+          </button>
 
+          
         <Link
           href={"/login"}
           className="text-center text-[15px] mt-6 underline"
@@ -142,5 +185,7 @@ export default function RegisterPage() {
         </Link>
       </form>
     </BackgroundForms>
+      )}
+    </>
   );
 }
