@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 export default function RegisterPage() {
   const [registerData, setRegisterData] = useState({
@@ -18,6 +19,8 @@ export default function RegisterPage() {
     picture: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [previewImage, setPreviewImage] = useState<string>("");
+
   const router = useRouter();
 
   async function handleSubmit(e) {
@@ -61,7 +64,9 @@ export default function RegisterPage() {
     const { name, value, files } = e.target;
 
     if (name === "picture" && files.length > 0) {
-      setRegisterData({ ...registerData, picture: files[0].name });
+      const file = files[0];
+      setRegisterData({ ...registerData, picture: file.name });
+      setPreviewImage(URL.createObjectURL(file));
     } else {
       setRegisterData({ ...registerData, [name]: value });
     }
@@ -87,7 +92,9 @@ export default function RegisterPage() {
           className="w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-4"
         />
         {errors.email && (
-          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">{errors.email}</p>
+          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
+            {errors.email}
+          </p>
         )}
 
         <label htmlFor="name" className="w-full items-start font-medium mb-2">
@@ -103,7 +110,9 @@ export default function RegisterPage() {
           className="w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-4"
         />
         {errors.name && (
-          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">{errors.name}</p>
+          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
+            {errors.name}
+          </p>
         )}
 
         <label
@@ -122,7 +131,9 @@ export default function RegisterPage() {
           className="w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-4"
         />
         {errors.password && (
-          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">{errors.password}</p>
+          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
+            {errors.password}
+          </p>
         )}
 
         <label
@@ -166,7 +177,9 @@ export default function RegisterPage() {
           <option value="Residente">Residente</option>
         </select>
         {errors.category && (
-          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">{errors.category}</p>
+          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
+            {errors.category}
+          </p>
         )}
 
         <label htmlFor="course" className="w-full items-start font-medium mb-2">
@@ -177,7 +190,7 @@ export default function RegisterPage() {
           name="course"
           value={registerData.course}
           onChange={handleChange}
-          className="w-full h-[40px] p-2 text-gray-400 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-4"
+          className="w-full h-[40px] p-2 text-gray-400 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-5"
         >
           <option disabled hidden value="">
             Escolha uma área de ensino
@@ -188,7 +201,9 @@ export default function RegisterPage() {
           <option value="SI">Sistemas de Informação</option>
         </select>
         {errors.course && (
-          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">{errors.course}</p>
+          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
+            {errors.course}
+          </p>
         )}
 
         <label
@@ -200,11 +215,12 @@ export default function RegisterPage() {
         <div className="flex items-center justify-center w-full mt-1 mb-4">
           <label
             htmlFor="dropzone-file"
-            className="flex flex-auto items-center justify-center w-full h-[40px] border-2 border-white border-dashed rounded-[50px] cursor-pointer"
+            className={
+              previewImage
+                ? "flex items-center justify-center w-full cursor-pointer"
+                : "flex items-center justify-center w-full h-[40px] border-2 border-white border-solid rounded-[50px] cursor-pointer"
+            }
           >
-            <p className="flex-auto text-xs text-center font-semibold">
-              Fazer Upload PNG ou JPG
-            </p>
             <input
               id="dropzone-file"
               type="file"
@@ -212,6 +228,21 @@ export default function RegisterPage() {
               onChange={handleChange}
               className="hidden"
             />
+            {previewImage ? (
+              <div className="flex justify-center items-start">
+                <Image
+                  src={previewImage}
+                  alt="Imagem de perfil"
+                  className="w-24 h-24 rounded-full object-cover border-2 border-white border-solid p-1"
+                  width={30}
+                  height={30}
+                />
+              </div>
+            ) : (
+              <p className="flex-auto text-xs text-center font-semibold">
+                Fazer Upload PNG ou JPG
+              </p>
+            )}
           </label>
         </div>
         {errors.picture && (
