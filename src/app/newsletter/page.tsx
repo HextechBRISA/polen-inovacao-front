@@ -3,24 +3,52 @@ import React, { useState } from "react";
 import BackgroundForms from "../components/BackgroundForms";
 import NewsletterSubscript from "./components/SubscriptSuccess";
 import { IoMdArrowRoundForward } from "react-icons/io";
+import { z } from "zod";
+import { formSchema } from "./validationSchema";
 
-export default function NewsletterPage() {
-  const [selectedOption, setSelectedOption] = useState("");
+const NewsletterPage: React.FC = () =>{
+
   const [isSubscriptSuccessful, setIsSubscriptSuccessful] = useState(false);
+  const [formData, setFormData] = useState({email:"", radioOption:'' });
+  
 
-  async function handleSubmit2(e) {
-    e.preventDefault();
-    const body = {};
-    setIsSubscriptSuccessful(true);
-  }
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Selected option:", selectedOption);
+  const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    
+      const formattedFormData = {
+      email: formData.email.trim(),
+      radioOption: formData.radioOption.trim(),
+
+    };
+
+    try {
+      formSchema.parse(formattedFormData);
+      setIsSubscriptSuccessful(true);
+      console.log('Formulário válido:', formData);
+      setErrors({});
+     
+  
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const formErrors: { [key: string]: string } = {};
+        error.errors.forEach((err) => {
+          if (err.path.length > 0) {
+            formErrors[err.path[0]] = err.message;
+          }
+        });
+        setErrors(formErrors);
+      }
+    }
   };
 
   return (
@@ -34,24 +62,24 @@ export default function NewsletterPage() {
             Eu sou:
           </h3>
           <form
-            onSubmit={handleSubmit2}
+            onSubmit={handleSubmit}
             className="text-center w-full max-w-sm"
           >
+          <>
             <div className="mb-2">
               <input
                 type="radio"
                 id="option1"
-                name="options"
-                value="Option 1"
-                checked={selectedOption === "Option 1"}
-                onChange={handleOptionChange}
+                name="radioOption"
+                value='option1'
+                checked={formData.radioOption === 'option1'}
+                onChange={handleChange}
                 className="hidden"
               />
               <label
-                htmlFor="option1"
-                className={`block cursor-pointer p-2 text-left rounded-[20px] hover:bg-[#EE7A3C] flex ${
-                  selectedOption === "Option 1" ? "bg-[#EA5E53] text-white" : ""
-                }`}
+                htmlFor='option1'
+                className={`cursor-pointer p-2 text-left rounded-[20px] hover:bg-[#EE7A3C] flex ${formData.radioOption === 'option1' ? "bg-[#EA5E53] text-white" : ""
+                  }`}
               >
                 <IoMdArrowRoundForward className="mr-1" />
                 Empresa Parceira
@@ -61,17 +89,16 @@ export default function NewsletterPage() {
               <input
                 type="radio"
                 id="option2"
-                name="options"
-                value="Option 2"
-                checked={selectedOption === "Option 2"}
-                onChange={handleOptionChange}
+                name="radioOption"
+                value="option2"
+                checked={formData.radioOption === 'option2'}
+                onChange={handleChange}
                 className="hidden"
               />
               <label
                 htmlFor="option2"
-                className={`block cursor-pointer p-2 text-left rounded-[50px] hover:bg-[#EE7A3C] flex ${
-                  selectedOption === "Option 2" ? "bg-[#EA5E53] text-white" : ""
-                }`}
+                className={` cursor-pointer p-2 text-left rounded-[50px] hover:bg-[#EE7A3C] flex ${formData.radioOption === 'option2' ? "bg-[#EA5E53] text-white" : ""
+                  }`}
               >
                 <IoMdArrowRoundForward className="mr-1" />
                 Aluno
@@ -81,17 +108,16 @@ export default function NewsletterPage() {
               <input
                 type="radio"
                 id="option3"
-                name="options"
-                value="Option 3"
-                checked={selectedOption === "Option 3"}
-                onChange={handleOptionChange}
+                name="radioOption"
+                value="option3"
+                checked={formData.radioOption === 'option3'}
+                onChange={handleChange}
                 className="hidden"
               />
               <label
                 htmlFor="option3"
-                className={`block cursor-pointer p-2 text-left rounded-[50px] hover:bg-[#EE7A3C] flex ${
-                  selectedOption === "Option 3" ? "bg-[#EA5E53] text-white" : ""
-                }`}
+                className={` cursor-pointer p-2 text-left rounded-[50px] hover:bg-[#EE7A3C] flex ${formData.radioOption === 'option3' ? "bg-[#EA5E53] text-white" : ""
+                  }`}
               >
                 <IoMdArrowRoundForward className="mr-1" />
                 Professor
@@ -101,35 +127,48 @@ export default function NewsletterPage() {
               <input
                 type="radio"
                 id="option4"
-                name="options"
-                value="Option 4"
-                checked={selectedOption === "Option 4"}
-                onChange={handleOptionChange}
+                name="radioOption"
+                value="option4"
+                checked={formData.radioOption === 'option4'}
+                onChange={handleChange}
                 className="hidden"
               />
               <label
                 htmlFor="option4"
-                className={`block cursor-pointer p-2 text-left rounded-[50px] hover:bg-[#EE7A3C] flex ${
-                  selectedOption === "Option 4" ? "bg-[#EA5E53] text-white" : ""
-                }`}
+                className={` cursor-pointer p-2 text-left rounded-[50px] hover:bg-[#EE7A3C] flex ${formData.radioOption === 'option4' ? "bg-[#EA5E53] text-white" : ""
+                  }`}
               >
                 <IoMdArrowRoundForward className="mr-1" />
                 Aspirante a residente
               </label>
             </div>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Insira seu e-mail"
-              className="block w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-4 mb-4"
-            />
+              {errors.radioOption && (
+                <p className="text-[#EA5E53] font-bold text-sm">
+                  {errors.radioOption}
+                </p>)}
+        </>
+            <>  
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="Insira seu e-mail"
+                className="block w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-4 mb-4"
+              />
+              {errors.email && (
+                <p className="text-[#EA5E53] font-bold text-sm">
+                  {errors.email}
+                </p>)}
+            </>
             <button
               type="submit"
-              onClick={handleSubmit2}
+              onClick={handleSubmit}
               className="shadow-md mt-2 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
             >
-              Enviar
+              enviar
             </button>
           </form>
         </BackgroundForms>
@@ -137,3 +176,5 @@ export default function NewsletterPage() {
     </>
   );
 }
+export default NewsletterPage;
+

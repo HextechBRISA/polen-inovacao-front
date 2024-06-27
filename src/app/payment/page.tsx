@@ -47,7 +47,6 @@ export default function PaymentPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     if (payWithPix) {
-      setIsPaymentSuccessful(true);
       return;
     }
 
