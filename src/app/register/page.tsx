@@ -1,29 +1,83 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import BackgroundForms from "../components/BackgroundForms";
+import { validationRegisterSchema } from "./validationRegisterSchema";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { z } from "zod";
+import { toast } from "react-toastify";
+import Image from "next/image";
 
 export default function RegisterPage() {
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const username = event.currentTarget.username.value;
-    const password = event.currentTarget.password.value;
-    const response = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
+  const [registerData, setRegisterData] = useState({
+    email: "",
+    name: "",
+    password: "",
+    confirmPassword: "",
+    category: "",
+    course: "",
+    picture: "",
+  });
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [previewImage, setPreviewImage] = useState<string>("");
+
+  const router = useRouter();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const formattedRegisterData = {
+      email: registerData.email.trim(),
+      name: registerData.name.trim(),
+      password: registerData.password.trim(),
+      confirmPassword: registerData.confirmPassword.trim(),
+      category: registerData.category,
+      course: registerData.course,
+      picture: registerData.picture.trim(),
+    };
+
+    try {
+      validationRegisterSchema.parse(formattedRegisterData);
+      setErrors({});
+      console.log("Dados válidos:", formattedRegisterData);
+      handleRegisterSuccess();
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: { [key: string]: string } = {};
+        error.errors.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setErrors(fieldErrors);
+        console.error("Erros de validação:", fieldErrors);
+      }
+    }
+  }
+
+  const handleRegisterSuccess = () => {
+    toast.success("Cadastro feito com sucesso!", {
+      onClose: () => router.push("/login"),
+      autoClose: 1000,
     });
+  };
+
+  function handleChange(e) {
+    const { name, value, files } = e.target;
+
+    if (name === "picture" && files.length > 0) {
+      const file = files[0];
+      setRegisterData({ ...registerData, picture: file.name });
+      setPreviewImage(URL.createObjectURL(file));
+    } else {
+      setRegisterData({ ...registerData, [name]: value });
+    }
   }
 
   return (
     <BackgroundForms>
       <h1 className="text-3xl font-bold text-center mb-6">Cadastre-se</h1>
-
       <form
-        onSubmit={handleSubmit}
         className="flex flex-col justify-center items-center w-full"
+        onSubmit={handleSubmit}
       >
         <label htmlFor="email" className="w-full items-start font-medium mb-2">
           E-mail
@@ -32,23 +86,34 @@ export default function RegisterPage() {
           type="text"
           id="email"
           name="email"
+          value={registerData.email}
+          onChange={handleChange}
           placeholder="Insira seu e-mail"
           className="w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-4"
         />
+        {errors.email && (
+          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
+            {errors.email}
+          </p>
+        )}
 
-        <label
-          htmlFor="username"
-          className="w-full items-start font-medium mb-2"
-        >
-          Usuário
+        <label htmlFor="name" className="w-full items-start font-medium mb-2">
+          Nome
         </label>
         <input
           type="text"
-          id="username"
-          name="username"
-          placeholder="Escolha um nome de usuário"
+          id="name"
+          name="name"
+          value={registerData.name}
+          onChange={handleChange}
+          placeholder="Informe seu nome e sobrenome"
           className="w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-4"
         />
+        {errors.name && (
+          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
+            {errors.name}
+          </p>
+        )}
 
         <label
           htmlFor="password"
@@ -60,23 +125,37 @@ export default function RegisterPage() {
           type="password"
           id="password"
           name="password"
+          value={registerData.password}
+          onChange={handleChange}
           placeholder="Insira sua senha"
           className="w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-4"
         />
+        {errors.password && (
+          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
+            {errors.password}
+          </p>
+        )}
 
         <label
-          htmlFor="password"
+          htmlFor="confirmPassword"
           className="w-full items-start font-medium mb-2"
         >
-          Repita sua senha
+          Confirmar senha
         </label>
         <input
           type="password"
-          id="password"
-          name="password"
-          placeholder="Confirme sua senha"
+          id="confirmPassword"
+          name="confirmPassword"
+          value={registerData.confirmPassword}
+          onChange={handleChange}
+          placeholder="Repita sua senha"
           className="w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-4"
         />
+        {errors.confirmPassword && (
+          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
+            {errors.confirmPassword}
+          </p>
+        )}
 
         <label
           htmlFor="category"
@@ -86,27 +165,46 @@ export default function RegisterPage() {
         </label>
         <select
           id="category"
+          name="category"
+          value={registerData.category}
+          onChange={handleChange}
           className="w-full h-[40px] p-2 text-gray-400 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-4"
         >
-          <option disabled hidden selected>Escolha uma categoria</option>
-          <option value="Admin">Admin</option>
+          <option disabled hidden value="">
+            Escolha uma categoria
+          </option>
           <option value="Mentor">Mentor</option>
           <option value="Residente">Residente</option>
         </select>
+        {errors.category && (
+          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
+            {errors.category}
+          </p>
+        )}
 
         <label htmlFor="course" className="w-full items-start font-medium mb-2">
           Curso:
         </label>
         <select
           id="course"
-          className="w-full h-[40px] p-2 text-gray-400 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-4"
+          name="course"
+          value={registerData.course}
+          onChange={handleChange}
+          className="w-full h-[40px] p-2 text-gray-400 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-5"
         >
-          <option disabled hidden selected>Escolha uma área de ensino</option>
+          <option disabled hidden value="">
+            Escolha uma área de ensino
+          </option>
           <option value="ADS">Análise de Sistemas</option>
           <option value="CC">Ciência da Computação</option>
           <option value="ES">Engenharia de Software</option>
           <option value="SI">Sistemas de Informação</option>
         </select>
+        {errors.course && (
+          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
+            {errors.course}
+          </p>
+        )}
 
         <label
           htmlFor="picture"
@@ -117,21 +215,47 @@ export default function RegisterPage() {
         <div className="flex items-center justify-center w-full mt-1 mb-4">
           <label
             htmlFor="dropzone-file"
-            className="flex flex-auto items-center justify-center w-full h-[40px] border-2 border-white border-dashed rounded-[50px] cursor-pointer"
+            className={
+              previewImage
+                ? "flex items-center justify-center w-full cursor-pointer"
+                : "flex items-center justify-center w-full h-[40px] border-2 border-white border-solid rounded-[50px] cursor-pointer"
+            }
           >
-            <p className="flex-auto text-xs text-center font-semibold">
-              Fazer Upload PNG ou JPG
-            </p>
-
-            <input id="dropzone-file" type="file" className="hidden" />
+            <input
+              id="dropzone-file"
+              type="file"
+              name="picture"
+              onChange={handleChange}
+              className="hidden"
+            />
+            {previewImage ? (
+              <div className="flex justify-center items-start">
+                <Image
+                  src={previewImage}
+                  alt="Imagem de perfil"
+                  className="w-24 h-24 rounded-full object-cover border-2 border-white border-solid p-1"
+                  width={30}
+                  height={30}
+                />
+              </div>
+            ) : (
+              <p className="flex-auto text-xs text-center font-semibold">
+                Fazer Upload PNG ou JPG
+              </p>
+            )}
           </label>
         </div>
+        {errors.picture && (
+          <p className="text-[#EA5E53] font-bold text-sm mb-4">
+            {errors.picture}
+          </p>
+        )}
 
         <button
           type="submit"
           className="shadow-md mt-2 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
         >
-          Sign Up
+          Cadastrar
         </button>
 
         <Link

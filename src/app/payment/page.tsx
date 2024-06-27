@@ -14,11 +14,10 @@ import {
   PaymentPix,
 } from "./style";
 import PaymentSuccess from "./components/PaymentSuccess";
-import { cardSchema } from "./validationSchema";
+import { cardSchema } from "./validationPaymentSchema";
 import { z } from "zod";
 
 export default function PaymentPage() {
-  const [SSR, setSSR] = useState(false);
   const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
   const [cardData, setCardData] = useState({
     number: "",
@@ -127,7 +126,6 @@ export default function PaymentPage() {
                           name="number"
                           placeholder="Número do cartão"
                           required
-                          className={errors.number ? "border-red-500" : ""}
                         />
                         {errors.number && (
                           <p className="text-[#EA5E53] font-bold text-sm">
@@ -150,7 +148,6 @@ export default function PaymentPage() {
                     onChange={handleInputChange}
                     onFocus={handleInputFocus}
                     required
-                    className={errors.name ? "border-red-500" : ""}
                   />
                   {errors.name && (
                     <p className="text-[#EA5E53] font-bold text-sm">
@@ -177,7 +174,6 @@ export default function PaymentPage() {
                             name="expiry"
                             placeholder="Validade"
                             required
-                            className={errors.expiry ? "border-red-500" : ""}
                           />
                           {errors.expiry && (
                             <p className="text-[#EA5E53] font-bold text-sm">
@@ -207,7 +203,6 @@ export default function PaymentPage() {
                             onChange={handleInputChange}
                             onFocus={handleInputFocus}
                             required
-                            className={errors.cvc ? "border-red-500" : ""}
                           />
                           {errors.cvc && (
                             <p className="text-[#EA5E53] font-bold text-sm">
