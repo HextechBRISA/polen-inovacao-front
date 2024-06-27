@@ -1,93 +1,105 @@
-'use client';
-import React from 'react';
-import BackgroundForms from '../components/BackgroundForms';
-import Link from 'next/link';
-import { useForm } from 'react-hook-form';
-import { schema } from './validationLoginSchema'; // Import the schema
-import { z } from 'zod';
+"use client";
+import React, { useState } from "react";
+import BackgroundForms from "../components/BackgroundForms";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import validationLoginSchema from "./validationLoginSchema";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
-  const { handleSubmit, register, formState: { errors } } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
+  const [formErrors, setFormErrors] = useState<{
+    email?: string;
+    password?: string;
+  }>({});
+  const router = useRouter();
 
-  // Function to handle form submission
   const onSubmit = async (data) => {
     try {
-      // Validate data with the schema
-      const validatedData = schema.parse(data);
-
-      // If validation is successful, proceed with submission logic
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(validatedData),
-      });
-
-      // Handle API response here
-      console.log('Login successful!', response);
+      const validatedData = validationLoginSchema.parse(data);
+      console.log("Dados válidos:", validatedData);
+      handleLoginSuccess();
     } catch (error) {
       if (error instanceof z.ZodError) {
-        // Access specific validation errors
-        console.error('Validation errors:', error.errors);
+        const fieldErrors = {};
+        error.errors.forEach((err) => {
+          fieldErrors[err.path[0]] = err.message;
+        });
+        setFormErrors(fieldErrors);
+        console.error("Validation errors:", fieldErrors);
       } else {
-        console.error('Error submitting form:', error);
+        console.error("Error submitting form:", error);
       }
     }
+  };
+
+  const handleLoginSuccess = () => {
+    toast.success("Login feito com sucesso!", {
+      onClose: () => router.push("/resident"),
+      autoClose: 1000,
+    });
   };
 
   return (
     <BackgroundForms>
       <h1 className="text-3xl font-bold text-center mb-6">Login</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center items-center w-full">
-        <label htmlFor="username" className="w-full items-start font-medium mb-2">
-          Usuário
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col justify-center items-center w-full"
+      >
+        <label htmlFor="email" className="w-full items-start font-medium mb-2">
+          E-mail
         </label>
         <input
           type="text"
-          id="username"
-          placeholder="Insira seu nome de usuário"
+          id="email"
+          placeholder="Insira seu e-mail"
+          {...register("email")}
           className="w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-4"
-          {...register('username', { required: 'Este campo é obrigatório' })}
         />
-        {errors.username && (
-                              <p className="text-red-500">
-                              {typeof errors.username === 'string'
-                             ? errors.username 
-                             : 'Erro ao validar o nome de usuário'} 
-                                </p>
-)}
+        {formErrors.email && (
+          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
+            {formErrors.email}
+          </p>
+        )}
 
-        <label htmlFor="password" className="w-full items-start font-medium mb-2">
+        <label
+          htmlFor="password"
+          className="w-full items-start font-medium mb-2"
+        >
           Senha
         </label>
         <input
           type="password"
           id="password"
           placeholder="Insira sua senha"
+          {...register("password")}
           className="w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-4"
-          {...register('password', { required: 'Este campo é obrigatório' })}
         />
-        {errors.password && (
-                <p className="text-red-500">
-                  {typeof errors.password === 'string'
-                    ? errors.password 
-                    : 'Senha inválida'}
-                </p>
-)}
+        {formErrors.password && (
+          <p className="text-[#EA5E53] font-bold text-sm mb-4">
+            {formErrors.password}
+          </p>
+        )}
 
         <button
           type="submit"
-          className="w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[20px] my-2"
+          className="shadow-md mt-2 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
         >
-          Login
+          Entrar
         </button>
 
-        <p className="text-center text-gray-500 mt-4">
-          <Link href="/register">
+        <Link href={"/register"}>
+          <p className="text-center text-[15px] mt-6 underline">
             Cadastre-se aqui
-          </Link>
-        </p>
+          </p>
+        </Link>
       </form>
     </BackgroundForms>
   );
