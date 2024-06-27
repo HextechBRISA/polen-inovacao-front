@@ -1,5 +1,4 @@
 "use client";
-import "../styles/globals.css";
 import React from "react";
 import TopBanner from "./components/Topbanner";
 import PublicCards from "./components/PublicCards";
