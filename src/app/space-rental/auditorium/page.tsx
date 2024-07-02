@@ -20,7 +20,7 @@ export default function AuditoriumPage() {
           </h1>
         </div>
       </div>
-      <h2 className="w-full mt-[30px] font-bold text-[18px] xs:text-[16px] text-left">
+      <h2 className="w-full mt-[30px] font-bold text-[18px] xs:text-[16px] text-left mb-8">
         Escolha uma data e horário para reservar o espaço:
       </h2>
 

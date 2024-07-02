@@ -1,5 +1,7 @@
 "use client";
+import Link from "next/link";
 import React, { useState } from "react";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 export default function MeetingReminder() {
   // Estado para verificar se o aluno tem mentorias agendadas
@@ -7,17 +9,17 @@ export default function MeetingReminder() {
   // Estado para armazenar a lista de mentorias
   const [mentorships, setMentorships] = useState([
     { mentor: "João" },
-    { mentor: "Maria" }
+    { mentor: "Maria" },
   ]);
 
   return (
-    <div className="flex flex-col items-center">
-      <h1 className="mb-[50px]">Lembrete:</h1>
+    <div className="w-full flex flex-col items-start mb-8">
+      <h1 className="mb-[20px] text-[20px] font-bold">Lembrete:</h1>
       {hasMentorships && mentorships.length > 0 ? (
         mentorships.map((mentorship, index) => (
           <div
             key={index}
-            className="shadow-md w-[500px] h-[50px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px] flex items-center justify-center mb-6"
+            className="shadow-md w-auto h-auto bg-[#EA5E53] bg-opacity-80 text-white text-[15px] text-center rounded-md flex items-center justify-center mb-4 p-3"
           >
             <p>
               Você possui uma mentoria marcada com o mentor {mentorship.mentor}
@@ -26,12 +28,16 @@ export default function MeetingReminder() {
         ))
       ) : (
         <>
-          <div className="shadow-md w-[500px] h-[50px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px] flex items-center justify-center mb-6">
+          <div className="shadow-md w-auto h-auto bg-[#EA5E53] bg-opacity-80 text-white text-[15px] text-center rounded-md flex items-center justify-center mb-4 p-3">
             <p>Você não possui mentoria agendada no momento</p>
           </div>
-          <div className="shadow-md w-[200px] h-[50px] bg-[#EE7A3C] text-white text-sm font-bold rounded-[50px] flex items-center justify-center hover:bg-[#f38c54] mb-6">
-            <button className="w-full h-full">Agendar agora &rarr;</button>
-          </div>
+
+          <Link href={"/mentor/all-mentors"}>
+            <button className="shadow-md w-auto h-auto bg-[#EE7A3C] text-white text-[15px] rounded-full flex items-center justify-center p-3 hvr-push">
+              Agendar agora
+              <FaArrowRightLong className="ml-2 text-[20px]" />
+            </button>
+          </Link>
         </>
       )}
     </div>
