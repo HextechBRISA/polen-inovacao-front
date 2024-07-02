@@ -235,7 +235,7 @@ export default function PaymentPage() {
           <button
             type="submit"
             onClick={handleSubmit}
-            className="w-52 h-7 bg-[#ea5e53] text-white border-0 rounded-full"
+            className="shadow-md mt-2 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
           >
             Confirmar pagamento
           </button>
