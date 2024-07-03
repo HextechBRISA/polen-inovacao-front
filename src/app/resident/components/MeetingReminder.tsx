@@ -13,7 +13,7 @@ export default function MeetingReminder() {
   ]);
 
   return (
-    <div className="w-full flex flex-col items-start mb-8">
+    <div className="w-full flex flex-col items-start mb-10">
       <h1 className="mb-[20px] text-[20px] font-bold">Lembrete:</h1>
       {hasMentorships && mentorships.length > 0 ? (
         mentorships.map((mentorship, index) => (
