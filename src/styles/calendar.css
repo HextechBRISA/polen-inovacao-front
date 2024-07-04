@@ -1,0 +1,161 @@
+/* Estilos customizados para o calendário */
+
+.calendar-container {
+  width: 100%;
+  height: 400px;
+  padding: 10px;
+  overflow: hidden; /* Esconde overflow inicialmente */
+}
+
+@media (min-width: 640px) {
+  .calendar-container {
+    padding: 0;
+  }
+}
+
+.rbc-calendar {
+  font-size: 15px;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-collapse: collapse; /* Garante que as bordas se fundam */
+}
+
+.rbc-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.rbc-toolbar .rbc-btn-group {
+  display: flex;
+}
+
+.rbc-toolbar .rbc-btn-group > button {
+  font-size: 0.875rem;
+  margin: 0.25rem;
+  background-color: #EE7A3C;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.rbc-toolbar .rbc-btn-group > button:hover,
+.rbc-toolbar .rbc-btn-group > button:active,
+.rbc-toolbar .rbc-btn-group > button:focus {
+  background-color: #EA5E53;
+  color: white;
+}
+
+.rbc-toolbar .rbc-btn-group > button.rbc-active {
+  background-color: #EA5E53; /* Cor de fundo para o botão ativo */
+}
+
+.rbc-toolbar .rbc-btn-group > button:focus {
+  outline: none; /* Remove o outline dos botões quando focados */
+}
+
+.rbc-month-view {
+  height: calc(100% - 50px); /* Ajuste para evitar overflow */
+  overflow-y: auto;
+}
+
+.rbc-month-row {
+  min-height: 6rem;
+}
+
+.rbc-time-column {
+  width: auto;
+}
+
+/* Estilos adicionais específicos para a visualização do dia */
+.rbc-day-view .rbc-time-column {
+  width: auto;
+}
+
+/* Estilos para os horários na visualização do dia */
+.rbc-time-view .rbc-time-gutter {
+  width: auto;
+  font-weight: 700;
+}
+
+.rbc-date-cell {
+  padding: 8px; /* Borda para as células */
+}
+
+.rbc-event {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.rbc-day-bg {
+  transition: background-color 0.3s;
+}
+
+.rbc-day-bg:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.rbc-today {
+  background-color: rgba(234, 94, 83, 0.5) !important;
+}
+
+.rbc-off-range-bg {
+  background-color: rgba(234, 94, 83, 0.3) !important;
+}
+
+.event-reserved {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  cursor: not-allowed;
+}
+
+.event-default {
+  background-color: #ee7a3c;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.day-today {
+  background-color: rgba(234, 94, 83, 0.5);
+}
+
+.day-off-range {
+  background-color: rgba(234, 94, 83, 0.3);
+}
+
+@media (max-width: 640px) {
+  .rbc-toolbar {
+    flex-direction: column;
+    padding: 0.25rem;
+  }
+
+  .rbc-toolbar .rbc-toolbar-label {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .rbc-toolbar .rbc-btn-group {
+    margin: 10px;
+  }
+
+  .rbc-toolbar .rbc-btn-group > button {
+    font-size: 0.75rem;
+    margin: 0.125rem;
+  }
+
+  .rbc-month-row {
+    min-height: 4rem;
+  }
+
+  .rbc-date-cell {
+    padding: 0.125rem;
+  }
+
+  .rbc-event {
+    padding: 0.125rem;
+  }
+}
