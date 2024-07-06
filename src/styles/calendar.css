@@ -1,10 +1,9 @@
-/* Estilos customizados para o calendário */
-
 .calendar-container {
   width: 100%;
   height: 400px;
   padding: 10px;
-  overflow: hidden; /* Esconde overflow inicialmente */
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 @media (min-width: 640px) {
@@ -17,7 +16,9 @@
   font-size: 15px;
   background-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-collapse: collapse; /* Garante que as bordas se fundam */
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .rbc-toolbar {
@@ -50,16 +51,20 @@
 }
 
 .rbc-toolbar .rbc-btn-group > button.rbc-active {
-  background-color: #EA5E53; /* Cor de fundo para o botão ativo */
+  background-color: #EA5E53;
 }
 
 .rbc-toolbar .rbc-btn-group > button:focus {
-  outline: none; /* Remove o outline dos botões quando focados */
+  outline: none;
 }
 
 .rbc-month-view {
-  height: calc(100% - 50px); /* Ajuste para evitar overflow */
+  height: calc(100% - 50px);
   overflow-y: auto;
+}
+
+.rbc-month-view .rbc-month-row > * {
+  cursor: pointer;
 }
 
 .rbc-month-row {
@@ -70,19 +75,17 @@
   width: auto;
 }
 
-/* Estilos adicionais específicos para a visualização do dia */
 .rbc-day-view .rbc-time-column {
   width: auto;
 }
 
-/* Estilos para os horários na visualização do dia */
 .rbc-time-view .rbc-time-gutter {
   width: auto;
   font-weight: 700;
 }
 
 .rbc-date-cell {
-  padding: 8px; /* Borda para as células */
+  padding: 8px;
 }
 
 .rbc-event {
@@ -104,6 +107,10 @@
 
 .rbc-off-range-bg {
   background-color: rgba(234, 94, 83, 0.3) !important;
+}
+
+.rbc-allday-cell {
+  display: none;
 }
 
 .event-reserved {

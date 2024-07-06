@@ -1,15 +1,11 @@
+"use client";
 import React, { useState } from "react";
 import { Calendar, dateFnsLocalizer, Views } from "react-big-calendar";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import {
-  format,
-  parse,
-  startOfWeek,
-  getDay,
-} from "date-fns";
+import { format, startOfDay, endOfDay, startOfWeek, getDay } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import Swal from "sweetalert2";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../../../../styles/calendar.css";
-import { MySwal } from '../../../../config/sweetalertConfig';
 
 const locales = {
   "pt-BR": ptBR,
@@ -17,18 +13,72 @@ const locales = {
 
 const localizer = dateFnsLocalizer({
   format,
-  parse,
   startOfWeek: () => startOfWeek(new Date(), { weekStartsOn: 1 }),
   getDay,
   locales,
 });
 
+interface Event {
+  start: Date;
+  end: Date;
+  title: string;
+}
+
 export default function AuditoriumCalendar() {
-  const [events, setEvents] = useState([]);
-  const [view, setView] = useState(Views.WEEK);
+  const [events, setEvents] = useState<Event[]>([]);
+  const [view, setView] = useState(Views.MONTH);
   const [date, setDate] = useState(new Date());
 
-  const handleSelectSlot = ({ start, end }) => {
+  const handleSelectSlot = async ({
+    start,
+    end,
+    action,
+  }: {
+    start: Date;
+    end: Date;
+    action: "select" | "click" | "doubleClick";
+  }) => {
+    const today = new Date();
+
+    if (start < startOfDay(today)) {
+      Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: "Não é possível agendar eventos em datas passadas.",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#EA5E53",
+      });
+      return;
+    }
+
+    if (start < today) {
+      Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: "Você precisa agendar com 1 dia de antecedência.",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#EA5E53",
+      });
+      return;
+    }
+
+    if (getDay(start) === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: "Não é possível agendar eventos aos domingos.",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#EA5E53",
+      });
+      return;
+    }
+
+    if (view === Views.MONTH && action === "click") {
+      setView(Views.DAY);
+      setDate(startOfDay(start));
+      return;
+    }
+
     const isSlotOccupied = events.some(
       (event) =>
         (start >= event.start && start < event.end) ||
@@ -36,34 +86,42 @@ export default function AuditoriumCalendar() {
     );
 
     if (isSlotOccupied) {
-      MySwal.fire({
-        icon: 'error',
-        title: 'Erro!',
-        text: 'Já existe um evento marcado neste horário.',
+      Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: "Já existe um evento marcado neste horário.",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#EA5E53",
       });
       return;
     }
 
-    MySwal.fire({
-      title: 'Nome do evento:',
-      input: 'text',
-      inputAttributes: {
-        autocapitalize: 'off'
-      },
+    const { value: title } = await Swal.fire({
+      title: "Nome do evento",
+      input: "text",
+      inputLabel: "Digite o nome do evento",
       showCancelButton: true,
-      confirmButtonText: 'Salvar',
-      cancelButtonText: 'Cancelar',
-      showLoaderOnConfirm: true,
-      preConfirm: (title) => {
-        if (!title) {
-          MySwal.showValidationMessage('O nome do evento é obrigatório.');
-          return;
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "Salvar",
+      confirmButtonColor: "#EA5E53",
+      inputValidator: (value) => {
+        if (!value) {
+          return "Você precisa digitar algo!";
         }
-
-        const newEvent = { start, end, title };
-        setEvents([...events, newEvent]);
-      }
+      },
     });
+
+    if (title) {
+      const newEvent = { start, end, title };
+      setEvents([...events, newEvent]);
+      Swal.fire({
+        icon: "success",
+        title: "Evento adicionado",
+        text: "Seu evento foi adicionado com sucesso.",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#EA5E53",
+      });
+    }
   };
 
   const eventPropGetter = (event) => {
@@ -98,6 +156,7 @@ export default function AuditoriumCalendar() {
         onNavigate={(date) => setDate(date)}
         views={["month", "week", "day"]}
         eventPropGetter={eventPropGetter}
+        longPressThreshold={250}
         messages={{
           next: "❯",
           previous: "❮",
