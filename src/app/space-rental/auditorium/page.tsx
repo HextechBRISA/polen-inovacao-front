@@ -2,7 +2,6 @@
 import React from "react";
 import Image from "next/image";
 import Auditorium from "../../../../public/Auditorium.jpg";
-import Link from "next/link";
 import AuditoriumCalendar from "./components/AuditoriumCalendar";
 
 export default function AuditoriumPage() {
@@ -30,12 +29,6 @@ export default function AuditoriumPage() {
       </h3>
 
       <AuditoriumCalendar />
-
-      <Link href={"/payment"}>
-        <button className="shadow-md mt-8 xs:mt-6 xs:mb-2 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]">
-          Reservar
-        </button>
-      </Link>
     </div>
   );
 }

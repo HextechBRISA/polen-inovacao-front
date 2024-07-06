@@ -1,11 +1,11 @@
-"use client";
 import React, { useState } from "react";
 import { Calendar, dateFnsLocalizer, Views } from "react-big-calendar";
-import { format, startOfDay, endOfDay, startOfWeek, getDay } from "date-fns";
+import { format, startOfDay, startOfWeek, getDay } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Swal from "sweetalert2";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../../../../styles/calendar.css";
+import { useRouter } from "next/navigation";
 
 const locales = {
   "pt-BR": ptBR,
@@ -26,8 +26,10 @@ interface Event {
 
 export default function AuditoriumCalendar() {
   const [events, setEvents] = useState<Event[]>([]);
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [view, setView] = useState(Views.MONTH);
   const [date, setDate] = useState(new Date());
+  const router = useRouter();
 
   const handleSelectSlot = async ({
     start,
@@ -112,19 +114,20 @@ export default function AuditoriumCalendar() {
     });
 
     if (title) {
-      const newEvent = { start, end, title };
+      const newEvent: Event = { start, end, title };
       setEvents([...events, newEvent]);
+      setSelectedEvent(newEvent);
       Swal.fire({
         icon: "success",
         title: "Evento adicionado",
-        text: "Seu evento foi adicionado com sucesso.",
+        text: 'Clique em "Reservar" para ir ao pagamento.',
         confirmButtonText: "Ok",
         confirmButtonColor: "#EA5E53",
       });
     }
   };
 
-  const eventPropGetter = (event) => {
+  const eventPropGetter = (event: Event) => {
     const backgroundColor = event.title === "Reservado" ? "#868686" : "#EE7A3C";
     const cursor = event.title === "Reservado" ? "not-allowed" : "pointer";
     return {
@@ -138,8 +141,25 @@ export default function AuditoriumCalendar() {
     };
   };
 
+  const handleReserveClick = () => {
+    try {
+      if (!selectedEvent) {
+        throw new Error("Você deve selecionar uma data e horário para reservar o espaço.");
+      }
+      router.push("/payment");
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Atenção",
+        text: error.message,
+        confirmButtonText: "OK",
+        confirmButtonColor: "#EA5E53",
+      });
+    }
+  };
+
   return (
-    <div className="calendar-container">
+    <form className="calendar-container" onSubmit={(e) => e.preventDefault()}>
       <Calendar
         className="rbc-calendar"
         localizer={localizer}
@@ -176,6 +196,14 @@ export default function AuditoriumCalendar() {
             localizer.format(date, "EEEE, MMMM dd", culture),
         }}
       />
-    </div>
+
+      <button
+        type="submit"
+        className="shadow-md mt-8 xs:mt-6 xs:mb-2 mx-auto w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
+        onClick={handleReserveClick}
+      >
+        Reservar
+      </button>
+    </form>
   );
 }

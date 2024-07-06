@@ -2,7 +2,6 @@
 import React from "react";
 import Image from "next/image";
 import PodcastStudio from "../../../../public/PodcastStudio.png";
-import Link from "next/link";
 import PodcastStudioCalendar from "./components/PodcastStudioCalendar";
 
 export default function PodcastStudioPage() {
@@ -30,12 +29,6 @@ export default function PodcastStudioPage() {
       </h3>
 
       <PodcastStudioCalendar />
-
-      <Link href={"/payment"}>
-        <button className="shadow-md mt-8 xs:mt-6 xs:mb-2 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]">
-          Reservar
-        </button>
-      </Link>
     </div>
   );
 }
