@@ -24,7 +24,7 @@ interface Event {
   title: string;
 }
 
-export default function AuditoriumCalendar() {
+export default function PodcastStudioCalendar() {
   const [events, setEvents] = useState<Event[]>([]);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [view, setView] = useState(Views.MONTH);
