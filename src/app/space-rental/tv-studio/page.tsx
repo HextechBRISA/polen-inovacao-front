@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import TVStudio from "../../../../public/TVStudio.jpg";
 import Link from "next/link";
+import TVStudioCalendar from "./components/TVStudioCalendar";
 
 export default function TVStudioPage() {
   return (
@@ -20,12 +21,18 @@ export default function TVStudioPage() {
           </h1>
         </div>
       </div>
-      <h2 className="w-full mt-[30px] font-bold text-[18px] xs:text-[16px] text-left">
+      <h2 className="w-full mt-[30px] font-bold text-[18px] xs:text-[16px] text-left mb-3">
         Escolha uma data e horário para reservar o espaço:
       </h2>
+      <h3 className="w-full text-[15px] xs:text-[14px] text-left mb-8 xs:mb-4">
+        (Clique para selecionar uma data e segure e arraste para selecionar um
+        horário)
+      </h3>
+
+      <TVStudioCalendar />
 
       <Link href={"/payment"}>
-        <button className="shadow-md mt-8 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]">
+        <button className="shadow-md mt-8 xs:mt-6 xs:mb-2 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]">
           Reservar
         </button>
       </Link>
