@@ -63,6 +63,10 @@
   outline: none;
 }
 
+.rbc-header {
+  padding: 8px;
+}
+
 .rbc-month-view {
   height: calc(100% - 50px);
   overflow-y: auto;

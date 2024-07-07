@@ -75,7 +75,7 @@ export default function PodcastStudioCalendar() {
       return;
     }
 
-    if (view === Views.MONTH && action === "click") {
+    if (view === Views.MONTH && (action === "click" || action === "select")) {
       setView(Views.DAY);
       setDate(startOfDay(start));
       return;
@@ -144,7 +144,9 @@ export default function PodcastStudioCalendar() {
   const handleReserveClick = () => {
     try {
       if (!selectedEvent) {
-        throw new Error("Você deve selecionar uma data e horário para reservar o espaço.");
+        throw new Error(
+          "Você deve selecionar uma data e horário para reservar o espaço."
+        );
       }
       router.push("/payment");
     } catch (error) {
@@ -174,15 +176,14 @@ export default function PodcastStudioCalendar() {
         date={date}
         onView={(view) => setView(view)}
         onNavigate={(date) => setDate(date)}
-        views={["month", "week", "day"]}
+        views={["month", "day"]}
         eventPropGetter={eventPropGetter}
-        longPressThreshold={250}
+        longPressThreshold={false}
         messages={{
           next: "❯",
           previous: "❮",
           today: "Hoje",
           month: "Mês",
-          week: "Semana",
           day: "Dia",
           date: "Data",
           time: "Hora",
