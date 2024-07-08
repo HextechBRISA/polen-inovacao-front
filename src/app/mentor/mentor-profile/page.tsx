@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Mentor from "../../../../public/Mentor.png";
 import { FaRegHeart, FaHeart, FaArrowLeft } from "react-icons/fa";
-import MentorCalendar from "./components/MentorCalendar";
+import MentorCalendar from "../components/MentorCalendar";
 
 export default function MentorProfilePage() {
   const [isFavorited, setIsFavorited] = useState(false);

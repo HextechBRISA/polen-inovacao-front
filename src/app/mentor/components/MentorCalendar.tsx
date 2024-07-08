@@ -11,7 +11,7 @@ import {
 import { ptBR } from "date-fns/locale";
 import Swal from "sweetalert2";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import "../../../../styles/calendar.css";
+import "../../../styles/calendar.css";
 import MeetingSuccess from "./MeetingSuccess";
 
 const locales = {

@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 
-export default function MeetingReminder() {
+export default function MeetingResidentReminder() {
   // Estado para verificar se o aluno tem mentorias agendadas
   const [hasMentorships, setHasMentorships] = useState(); // Mude para true para testar mentorias marcadas
   // Estado para armazenar a lista de mentorias

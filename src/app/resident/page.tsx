@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import MeetingReminder from "./components/MeetingReminder";
+import MeetingReminder from "./components/MeetingResidentReminder";
 import FavoriteMentorsArea from "./components/FavoriteMentorsArea";
 import { PiSignOutBold } from "react-icons/pi";
 import Link from "next/link";
