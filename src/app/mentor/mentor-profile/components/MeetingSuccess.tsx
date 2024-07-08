@@ -5,7 +5,7 @@ import { RiHomeHeartLine } from "react-icons/ri";
 
 export default function MeetingSuccess() {
   return (
-    <div className="bg-[rgba(255,255,255,0.3)] mt-32 mx-auto rounded-2xl p-12 flex flex-col items-center justify-center shadow-md w-1/2 md:w-1/2 xs:w-4/5 sm:p-8">
+    <>
       <h1 className="font-bold text-center text-xl mb-0">
         Mentoria agendada com sucesso!
       </h1>
@@ -19,6 +19,6 @@ export default function MeetingSuccess() {
           <RiHomeHeartLine className="text-[#EA5E53] text-[20px] ml-2" />
         </button>
       </Link>
-    </div>
+    </>
   );
 }
