@@ -15,7 +15,7 @@ export default function MentorProfilePage() {
 
   return (
     <>
-      <div className="w-3/5 lg:w-4/6 xs:w-5/6 mt-[120px] mx-auto flex justify-between items-center xs:h-48">
+      <div className="w-3/5 lg:w-4/6 sm:w-5/6 mt-[120px] mx-auto flex justify-between items-center xs:h-48">
         <div className="w-auto h-full flex items-center sm:flex-col sm:items-start">
           <Image
             src={Mentor}
@@ -49,7 +49,7 @@ export default function MentorProfilePage() {
           </Link>
         </div>
       </div>
-      <div className="bg-white bg-opacity-30 mt-[30px] xs:mt-[10px] mx-auto rounded-[20px] p-10 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 xs:w-5/6">
+      <div className="bg-white bg-opacity-30 mt-[30px] xs:mt-[10px] mx-auto rounded-[20px] p-10 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 sm:w-5/6 mb-[50px]">
         <MentorCalendar isMentor={false} />
       </div>
     </>

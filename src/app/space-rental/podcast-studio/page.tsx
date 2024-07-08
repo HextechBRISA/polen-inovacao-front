@@ -6,7 +6,7 @@ import PodcastStudioCalendar from "./components/PodcastStudioCalendar";
 
 export default function PodcastStudioPage() {
   return (
-    <div className="bg-white bg-opacity-30 mt-[130px] mx-auto rounded-[20px] p-10 xs:p-6 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 sm:w-5/6 xs:w-5/6">
+    <div className="bg-white bg-opacity-30 mt-[130px] mx-auto rounded-[20px] p-10 xs:p-6 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 sm:w-5/6 xs:w-5/6 mb-[50px]">
       <div className="w-full rounded-[10px] relative overflow-hidden w-full h-48">
         <Image
           src={PodcastStudio}

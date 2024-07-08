@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function InfoCard() {
   return (
-    <div className="w-50% h-[220px] bg-white bg-opacity-30 p-6 ml-4 mr-4 rounded-lg shadow-md flex items-center justify-center animate__animated animate__pulse">
+    <div className="w-[50%] sm:w-[100%] sm:mb-6 h-[220px] bg-white bg-opacity-30 p-6 mr-4 sm:mr-0 rounded-lg shadow-md flex items-center justify-center animate__animated animate__pulse">
       <div className="mr-4">
         <Image
           src={TechIllustration}
