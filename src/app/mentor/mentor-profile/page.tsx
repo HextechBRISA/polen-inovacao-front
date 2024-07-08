@@ -49,7 +49,7 @@ export default function MentorProfilePage() {
           </Link>
         </div>
       </div>
-      <div className="bg-white bg-opacity-30 mt-[30px] xs:mt-[10px] mx-auto rounded-[20px] p-10 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 sm:w-5/6">
+      <div className="bg-white bg-opacity-30 mt-[30px] xs:mt-[10px] mx-auto rounded-[20px] p-10 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 sm:w-5/6 mb-[50px]">
         <MentorCalendar isMentor={false} />
       </div>
     </>

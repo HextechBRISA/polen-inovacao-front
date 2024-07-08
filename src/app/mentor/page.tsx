@@ -16,7 +16,7 @@ export default function MentorPage() {
           <PiSignOutBold className="text-[27px] xs:text-[24px] text-shadow-md text-white hover:animate-wobble" />
         </Link>
       </div>
-      <div className="bg-white bg-opacity-30 mt-[30px] mx-auto rounded-[20px] p-10 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 sm:w-5/6">
+      <div className="bg-white bg-opacity-30 mt-[30px] mx-auto rounded-[20px] p-10 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 sm:w-5/6 mb-[50px]">
         <h2 className="w-full font-bold text-[18px] xs:text-[16px] text-left mb-6">Acompanhe seu calendário de reuniões de mentoria:</h2>
         <MentorCalendar isMentor={true} />
         <MeetingMentorReminder />
