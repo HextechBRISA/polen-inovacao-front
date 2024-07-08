@@ -7,23 +7,24 @@ import Arrow from "../../../../public/Arrow.png";
 
 export default function NewsletterCard() {
   return (
-    <Link href="/newsletter">
-      <div
-        className="
+    <div
+      className="
           flex 
           justify-center
           items-center 
           text-[18px]
           text-[white]
           bg-gradient-to-r from-[rgba(255,255,255,0.3)] to-[rgba(234,94,83,1.0)]
-          w-50%
+          w-[50%]
+          sm:w-[100%]
           h-[220px]
           rounded-lg 
           shadow-md
           p-6 
-          ml-4 mr-4
+          ml-4 sm:ml-0
           animate__animated animate__pulse"
-      >
+    >
+      <Link className="flex justify-content items-center" href="/newsletter">
         <div className="w-64 mr-4">
           <h1 className="font-bold text-[#EA5E53] text-[20px] xs:text-[18px]">
             Inscreva-se em nossa NewsLetter!
@@ -44,7 +45,7 @@ export default function NewsletterCard() {
             className="w-48"
           />
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }

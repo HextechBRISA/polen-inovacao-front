@@ -19,7 +19,7 @@ export default function FavoriteMentorsArea() {
         Mentores favoritos:
       </h1>
       {hasFavoriteMentors && favoriteMentor.length > 0 ? (
-        <div className="w-full h-auto mt-[30px] flex flex-wrap flex-auto justify-center items-center gap-6 sm:gap-0">
+        <div className="w-full h-auto mt-[30px] flex flex-wrap flex-auto justify-center items-center gap-6 xs:flex-col xs:gap-0">
           {favoriteMentor.map((favoriteMentor, index) => (
             <>
               <Link href={"/mentor/mentor-profile"}>
