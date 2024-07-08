@@ -144,6 +144,10 @@
 }
 
 @media (max-width: 640px) {
+  .rbc-calendar{
+    height: 510px;
+  }
+
   .rbc-toolbar {
     flex-direction: column;
     padding: 0.25rem;
