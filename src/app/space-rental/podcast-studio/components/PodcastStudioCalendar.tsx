@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Calendar, dateFnsLocalizer, Views } from "react-big-calendar";
-import { format, startOfDay, startOfWeek, getDay } from "date-fns";
+import {
+  format,
+  startOfDay,
+  startOfWeek,
+  getDay,
+} from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Swal from "sweetalert2";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -22,6 +27,7 @@ interface Event {
   start: Date;
   end: Date;
   title: string;
+  email?: string;
 }
 
 export default function PodcastStudioCalendar() {
@@ -38,7 +44,7 @@ export default function PodcastStudioCalendar() {
   }: {
     start: Date;
     end: Date;
-    action: "select" | "click" | "doubleClick";
+    action: "click" | "select" | "doubleClick";
   }) => {
     const today = new Date();
 
@@ -114,16 +120,37 @@ export default function PodcastStudioCalendar() {
     });
 
     if (title) {
-      const newEvent: Event = { start, end, title };
-      setEvents([...events, newEvent]);
-      setSelectedEvent(newEvent);
-      Swal.fire({
-        icon: "success",
-        title: "Evento adicionado",
-        text: 'Clique em "Reservar" para ir ao pagamento.',
-        confirmButtonText: "Ok",
+      const { value: email } = await Swal.fire({
+        title: "E-mail do locatário",
+        input: "email",
+        inputLabel: "Digite o seu e-mail",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Salvar",
         confirmButtonColor: "#EA5E53",
+        inputValidator: (value) => {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!value) {
+            return "Você precisa digitar um e-mail!";
+          }
+          if (!emailRegex.test(value)) {
+            return "Por favor, digite um e-mail válido!";
+          }
+        },
       });
+
+      if (email) {
+        const newEvent: Event = { start, end, title, email };
+        setEvents([...events, newEvent]);
+        setSelectedEvent(newEvent);
+        Swal.fire({
+          icon: "success",
+          title: "Evento adicionado",
+          text: 'Clique em "Reservar" para ir ao pagamento.',
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#EA5E53",
+        });
+      }
     }
   };
 
@@ -141,7 +168,7 @@ export default function PodcastStudioCalendar() {
     };
   };
 
-  const handleReserveClick = () => {
+  const handleReserveSubmit = async () => {
     try {
       if (!selectedEvent) {
         throw new Error(
@@ -201,7 +228,7 @@ export default function PodcastStudioCalendar() {
       <button
         type="submit"
         className="shadow-md mt-8 xs:mt-6 xs:mb-2 mx-auto w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
-        onClick={handleReserveClick}
+        onClick={handleReserveSubmit}
       >
         Reservar
       </button>
