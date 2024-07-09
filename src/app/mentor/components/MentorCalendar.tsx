@@ -204,11 +204,22 @@ export default function MentorCalendar({ isMentor }: MentorCalendarProps) {
   };
 
   const handleSubmit = async () => {
+    if (!selectedEvent) {
+      Swal.fire({
+        icon: "error",
+        title: "Atenção",
+        text: "Você deve selecionar uma data e horário para reservar o espaço.",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#EA5E53",
+      });
+      return;
+    }
+
     try {
-      console.log('Enviando dados do evento:', selectedEvent);
+      console.log("Enviando dados do evento:", selectedEvent);
       setShowSuccess(true);
     } catch (error) {
-      console.error('Erro ao enviar dados do evento:', error);
+      console.error("Erro ao enviar dados do evento:", error);
     }
   };
 
@@ -219,7 +230,10 @@ export default function MentorCalendar({ isMentor }: MentorCalendarProps) {
       ) : (
         <form
           className="calendar-container"
-          onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit();
+          }}
         >
           {!isMentor && (
             <h1 className="w-full font-bold text-[18px] xs:text-[16px] text-left mb-6">
