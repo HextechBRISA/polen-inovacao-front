@@ -24,7 +24,7 @@ export default function AuditoriumPage() {
         Escolha uma data e horário para reservar o espaço:
       </h2>
       <h3 className="w-full text-[15px] xs:text-[14px] text-left mb-8 xs:mb-4">
-        (Clique para selecionar uma data e segure e arraste para selecionar um
+        (Clique para selecionar uma data, depois segure e arraste para selecionar um
         horário)
       </h3>
 
