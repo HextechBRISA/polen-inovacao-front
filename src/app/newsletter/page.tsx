@@ -4,6 +4,7 @@ import BackgroundForms from "../components/BackgroundForms";
 import NewsletterSubscriptSuccess from "./components/NewsletterSubscriptSuccess";
 import { IoMdArrowRoundForward } from "react-icons/io";
 import { z } from "zod";
+import axios from "axios";
 import { validationNewsletterSchema } from "./validationNewsletterSchema";
 
 export default function NewsletterPage() {
@@ -19,7 +20,7 @@ export default function NewsletterPage() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formattedFormData = {
@@ -29,9 +30,14 @@ export default function NewsletterPage() {
 
     try {
       validationNewsletterSchema.parse(formattedFormData);
-      setIsSubscriptSuccessful(true);
-      console.log("Formulário válido:", formData);
       setErrors({});
+
+      try {
+        const response = await axios.post('/api/send-email', { email: formData.email, userType: formData.radioOption });
+        setIsSubscriptSuccessful(true);
+      } catch (error) {
+        console.error('Erro ao enviar email:', error);
+      }
     } catch (error) {
       if (error instanceof z.ZodError) {
         const formErrors: { [key: string]: string } = {};
@@ -52,7 +58,7 @@ export default function NewsletterPage() {
       ) : (
         <BackgroundForms>
           <h2 className="text-2xl font-bold text-center mb-4">
-            Inscreva-se na NewsLetter
+            Inscreva-se na Newsletter
           </h2>
           <h3 className="font-bold p-2 mb-2 text-left w-full max-w-sm">
             Eu sou:
@@ -144,7 +150,7 @@ export default function NewsletterPage() {
                   }`}
                 >
                   <IoMdArrowRoundForward className="mr-1" />
-                Aspirante à residente
+                  Aspirante à residente
                 </label>
               </div>
               {errors.radioOption && (
