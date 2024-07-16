@@ -23,7 +23,7 @@ export default function MentorProfilePage() {
             className="w-20 h-20 rounded-full object-cover mr-4"
           />
           <div className="w-full flex flex-col">
-            <h1 className="text-[20px] xs:text-[18px] text-shadow-md text-white font-semibold font-sans mb-3 sm:mt-3">
+            <h1 className="text-[20px] text-shadow-md text-white font-semibold font-sans mb-3 sm:mt-3">
               João Oliveira
             </h1>
             <div className="text-white text-sm h-auto flex flex-col items-start">

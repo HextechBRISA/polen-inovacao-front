@@ -17,7 +17,7 @@ export default function AllMentorsPage() {
   return (
     <>
       <div className="w-3/5 lg:w-4/6 sm:w-5/6 mt-[120px] mx-auto flex justify-between items-center">
-        <h1 className="text-[20px] xs:text-[18px] text-shadow-md text-white font-semibold font-sans">
+        <h1 className="text-[20px] text-shadow-md text-white font-semibold font-sans">
           Mentores Pólen
         </h1>
         <Link href={"/resident"}>
