@@ -1,8 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { HiMenu } from "react-icons/hi";
 import { RiAccountPinCircleFill, RiChatSmile2Fill } from "react-icons/ri";
 import { MdMarkEmailUnread } from "react-icons/md";
@@ -12,6 +11,20 @@ import LogoHeader from "../../../public/LogoHeader.png";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="fixed top-0 z-50 flex w-full items-center justify-between bg-gradient-to-b from-[#ee7a3c] to-[#ea5e53] p-5 shadow-md">
@@ -38,38 +51,56 @@ export default function Header() {
       </div>
 
       <div className="md:hidden flex items-center">
-        <Menu as="div" className="relative inline-block text-left">
-          <MenuButton onClick={() => setIsOpen(!isOpen)} className="text-white text-3xl">
+        <div className="relative inline-block text-left" ref={menuRef}>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-white text-3xl"
+          >
             <HiMenu />
-          </MenuButton>
+          </button>
 
           {isOpen && (
-            <MenuItems className="bg-[#eadcd3] absolute right-0 mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <div className="bg-[#eadcd3] absolute right-0 mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
-                <MenuItem as="a" href={"/login"} className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold">
+                <Link
+                  href={"/login"}
+                  className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold"
+                >
                   <RiAccountPinCircleFill className="mr-2 text-[20px] text-[#ee7a3c]" />
                   Sou Pólen
-                </MenuItem>
-                <MenuItem as="a" href={"/newsletter"} className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold">
+                </Link>
+                <Link
+                  href={"/newsletter"}
+                  className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold"
+                >
                   <MdMarkEmailUnread className="mr-2 text-[20px] text-[#ee7a3c]" />
                   Newsletter
-                </MenuItem>
-                <MenuItem as="a" href={"/"} className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold">
+                </Link>
+                <Link
+                  href={"/"}
+                  className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold"
+                >
                   <FaLightbulb className="mr-2 text-[20px] text-[#ee7a3c]" />
                   Saiba Mais
-                </MenuItem>
-                <MenuItem as="a" href={"/"} className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold">
+                </Link>
+                <Link
+                  href={"/"}
+                  className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold"
+                >
                   <BiSolidDonateHeart className="mr-2 text-[20px] text-[#ee7a3c]" />
                   Favela Inova
-                </MenuItem>
-                <MenuItem as="a" href={"/"} className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold">
+                </Link>
+                <Link
+                  href={"/"}
+                  className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold"
+                >
                   <RiChatSmile2Fill className="mr-2 text-[20px] text-[#ee7a3c]" />
                   Contato
-                </MenuItem>
+                </Link>
               </div>
-            </MenuItems>
+            </div>
           )}
-        </Menu>
+        </div>
       </div>
     </div>
   );

@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^2.1.2",
     "@sweetalert2/theme-default": "^5.0.16",
     "@types/styled-components": "^5.1.34",
     "animate.css": "^4.1.1",
