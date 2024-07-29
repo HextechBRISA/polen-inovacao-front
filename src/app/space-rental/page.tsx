@@ -25,7 +25,7 @@ export default function SpaceRentalPage() {
               alt="Auditório"
             />
             <h2 className="text-white text-xl mt-2">Auditório</h2>
-            <h3>R$ 25/hora</h3>
+            <h3>R$ 80/hora</h3>
           </div>
         </Link>
 
@@ -37,7 +37,7 @@ export default function SpaceRentalPage() {
               alt="TV Studio"
             />
             <h2 className="text-white text-xl mt-2">Studio de TV</h2>
-            <h3>R$ 25/hora</h3>
+            <h3>R$ 80/hora</h3>
           </div>
         </Link>
 
@@ -49,7 +49,7 @@ export default function SpaceRentalPage() {
               alt="Studio de Podcast"
             />
             <h2 className="text-white text-xl mt-2">Studio de Podcast</h2>
-            <h3>R$ 25/hora</h3>
+            <h3>R$ 80/hora</h3>
           </div>
         </Link>
       </div>
