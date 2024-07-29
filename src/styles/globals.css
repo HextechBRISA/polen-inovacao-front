@@ -33,7 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  background: linear-gradient(to bottom, #EE7A3C, #EA5E53);
+  background: linear-gradient(to top, rgba(238,122,60,0.8), rgba(255, 229, 227, 1));
   color: #635a56;
 }
 #root, #__next {
@@ -75,11 +75,11 @@ strong {
   width: 5px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #EA5E53;
+  background-color: #ee7a3c;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #C44138;
+  background-color: #ee7a3c;
 }
 ::-webkit-scrollbar-track {
   background-color: transparent;

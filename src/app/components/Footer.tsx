@@ -1,35 +1,74 @@
 import React from "react";
 import { TiSocialInstagram } from "react-icons/ti";
-import { MdFacebook, MdEmail } from "react-icons/md";
-import { RiChatSmile2Fill } from "react-icons/ri";
+import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
+import { BiChevronRight, BiLogoSpotify } from "react-icons/bi";
+import { GrLocation } from "react-icons/gr";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Footer() {
   return (
-    <div className="w-full h-[130px] flex justify-around items-center bg-gradient-to-t from-[rgba(255,255,255,0.5)] to-transparent p-10 xs:p-6 mt-[70px] xs:mt-[40px] text-white">
+    <div className="w-full h-[150px] flex justify-around items-center bg-gradient-colors p-10 xs:p-6 mt-[70px] xs:mt-[40px] text-white">
       <div className="flex flex-col items-start justify-center text-[15px] font-sans font-bold cursor-pointer sm:hidden">
-        <p className="hover:text-[#d2534a] hvr-forward transition duration-300 mb-1">
-          SOBRE NÓS
-        </p>
-        <p className="hover:text-[#d2534a] hvr-forward transition duration-300 mb-1">
-          FAVELA INOVA
-        </p>
-        <p className="hover:text-[#d2534a] hvr-forward transition duration-300">
-          PARCEIROS
-        </p>
+        <div className="flex items-center hover:text-[#635a56]">
+          <BiChevronRight className="text-[22px]" />
+          <p className="hvr-forward transition duration-300 mb-1">SAIBA MAIS</p>
+        </div>
+        <div className="flex items-center hover:text-[#635a56]">
+          <BiChevronRight className="text-[22px]" />
+          <p className="hvr-forward transition duration-300 mb-1">
+            FAVELA INOVA
+          </p>
+        </div>
+        <div className="flex items-center hover:text-[#635a56]">
+          <BiChevronRight className="text-[22px]" />
+          <p className="hvr-forward transition duration-300 mb-1">CONTATO</p>
+        </div>
       </div>
       <Image
-        src="/LogoPolen.png"
+        src="/LogoWhite.png"
         alt="Pólen"
         width={80}
         height={80}
-        className="xs:w-[70px] xs:h-[60px]"
+        className="xs:w-[80px] xs:h-[70px]"
       />
-      <div className="flex">
-        <RiChatSmile2Fill className="text-[25px] cursor-pointer hover:text-[#d2534a] transition duration-300" />
-        <TiSocialInstagram className="text-[25px] ml-2 cursor-pointer hover:text-[#d2534a] transition duration-300" />
-        <MdFacebook className="text-[25px] ml-2 cursor-pointer hover:text-[#d2534a] transition duration-300" />
-        <MdEmail className="text-[25px] ml-2 cursor-pointer hover:text-[#d2534a] transition duration-300" />
+      <div className="w-auto flex flex-col xs:items-center">
+        <div className="flex">
+          <Link
+            href="https://open.spotify.com/show/6xXumIawt7MAYyW7o5GjSw?si=5963835338b14750"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <BiLogoSpotify className="text-[27px] cursor-pointer hover:text-[#635a56] transition duration-300" />
+          </Link>
+          <Link
+            href="https://www.instagram.com/polen.unisuam/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <TiSocialInstagram className="text-[27px] ml-3 xs:ml-2 cursor-pointer hover:text-[#635a56] transition duration-300" />
+          </Link>
+          <Link
+            href="https://www.linkedin.com/company/polen-unisuam/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <IoLogoLinkedin className="text-[27px] ml-3 xs:ml-2 cursor-pointer hover:text-[#635a56] transition duration-300" />
+          </Link>
+          <Link
+            href="https://www.youtube.com/channel/UChWCgAnhhUx_UK_xg48POUQ/featured"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <IoLogoYoutube className="text-[27px] ml-3 xs:ml-2 cursor-pointer hover:text-[#635a56] transition duration-300" />
+          </Link>
+        </div>
+        <div className="flex items-center mt-3">
+          <GrLocation className="text-[22px] mr-2" />
+          <h2>
+            Av. Paris, n° 121 <br /> Bonsucesso, RJ
+          </h2>
+        </div>
       </div>
     </div>
   );

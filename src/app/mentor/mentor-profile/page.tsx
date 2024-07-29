@@ -20,13 +20,13 @@ export default function MentorProfilePage() {
           <Image
             src={Mentor}
             alt="Mentor Image"
-            className="w-20 h-20 rounded-full object-cover mr-4"
+            className="w-20 h-20 rounded-full object-cover mr-4 shadow-md"
           />
           <div className="w-full flex flex-col">
-            <h1 className="text-[20px] text-shadow-md text-white font-semibold font-sans mb-3 sm:mt-3">
+            <h1 className="text-[20px] text-shadow-md  font-semibold font-sans mb-3 sm:mt-3">
               João Oliveira
             </h1>
-            <div className="text-white text-sm h-auto flex flex-col items-start">
+            <div className=" text-sm h-auto flex flex-col items-start">
               <h2 className="font-bold mr-2">Curso:</h2>
               <h2>Análise e Desenvolvimento de Sistemas</h2>
             </div>
@@ -40,16 +40,16 @@ export default function MentorProfilePage() {
             />
           ) : (
             <FaRegHeart
-              className="text-[25px] xs:text-[22px] text-shadow-md text-white cursor-pointer mb-4"
+              className="text-[25px] xs:text-[22px] text-shadow-md  cursor-pointer mb-4"
               onClick={toggleFavorite}
             />
           )}
           <Link href={"/resident"}>
-            <FaArrowLeft className="text-[25px] xs:text-[22px] text-shadow-md text-white hover:animate-wobble" />
+            <FaArrowLeft className="text-[25px] xs:text-[22px] text-shadow-md  hover:animate-wobble" />
           </Link>
         </div>
       </div>
-      <div className="bg-white bg-opacity-30 mt-[30px] xs:mt-[10px] mx-auto rounded-[20px] p-10 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 sm:w-5/6 mb-[50px]">
+      <div className="bg-[#eadcd3] bg-opacity-50 mt-[30px] xs:mt-[10px] mx-auto rounded-[20px] p-10 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 sm:w-5/6 mb-[50px]">
         <MentorCalendar isMentor={false} />
       </div>
     </>

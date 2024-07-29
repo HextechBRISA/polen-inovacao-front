@@ -17,14 +17,14 @@ export default function AllMentorsPage() {
   return (
     <>
       <div className="w-3/5 lg:w-4/6 sm:w-5/6 mt-[120px] mx-auto flex justify-between items-center">
-        <h1 className="text-[20px] text-shadow-md text-white font-semibold font-sans">
+        <h1 className="text-[20px] text-shadow-md font-semibold font-sans">
           Mentores Pólen
         </h1>
         <Link href={"/resident"}>
-          <FaArrowLeft className="text-[27px] xs:text-[24px] text-shadow-md text-white hover:animate-wobble" />
+          <FaArrowLeft className="text-[27px] xs:text-[24px] text-shadow-md hover:animate-wobble" />
         </Link>
       </div>
-      <div className="bg-white bg-opacity-30 mt-[30px] mx-auto rounded-[20px] p-10 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 sm:w-5/6 mb-[50px]">
+      <div className="bg-[#eadcd3] bg-opacity-50 mt-[30px] mx-auto rounded-[20px] p-10 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 sm:w-5/6 mb-[50px]">
         <h2 className="font-bold text-center text-xl">
           Acesse o perfil do mentor para agendar uma reunião de mentoria:
         </h2>

@@ -1,7 +1,7 @@
 import React from "react";
 
 const PaymentContainer = ({ children }) => (
-  <div className="bg-white bg-opacity-30 mt-[130px] mx-auto rounded-[20px] p-10 shadow-lg flex flex-col items-center justify-center w-1/2 sm:w-5/6 xs:w-5/6 mb-[50px]">
+  <div className="bg-[#eadcd3] bg-opacity-50 mt-[130px] mx-auto rounded-[20px] p-10 shadow-lg flex flex-col items-center justify-center w-1/2 sm:w-5/6 xs:w-5/6 mb-[50px]">
     {children}
   </div>
 );

@@ -13,16 +13,19 @@ const images = [
   {
     src: Event1Image,
     alt: "Evento 1",
-    text: "Café com Investidores - 25/09/24",
+    title: "Café com Investidores",
+    text: "25/09/24 às 9h",
   },
   {
     src: Event2Image,
     alt: "Evento 2",
-    text: "Palestra Profissional Moderno - 18/10/24",
+    title: "Palestra Profissional Moderno",
+    text: "18/10/24 às 16h",
   },
   { src: Event3Image, 
     alt: "Evento 3", 
-    text: "Networking Event - 10/11/25" },
+    title: "Networking Event",
+    text: "10/11/25 às 14h" },
 ];
 
 export default function EventCarousel() {
@@ -42,8 +45,11 @@ export default function EventCarousel() {
               alt={image.alt}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-              <h2 className="text-white text-2xl xs:text-[16px] flex flex-wrap">
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center">
+              <h1 className="text-[#eadcd3] text-[22px] mb-2 font-bold xs:text-[20px] flex flex-wrap">
+                {image.title}
+              </h1>
+              <h2 className="text-[#eadcd3] text-[20px] xs:text-[18px] flex flex-wrap">
                 {image.text}
               </h2>
             </div>

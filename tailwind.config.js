@@ -26,6 +26,12 @@ module.exports = {
         'lg': {'min': '1200px'},
         'xl': {'min': '1300px'},
       },
+      boxShadow: {
+        'custom': '0px 4px 8px rgba(0, 0, 0, 0.4)', 
+      },
+      backgroundImage: {
+        'gradient-colors': 'linear-gradient(to bottom, rgba(238, 122, 60, 0), rgba(234, 94, 83, 1))',
+      },
     },
   },
   plugins: [],
