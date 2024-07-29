@@ -5,6 +5,9 @@ import Image from "next/image";
 import Auditorium from "../../../public/Auditorium.jpg";
 import TVStudio from "../../../public/TVStudio.jpg";
 import PodcastStudio from "../../../public/PodcastStudio.png";
+import SpaceIcon1 from "../../../public/SpaceIcon1.png";
+import SpaceIcon2 from "../../../public/SpaceIcon2.png";
+import { FaCheck } from "react-icons/fa";
 
 export default function SpaceRentalPage() {
   return (
@@ -22,6 +25,7 @@ export default function SpaceRentalPage() {
               alt="Auditório"
             />
             <h2 className="text-white text-xl mt-2">Auditório</h2>
+            <h3>R$ 25/hora</h3>
           </div>
         </Link>
 
@@ -33,6 +37,7 @@ export default function SpaceRentalPage() {
               alt="TV Studio"
             />
             <h2 className="text-white text-xl mt-2">Studio de TV</h2>
+            <h3>R$ 25/hora</h3>
           </div>
         </Link>
 
@@ -44,8 +49,48 @@ export default function SpaceRentalPage() {
               alt="Studio de Podcast"
             />
             <h2 className="text-white text-xl mt-2">Studio de Podcast</h2>
+            <h3>R$ 25/hora</h3>
           </div>
         </Link>
+      </div>
+      <div className="flex sm:flex-col mt-10 sm:mt-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row mr-8 sm:mr-0 sm:mb-4">
+          <Image src={SpaceIcon1} alt="Icon 1" className="w-28" />
+          <Image src={SpaceIcon2} alt="Icon 2" className="w-28" />
+        </div>
+        <div>
+          <h2 className="font-bold mb-4">O que está incluso no valor?</h2>
+          <ul>
+            <li className="flex mb-2">
+              <FaCheck className="mr-2 text-[#EE7A3C]" />
+              Água e Luz gratuitas;
+            </li>
+            <li className="flex mb-2">
+              <FaCheck className="mr-2 text-[#EE7A3C]" />
+              Café disponibilizado;
+            </li>
+            <li className="flex mb-2">
+              <FaCheck className="mr-2 text-[#EE7A3C]" />
+              Internet Wi-fi;
+            </li>
+            <li className="flex mb-2">
+              <FaCheck className="mr-2 text-[#EE7A3C]" />
+              Espaço Climatizado;
+            </li>
+            <li className="flex mb-2">
+              <FaCheck className="mr-2 text-[#EE7A3C]" />
+              Limpeza diária;
+            </li>
+            <li className="flex mb-2">
+              <FaCheck className="mr-2 text-[#EE7A3C]" />
+              Copa para almoço;
+            </li>
+            <li className="flex mb-2">
+              <FaCheck className="mr-2 text-[#EE7A3C]" />
+              Uma galera massa ao seu redor!
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
