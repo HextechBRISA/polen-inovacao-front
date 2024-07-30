@@ -13,8 +13,8 @@ const images = [
   {
     src: Testimony1,
     alt: "Depoimento 1",
-    name: "Ana Carolina, Circuito Kids",
-    text: "Participar da primeira edição do Favela Inova Niterói me proporcionou uma experiência única não só pelo conteúdo oferecido, mas também pela valorização de startups que se originaram nas comunidades da cidade. A equipe Pólen trabalhou incansavelmente para buscar resolver qualquer problema que surgisse pelo caminho! Como fundadora do Circuito Kids posso afirmar que o Favela Inova trouxe uma outra visão sobre empreendedorismo, é um prazer fazer parte do ecossistema.",
+    name: "Christiane Corrêa, Arch Studio 3D",
+    text: "O Pólen é muito mais do que um espaço de escritórios compartilhados. Ao colocar uma empresa do lado da outra, promover eventos, conectar membros, os negócios entre si crescem à medida que as relações se estreitam, ganhando novas parcerias de trabalhos bem como amizades.",
   },
   {
     src: Testimony2,
@@ -25,8 +25,8 @@ const images = [
   {
     src: Testimony3,
     alt: "Depoimento 3",
-    name: "Christiane Corrêa, Arch Studio 3D",
-    text: "O Pólen é muito mais do que um espaço de escritórios compartilhados. Ao colocar uma empresa do lado da outra, promover eventos, entregar uma espécie de 'rede social física' para os membros se conectarem, os negócios entre si crescem à medida que as relações se estreitam, ganhando novas parcerias de trabalhos bem como amizades. Outro fato muito importante é estarmos conectados com a instituição UNISUAM onde temos uma gama de profissionais/professores além dos alunos que podem ser nossos futuros estagiários/profissionais.",
+    name: "Ana Carolina, Circuito Kids",
+    text: "Participar da primeira edição do Favela Inova Niterói me proporcionou uma experiência única não só pelo conteúdo oferecido, mas também pela valorização de startups que se originaram nas comunidades da cidade. A equipe Pólen trabalhou incansavelmente para buscar resolver qualquer problema que surgisse pelo caminho! Como fundadora do Circuito Kids posso afirmar que o Favela Inova trouxe uma outra visão sobre empreendedorismo.",
   },
 ];
 
@@ -37,7 +37,7 @@ export default function TestimonyCarousel() {
       pagination={{ clickable: true }}
       mousewheel={true}
       modules={[Pagination, Mousewheel]}
-      className="mySwiper w-[80%] sm:w-[90%] h-[400px] sm:h-auto mx-auto rounded-[10px] mt-12 sm:mt-8 bg-white bg-opacity-30 bg-[#eadcd3] bg-opacity-40 shadow-md"
+      className="mySwiper w-[80%] sm:w-[90%] h-[350px] sm:h-[650px] mx-auto rounded-[10px] mt-12 sm:mt-8 bg-[#eadcd3] bg-opacity-50 shadow-md p-4"
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>
@@ -45,14 +45,14 @@ export default function TestimonyCarousel() {
             <Image
               src={image.src}
               alt={image.alt}
-              className="w-auto sm:w-64 object-cover mr-10 sm:mr-0 sm:mb-2"
+              className="w-auto sm:w-56 object-cover mr-6 sm:mr-0 sm:mb-2 border-2"
             />
-            <div className="w-[350px] xs:w-[300px] flex flex-col items-center justify-center p-4 sm:p-2">
+            <div className="w-[380px] xs:w-[300px] flex flex-col items-center justify-center">
               <p className="text-[16px] flex flex-wrap text-justify leading-tight">
                 <FaQuoteLeft className="text-xl m-2 text-[#ea5e53]" />
                 {image.text}
               </p>
-              <h3 className="text-[18px] text-[#ea5e53] mb-2 mt-4 font-bold xs:text-[20px] flex flex-wrap">
+              <h3 className="text-[18px] text-[#ea5e53] mt-4 font-bold">
                 — {image.name}
               </h3>
             </div>
