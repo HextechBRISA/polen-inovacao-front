@@ -7,11 +7,7 @@ const PaymentContainer = ({ children }) => (
 );
 
 const PaymentCard = ({ children }) => (
-  <div className="b-8 flex-col md:mb-5">{children}</div>
-);
-
-const PaymentForm = ({ children }) => (
-  <form className="w-72 mt-4">{children}</form>
+  <div className="flex flex-col items-center">{children}</div>
 );
 
 const Input = ({ ...props }) => (
@@ -35,16 +31,11 @@ const CVCInput = ({ ...props }) => (
   />
 );
 
-const PaymentPix = ({ children }) => (
-  <div className="mb-8">
-    {children}
-  </div>
-);
+const PaymentPix = ({ children }) => <div className="mb-4 mt-4">{children}</div>;
 
 export {
   PaymentContainer,
   PaymentCard,
-  PaymentForm,
   Input,
   ExpiryInput,
   CVCInput,
