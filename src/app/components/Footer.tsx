@@ -2,6 +2,7 @@ import React from "react";
 import { TiSocialInstagram } from "react-icons/ti";
 import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { BiChevronRight, BiLogoSpotify } from "react-icons/bi";
+import LogoWhite from "../../../public/LogoWhite.png";
 import { GrLocation } from "react-icons/gr";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,29 +13,28 @@ export function Footer() {
       <div className="flex flex-col items-start justify-center text-[15px] font-sans font-bold cursor-pointer sm:hidden">
         <div className="flex items-center hover:text-[#635a56]">
           <BiChevronRight className="text-[22px]" />
-          <p className="hvr-forward transition duration-300 mb-1">SAIBA MAIS</p>
+          <Link href={"/"}>
+            <p className="hvr-forward transition duration-300 mb-1">
+              SAIBA MAIS
+            </p>
+          </Link>
         </div>
         <div className="flex items-center hover:text-[#635a56]">
           <BiChevronRight className="text-[22px]" />
-          <p className="hvr-forward transition duration-300 mb-1">
-            FAVELA INOVA
-          </p>
+          <Link href={"/"}>
+            <p className="hvr-forward transition duration-300 mb-1">
+              FAVELA INOVA
+            </p>
+          </Link>
         </div>
         <div className="flex items-center hover:text-[#635a56]">
           <BiChevronRight className="text-[22px]" />
-          <Link 
-            href={"/contact"}>
-          <p className="hvr-forward transition duration-300 mb-1">CONTATO</p>
+          <Link href={"/contact"}>
+            <p className="hvr-forward transition duration-300 mb-1">CONTATO</p>
           </Link>
         </div>
       </div>
-      <Image
-        src="/LogoWhite.png"
-        alt="Pólen"
-        width={80}
-        height={80}
-        className="xs:w-[80px] xs:h-[70px]"
-      />
+      <Image src={LogoWhite} alt="Pólen" className="w-[90px] xs:w-[80px]" />
       <div className="w-auto flex flex-col xs:items-center">
         <div className="flex">
           <Link

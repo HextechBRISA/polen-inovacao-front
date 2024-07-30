@@ -25,7 +25,7 @@ export default function NewsletterCard() {
     >
       <Link className="flex justify-content items-center" href="/newsletter">
         <div className="w-64 mr-4">
-          <h1 className="font-bold text-[22px] xs:text-[18px] text-[#ee7a3c]">
+          <h1 className="font-bold text-[22px] xs:text-[18px]">
             Inscreva-se em nossa NewsLetter!
           </h1>
           <h2 className="mt-4 xs:text-[15px]">

@@ -35,7 +35,7 @@ export default function Header() {
       <div className="flex h-8 w-[165px] items-center border-r-2 border-white">
         <Link href={"/"}>
           <Image
-            src={LogoHeader.src}
+            src={LogoHeader}
             alt="logoheader"
             width={150}
             height={30}
@@ -107,7 +107,7 @@ export default function Header() {
                 Favela Inova
               </Link>
               <Link
-                href={"/"}
+                href={"/contact"}
                 onClick={handleLinkClick}
                 className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold"
               >
