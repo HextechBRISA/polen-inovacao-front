@@ -22,7 +22,10 @@ export function Footer() {
         </div>
         <div className="flex items-center hover:text-[#635a56]">
           <BiChevronRight className="text-[22px]" />
+          <Link 
+            href={"/contact"}>
           <p className="hvr-forward transition duration-300 mb-1">CONTATO</p>
+          </Link>
         </div>
       </div>
       <Image

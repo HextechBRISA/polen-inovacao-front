@@ -91,7 +91,7 @@ export default function Header() {
                   Favela Inova
                 </Link>
                 <Link
-                  href={"/"}
+                  href={"/contact"}
                   className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold"
                 >
                   <RiChatSmile2Fill className="mr-2 text-[20px] text-[#ee7a3c]" />
