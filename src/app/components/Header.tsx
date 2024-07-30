@@ -62,7 +62,6 @@ export default function Header() {
           >
             {isOpen ? <HiX /> : <HiMenu />}
           </button>
-
           <div
             className={`absolute right-0 mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 transition-transform duration-300 ease-in-out ${
               isOpen
