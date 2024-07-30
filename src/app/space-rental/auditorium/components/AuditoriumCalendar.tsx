@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { Calendar, dateFnsLocalizer, Views } from "react-big-calendar";
 import {
@@ -5,6 +6,7 @@ import {
   startOfDay,
   startOfWeek,
   getDay,
+  differenceInMinutes,
 } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Swal from "sweetalert2";
@@ -28,6 +30,7 @@ interface Event {
   end: Date;
   title: string;
   email?: string;
+  value?: number;
 }
 
 export default function AuditoriumCalendar() {
@@ -36,6 +39,13 @@ export default function AuditoriumCalendar() {
   const [view, setView] = useState(Views.MONTH);
   const [date, setDate] = useState(new Date());
   const router = useRouter();
+
+  const calculateValue = (start: Date, end: Date) => {
+    const durationInMinutes = differenceInMinutes(end, start);
+    const durationInHalfHours = Math.ceil(durationInMinutes / 30);
+    const totalValue = durationInHalfHours * 40;
+    return totalValue;
+  };
 
   const handleSelectSlot = async ({
     start,
@@ -140,7 +150,8 @@ export default function AuditoriumCalendar() {
       });
 
       if (email) {
-        const newEvent: Event = { start, end, title, email };
+        const eventValue = calculateValue(start, end);
+        const newEvent: Event = { start, end, title, email, value: eventValue };
         setEvents([...events, newEvent]);
         setSelectedEvent(newEvent);
         Swal.fire({
@@ -154,20 +165,6 @@ export default function AuditoriumCalendar() {
     }
   };
 
-  const eventPropGetter = (event: Event) => {
-    const backgroundColor = event.title === "Reservado" ? "#868686" : "#EE7A3C";
-    const cursor = event.title === "Reservado" ? "not-allowed" : "pointer";
-    return {
-      style: {
-        backgroundColor,
-        borderRadius: "5px",
-        opacity: 0.8,
-        color: "white",
-        cursor,
-      },
-    };
-  };
-
   const handleReserveSubmit = async () => {
     try {
       if (!selectedEvent) {
@@ -175,7 +172,10 @@ export default function AuditoriumCalendar() {
           "Você deve selecionar uma data e horário para reservar o espaço."
         );
       }
-      router.push("/payment");
+
+      const eventValue = calculateValue(selectedEvent.start, selectedEvent.end);
+
+      router.push(`/payment?valorReserva=${eventValue}`);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -204,7 +204,16 @@ export default function AuditoriumCalendar() {
         onView={(view) => setView(view)}
         onNavigate={(date) => setDate(date)}
         views={["month", "day"]}
-        eventPropGetter={eventPropGetter}
+        eventPropGetter={(event) => ({
+          style: {
+            backgroundColor:
+              event.title === "Reservado" ? "#868686" : "#EE7A3C",
+            borderRadius: "5px",
+            opacity: 0.8,
+            color: "white",
+            cursor: event.title === "Reservado" ? "not-allowed" : "pointer",
+          },
+        })}
         longPressThreshold={false}
         messages={{
           next: "❯",

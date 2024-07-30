@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Cards, { Focused } from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import InputMask from "react-input-mask";
@@ -7,7 +7,6 @@ import QRCode from "qrcode.react";
 import {
   PaymentContainer,
   PaymentCard,
-  PaymentForm,
   Input,
   ExpiryInput,
   CVCInput,
@@ -33,18 +32,32 @@ export default function PaymentPage() {
     valor: "00.00",
     recebedor: "Nome do Recebedor",
   });
+  const [valorReserva, setValorReserva] = useState<number>(0);
 
-  function handleInputFocus(e) {
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const valorReservaParam = params.get("valorReserva");
+    if (valorReservaParam) {
+      const valor = Number(valorReservaParam);
+      setValorReserva(valor);
+      setPixData((prevData) => ({
+        ...prevData,
+        valor: valor.toFixed(2).replace(".", ","),
+      }));
+    }
+  }, []);
+
+  function handleInputFocus(e: React.FocusEvent<HTMLInputElement>) {
     const { name } = e.target;
-    setCardData({ ...cardData, focus: name });
+    setCardData({ ...cardData, focus: name as Focused });
   }
 
-  function handleInputChange(e) {
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setCardData({ ...cardData, [name]: value });
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (payWithPix) {
       setIsPaymentSuccessful(true);
@@ -109,7 +122,7 @@ export default function PaymentPage() {
               </>
             )}
 
-            <PaymentForm>
+            <form className="w-72 mt-4" onSubmit={handleSubmit}>
               {!payWithPix && (
                 <div className="mb-1">
                   <InputMask
@@ -215,7 +228,7 @@ export default function PaymentPage() {
                   </div>
                 </div>
               )}
-            </PaymentForm>
+            </form>
           </PaymentCard>
 
           <PaymentPix>
@@ -232,13 +245,19 @@ export default function PaymentPage() {
             ></label>
           </PaymentPix>
 
-          <button
-            type="submit"
-            onClick={handleSubmit}
-            className="shadow-md mt-2 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
-          >
-            Confirmar pagamento
-          </button>
+          <div className="text-center mt-4">
+            <button
+              type="button"
+              onClick={() => {
+                handleSubmit({
+                  preventDefault: () => {},
+                } as React.FormEvent<HTMLFormElement>);
+              }}
+              className="shadow-md w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
+            >
+              Confirmar pagamento
+            </button>
+          </div>
         </PaymentContainer>
       )}
     </>
