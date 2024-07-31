@@ -142,6 +142,18 @@
   background-color: rgba(234, 94, 83, 0.3);
 }
 
+.rbc-show-more {
+  color: #EA5E53;
+  padding: 4px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.rbc-show-more:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 640px) {
   .rbc-calendar{
     height: 510px;

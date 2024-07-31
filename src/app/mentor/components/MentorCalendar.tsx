@@ -42,7 +42,7 @@ const messages = {
   time: "Hora",
   event: "Nome",
   noEventsInRange: "Nenhum evento neste período.",
-  showMore: (total) => `+ ver mais (${total})`,
+  showMore: (total) => `+ (${total})`,
 };
 
 const formats = {

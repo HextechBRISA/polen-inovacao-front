@@ -41,7 +41,7 @@ const messages = {
   time: "Hora",
   event: "Evento",
   noEventsInRange: "Nenhum evento neste período.",
-  showMore: (total) => `+ ver mais (${total})`,
+  showMore: (total) => `+ (${total})`,
 };
 
 const formats = {
@@ -132,16 +132,8 @@ export default function TVStudioCalendar() {
       return;
     }
 
-    if (view === Views.MONTH && (action === "click" || action === "select")) {
-      setView(Views.DAY);
-      setDate(startOfDay(start));
-      return;
-    }
-
     const isSlotOccupied = events.some(
-      (event) =>
-        (start >= event.start && start < event.end) ||
-        (end > event.start && end <= event.end)
+      (event) => start < event.end && end > event.start
     );
 
     if (isSlotOccupied) {
@@ -152,6 +144,12 @@ export default function TVStudioCalendar() {
         confirmButtonText: "Ok",
         confirmButtonColor: "#EA5E53",
       });
+      return;
+    }
+
+    if (view === Views.MONTH && (action === "click" || action === "select")) {
+      setView(Views.DAY);
+      setDate(startOfDay(start));
       return;
     }
 
