@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { Calendar, dateFnsLocalizer, Views } from "react-big-calendar";
 import {
@@ -7,6 +8,7 @@ import {
   getDay,
   setHours,
   setMinutes,
+  parse,
 } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Swal from "sweetalert2";
@@ -19,11 +21,51 @@ const locales = {
 };
 
 const localizer = dateFnsLocalizer({
-  format,
+  format: (date, formatStr, options) =>
+    format(date, formatStr, { ...options, locale: ptBR }),
+  parse: (str, format) => parse(str, format, new Date(), { locale: ptBR }),
   startOfWeek: () => startOfWeek(new Date(), { weekStartsOn: 1 }),
   getDay,
   locales,
 });
+
+const messages = {
+  allDay: "Dia todo",
+  previous: "❮",
+  next: "❯",
+  today: "Hoje",
+  month: "Mês",
+  week: "Semana",
+  day: "Dia",
+  agenda: "Agenda",
+  date: "Data",
+  time: "Hora",
+  event: "Nome",
+  noEventsInRange: "Nenhum evento neste período.",
+  showMore: (total) => `+ ver mais (${total})`,
+};
+
+const formats = {
+  dateFormat: "dd",
+  dayFormat: (date, culture, localizer) =>
+    localizer.format(date, "EEEE", culture),
+  dayHeaderFormat: (date, culture, localizer) =>
+    localizer.format(date, "EEEE, MMMM dd", culture),
+  dayRangeHeaderFormat: ({ start, end }, culture, localizer) =>
+    `${localizer.format(start, "MMMM dd", culture)} - ${localizer.format(
+      end,
+      "MMMM dd",
+      culture
+    )}`,
+  agendaDateFormat: "dd/MM/yyyy",
+  agendaTimeFormat: "HH:mm",
+  agendaHeaderFormat: ({ start, end }, culture, localizer) =>
+    `${localizer.format(start, "MMMM dd", culture)} - ${localizer.format(
+      end,
+      "MMMM dd",
+      culture
+    )}`,
+};
 
 interface Event {
   start: Date;
@@ -258,23 +300,8 @@ export default function MentorCalendar({ isMentor }: MentorCalendarProps) {
             views={["month", "day"]}
             eventPropGetter={eventPropGetter}
             longPressThreshold={false}
-            messages={{
-              next: "❯",
-              previous: "❮",
-              today: "Hoje",
-              month: "Mês",
-              day: "Dia",
-              date: "Data",
-              time: "Hora",
-              event: "Nome",
-            }}
-            formats={{
-              dateFormat: "dd",
-              dayFormat: (date, culture, localizer) =>
-                localizer.format(date, "EEEE", culture),
-              dayHeaderFormat: (date, culture, localizer) =>
-                localizer.format(date, "EEEE, MMMM dd", culture),
-            }}
+            messages={messages}
+            formats={formats}
             min={setMinutes(setHours(new Date(), 8), 0)}
             max={setMinutes(setHours(new Date(), 18), 0)}
             components={{
