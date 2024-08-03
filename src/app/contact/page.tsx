@@ -31,7 +31,7 @@ export default function ContactPage() {
           <FaMapMarkerAlt className="text-[25px] sm:text-[23px] mr-4 xs:mr-2 text-[#EA5E53]" />
           <span>
             Av. Paris, n° 121, Bonsucesso. <br />
-            Rio de Janeiro, RJ (21041-020)
+            21041-020. Rio de Janeiro, RJ.
           </span>
         </div>
       </div>

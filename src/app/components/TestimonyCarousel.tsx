@@ -54,7 +54,7 @@ export default function TestimonyCarousel() {
               alt={image.alt}
               className="w-auto sm:w-56 object-cover mr-6 sm:mr-0 sm:mb-2 border-2"
             />
-            <div className="w-[380px] xs:w-[300px] h-[90%] xs:h-auto flex flex-col items-center justify-center xs:justify-start">
+            <div className="w-[380px] xs:w-[300px] h-[90%] sm:h-auto flex flex-col items-center justify-center xs:justify-start">
               <p className="text-[16px] flex flex-wrap text-justify leading-tight">
                 <FaQuoteLeft className="text-xl m-2 xs:mt-0 text-[#ea5e53]" />
                 {image.text}

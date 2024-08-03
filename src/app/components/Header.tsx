@@ -95,16 +95,16 @@ export default function Header() {
                 onClick={handleLinkClick}
                 className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold"
               >
-                <FaLightbulb className="mr-2 text-[20px] text-[#ee7a3c]" />
-                Saiba Mais
+                <BiSolidDonateHeart className="mr-2 text-[20px] text-[#ee7a3c]" />
+                Sobre Nós
               </Link>
               <Link
-                href={"/"}
+                href={"/products"}
                 onClick={handleLinkClick}
                 className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold"
               >
-                <BiSolidDonateHeart className="mr-2 text-[20px] text-[#ee7a3c]" />
-                Favela Inova
+                <FaLightbulb className="mr-2 text-[20px] text-[#ee7a3c]" />
+                Produtos
               </Link>
               <Link
                 href={"/contact"}
