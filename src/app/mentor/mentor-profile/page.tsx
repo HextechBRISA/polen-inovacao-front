@@ -27,8 +27,8 @@ export default function MentorProfilePage() {
               João Oliveira
             </h1>
             <div className=" text-sm h-auto flex flex-col items-start">
-              <h2 className="font-bold mr-2">Curso:</h2>
-              <h2>Análise e Desenvolvimento de Sistemas</h2>
+              <h2 className="font-bold mr-2">Área:</h2>
+              <h2>Modelo de negócios</h2>
             </div>
           </div>
         </div>

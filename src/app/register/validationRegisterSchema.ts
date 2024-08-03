@@ -20,9 +20,9 @@ export const validationRegisterSchema = z.object({
   category: z
     .enum(['Mentor', 'Residente'], 
     { errorMap: () => ({ message: 'É obrigatório selecionar uma categoria' }) }),
-  course: z
-    .enum(['ADS', 'CC', 'ES', 'SI'], 
-    { errorMap: () => ({ message: 'É obrigatório selecionar um curso' }) }),
+  area: z
+    .enum(['Modelo de negócios', 'Redes sociais', 'Contabilidade', 'Identidade visual', 'Assessoria de imprensa'], 
+    { errorMap: () => ({ message: 'É obrigatório selecionar uma área' }) }),
   picture: z
     .string()
     .refine((value) => value.endsWith('.png') || value.endsWith('.jpg'), 'A foto de perfil deve ser um arquivo PNG ou JPG')

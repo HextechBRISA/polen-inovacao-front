@@ -29,6 +29,7 @@
   display: flex;
   align-items: center;
   padding: 10px;
+  text-transform: capitalize;
 }
 
 .rbc-toolbar .rbc-btn-group {
@@ -64,6 +65,7 @@
 
 .rbc-header {
   padding: 8px;
+  text-transform: capitalize;
 }
 
 .rbc-month-view {

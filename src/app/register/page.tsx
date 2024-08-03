@@ -183,7 +183,7 @@ export default function RegisterPage() {
         )}
 
         <label htmlFor="course" className="w-full items-start font-medium mb-2">
-          Curso:
+          Área:
         </label>
         <select
           id="course"
@@ -193,12 +193,13 @@ export default function RegisterPage() {
           className="w-full h-[40px] p-2 text-gray-400 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-5"
         >
           <option disabled hidden value="">
-            Escolha uma área de ensino
+            Escolha uma área de mentoria
           </option>
-          <option value="ADS">Análise de Sistemas</option>
-          <option value="CC">Ciência da Computação</option>
-          <option value="ES">Engenharia de Software</option>
-          <option value="SI">Sistemas de Informação</option>
+          <option value="Modelo de negócios">Modelo de negócios</option>
+          <option value="Redes sociais">Redes sociais</option>
+          <option value="Contabilidade">Contabilidade</option>
+          <option value="Identidade visual">Identidade visual</option>
+          <option value="Assessoria de imprensa">Assessoria de imprensa</option>
         </select>
         {errors.course && (
           <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
@@ -210,7 +211,7 @@ export default function RegisterPage() {
           htmlFor="picture"
           className="w-full items-start font-medium mb-2"
         >
-          Foto de perfil:
+          Foto de perfil
         </label>
         <div className="flex items-center justify-center w-full mt-1 mb-4">
           <label

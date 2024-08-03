@@ -49,6 +49,8 @@ export default function Login() {
   return (
     <BackgroundForms>
       <h1 className="text-3xl font-bold text-center mb-6">Login</h1>
+      <h2 className="mb-2 text-[17px] text-center font-sans">É mentor ou residente Pólen?</h2>
+      <h2 className="mb-4 text-[17px] text-center font-sans font-bold">Conecte-se:</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col justify-center items-center w-full"
