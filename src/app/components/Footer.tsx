@@ -11,6 +11,12 @@ export function Footer() {
   return (
     <div className="w-full h-[150px] flex justify-around items-center bg-gradient-colors p-10 xs:p-6 mt-[70px] xs:mt-[40px] text-white">
       <div className="flex flex-col items-start justify-center text-[15px] font-sans font-bold cursor-pointer sm:hidden">
+      <div className="flex items-center hover:text-[#635a56]">
+          <BiChevronRight className="text-[22px]" />
+          <Link href={"/who-we-ware"}>
+            <p className="hvr-forward transition duration-300 mb-1">QUEM SOMOS</p>
+          </Link>
+        </div>
         <div className="flex items-center hover:text-[#635a56]">
           <BiChevronRight className="text-[22px]" />
           <Link href={"/"}>
@@ -27,6 +33,7 @@ export function Footer() {
             </p>
           </Link>
         </div>
+        
         <div className="flex items-center hover:text-[#635a56]">
           <BiChevronRight className="text-[22px]" />
           <Link href={"/contact"}>
