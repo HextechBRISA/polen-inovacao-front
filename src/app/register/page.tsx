@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import BackgroundForms from "../components/BackgroundForms";
+import BackgroundLogo from "../../components/BackgroundLogo";
 import { validationRegisterSchema } from "./validationRegisterSchema";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -73,7 +73,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <BackgroundForms>
+    <BackgroundLogo>
       <h1 className="text-3xl font-bold text-center mb-6">Cadastre-se</h1>
       <form
         className="flex flex-col justify-center items-center w-full"
@@ -266,6 +266,6 @@ export default function RegisterPage() {
           Já possui uma conta? Faça Login!
         </Link>
       </form>
-    </BackgroundForms>
+    </BackgroundLogo>
   );
 }

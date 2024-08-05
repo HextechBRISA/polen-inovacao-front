@@ -1,15 +1,15 @@
 "use client";
 import React from "react";
-import BackgroundForms from "../components/BackgroundForms";
+import BackgroundLogo from "../../components/BackgroundLogo";
 import { MdEmail } from "react-icons/md";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
 
 export default function ContactPage() {
   return (
-    <BackgroundForms>
+    <BackgroundLogo>
       <div className="w-[80%] sm:w-auto p-5 xs:p-2 flex flex-wrap flex-col justify-center item-center">
-        <h1 className="text-[25px] xs:text-[22px] font-sans font-bold text-center mb-6 mt-2 text-[#EA5E53]">
+        <h1 className="text-[25px] xs:text-[22px] font-sans font-bold text-center mb-6 text-[#EA5E53]">
           VAMOS INOVAR JUNTOS?
         </h1>
 
@@ -35,6 +35,6 @@ export default function ContactPage() {
           </span>
         </div>
       </div>
-    </BackgroundForms>
+    </BackgroundLogo>
   );
 }

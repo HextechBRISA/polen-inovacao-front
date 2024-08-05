@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx", 
     "src/app/payment/style.js",
-"src/app/components/RouterSwitch.js",  
+"src/components/RouterSwitch.js",  
   ],
   "exclude": [
     "node_modules"

@@ -2,7 +2,7 @@ import React from "react";
 import { TiSocialInstagram } from "react-icons/ti";
 import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { BiChevronRight, BiLogoSpotify } from "react-icons/bi";
-import LogoWhite from "../../../public/LogoWhite.png";
+import LogoWhite from "../../public/LogoWhite.png";
 import { GrLocation } from "react-icons/gr";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,17 +11,11 @@ export function Footer() {
   return (
     <div className="w-full h-[150px] flex justify-around items-center bg-gradient-colors p-10 xs:p-6 mt-[70px] xs:mt-[40px] text-white">
       <div className="flex flex-col items-start justify-center text-[15px] font-sans font-bold cursor-pointer sm:hidden">
-      <div className="flex items-center hover:text-[#635a56]">
-          <BiChevronRight className="text-[22px]" />
-          <Link href={"/who-we-ware"}>
-            <p className="hvr-forward transition duration-300 mb-1">QUEM SOMOS</p>
-          </Link>
-        </div>
         <div className="flex items-center hover:text-[#635a56]">
           <BiChevronRight className="text-[22px]" />
-          <Link href={"/"}>
+          <Link href={"/about-us"}>
             <p className="hvr-forward transition duration-300 mb-1">
-              SAIBA MAIS
+              SOBRE NÓS
             </p>
           </Link>
         </div>
@@ -33,7 +27,6 @@ export function Footer() {
             </p>
           </Link>
         </div>
-        
         <div className="flex items-center hover:text-[#635a56]">
           <BiChevronRight className="text-[22px]" />
           <Link href={"/contact"}>

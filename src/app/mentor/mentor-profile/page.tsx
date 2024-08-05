@@ -50,6 +50,9 @@ export default function MentorProfilePage() {
         </div>
       </div>
       <div className="bg-[#eadcd3] bg-opacity-50 mt-[30px] xs:mt-[10px] mx-auto rounded-[20px] p-10 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 sm:w-5/6 mb-[50px]">
+        <h1 className="w-full font-bold text-[18px] xs:text-[16px] text-left mb-6">
+          Marcar reunião de mentoria:
+        </h1>
         <MentorCalendar isMentor={false} />
       </div>
     </>

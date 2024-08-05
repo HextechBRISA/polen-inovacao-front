@@ -1,7 +1,7 @@
 import React from "react";
 import InfoCard from "./InfoCard";
-import Newsletter from "../newsletter/components/NewsLetterCard";
-import EventCarousel from "../components/EventCarousel";
+import Newsletter from "../app/newsletter/components/NewsLetterCard";
+import EventCarousel from "./EventCarousel";
 import TestimonyCarousel from "./TestimonyCarousel";
 
 export default function PublicCards() {

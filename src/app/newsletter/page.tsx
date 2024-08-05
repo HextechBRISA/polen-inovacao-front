@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import BackgroundForms from "../components/BackgroundForms";
+import BackgroundLogo from "../../components/BackgroundLogo";
 import NewsletterSubscriptSuccess from "./components/NewsletterSubscriptSuccess";
 import { IoMdArrowRoundForward } from "react-icons/io";
 import { z } from "zod";
@@ -56,7 +56,7 @@ export default function NewsletterPage() {
       {isSubscriptSuccessful ? (
         <NewsletterSubscriptSuccess />
       ) : (
-        <BackgroundForms>
+        <BackgroundLogo>
           <h2 className="text-2xl font-bold text-center mb-4">
             Inscreva-se na Newsletter
           </h2>
@@ -182,7 +182,7 @@ export default function NewsletterPage() {
               Enviar
             </button>
           </form>
-        </BackgroundForms>
+        </BackgroundLogo>
       )}
     </>
   );

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { Footer } from "../components/Footer";
+import { Footer } from "../../components/Footer";
 
 interface Product {
   id: number;
@@ -90,7 +90,7 @@ const ProductSplash = ({
       <p className="text-justify leading-tight">{product.description}</p>
       <IoClose
         onClick={onClose}
-        className="mt-4 text-[27px] text-[#ee7a3c] absolute top-2 right-5 xs:right-2 cursor-pointer"
+        className="mt-4 text-[27px] text-[#ee7a3c] absolute top-2 right-5 xs:top-0 xs:right-2 cursor-pointer"
       />
     </div>
   </div>

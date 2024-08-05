@@ -3,9 +3,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
-import Event1Image from "../../../public/Event1Image.jpg";
-import Event2Image from "../../../public/Event2Image.jpg";
-import Event3Image from "../../../public/Event3Image.jpg";
+import Event1Image from "../../public/Event1Image.jpg";
+import Event2Image from "../../public/Event2Image.jpg";
+import Event3Image from "../../public/Event3Image.jpg";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import Image from "next/image";
 

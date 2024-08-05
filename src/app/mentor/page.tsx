@@ -9,7 +9,7 @@ export default function MentorPage() {
   return (
     <>
       <div className="w-3/5 lg:w-4/6 sm:w-5/6 mt-[120px] mx-auto flex justify-between items-center">
-        <h1 className="text-[20px] text-shadow-md font-semibold font-sans">
+        <h1 className="text-[20px] font-bold font-sans">
           Bem-vindo, Mentor!
         </h1>
         <Link href={"/"}>

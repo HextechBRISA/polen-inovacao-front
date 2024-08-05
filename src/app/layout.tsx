@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Alef } from "next/font/google";
 import "../styles/globals.css";
 import React from "react";
-import Header from "./components/Header";
+import Header from "../components/Header";
 import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "animate.css";

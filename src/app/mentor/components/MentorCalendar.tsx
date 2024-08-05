@@ -277,12 +277,6 @@ export default function MentorCalendar({ isMentor }: MentorCalendarProps) {
             handleSubmit();
           }}
         >
-          {!isMentor && (
-            <h1 className="w-full font-bold text-[18px] xs:text-[16px] text-left mb-6">
-              Marcar reunião de mentoria:
-            </h1>
-          )}
-
           <Calendar
             className="rbc-calendar"
             localizer={localizer}
@@ -312,7 +306,7 @@ export default function MentorCalendar({ isMentor }: MentorCalendarProps) {
           {!isMentor && (
             <button
               type="submit"
-              className="shadow-md mt-8 mx-auto w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
+              className="shadow-md mt-8 mx-auto w-[180px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
             >
               Salvar
             </button>

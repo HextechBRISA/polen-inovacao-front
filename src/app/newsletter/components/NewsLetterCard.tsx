@@ -19,13 +19,13 @@ export default function NewsletterCard() {
           h-[220px]
           rounded-lg 
           shadow-md
-          p-6 
+          p-8 
           ml-4 sm:ml-0
           animate__animated animate__pulse"
     >
       <Link className="flex justify-content items-center" href="/newsletter">
         <div className="w-64 mr-4">
-          <h1 className="font-bold text-[22px] xs:text-[18px]">
+          <h1 className="font-bold font-sans text-[21px] xs:text-[19px]">
             Inscreva-se em nossa NewsLetter!
           </h1>
           <h2 className="mt-4 xs:text-[15px]">

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import BannerImage from "../../../public/BannerImage.png";
+import BannerImage from "../../public/BannerImage.png";
 import { IoIosArrowForward } from "react-icons/io";
 
 export default function Banner() {

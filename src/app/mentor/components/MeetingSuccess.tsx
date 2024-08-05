@@ -14,9 +14,9 @@ export default function MeetingSuccess() {
         Manteremos um lembrete em sua página inicial...
       </h2>
       <Link href={"/resident"}>
-        <button className="shadow-md w-[180px] h-[40px] border-[#EA5E53] border-solid border-2 text-[#EA5E53] text-[15px] font-bold rounded-full flex justify-center items-center">
+        <button className="w-auto h-auto border-2 border-solid border-[#ee7a3c] bg-[#eadcd3] bg-opacity-50 shadow-md font-sans font-bold text-[#ee7a3c] text-[16px] rounded-full flex items-center justify-center py-2 px-4 hvr-push">
           Voltar ao ínicio
-          <RiHomeHeartLine className="text-[#EA5E53] text-[20px] ml-2" />
+          <RiHomeHeartLine className="ml-2 text-[18px]" />
         </button>
       </Link>
     </>

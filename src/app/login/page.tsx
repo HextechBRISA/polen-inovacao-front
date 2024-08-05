@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import BackgroundForms from "../components/BackgroundForms";
+import BackgroundLogo from "../../components/BackgroundLogo";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -47,7 +47,7 @@ export default function Login() {
   };
 
   return (
-    <BackgroundForms>
+    <BackgroundLogo>
       <h1 className="text-3xl font-bold text-center mb-6">Login</h1>
       <h2 className="mb-2 text-[17px] text-center font-sans">É mentor ou residente Pólen?</h2>
       <h2 className="mb-4 text-[17px] text-center font-sans font-bold">Conecte-se:</h2>
@@ -103,6 +103,6 @@ export default function Login() {
           </p>
         </Link>
       </form>
-    </BackgroundForms>
+    </BackgroundLogo>
   );
 }

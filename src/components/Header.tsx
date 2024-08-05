@@ -7,7 +7,7 @@ import { RiAccountPinCircleFill, RiChatSmile2Fill } from "react-icons/ri";
 import { MdMarkEmailUnread } from "react-icons/md";
 import { BiSolidDonateHeart } from "react-icons/bi";
 import { FaLightbulb } from "react-icons/fa";
-import LogoHeader from "../../../public/LogoHeader.png";
+import LogoHeader from "../../public/LogoHeader.png";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -91,7 +91,7 @@ export default function Header() {
                 Newsletter
               </Link>
               <Link
-                href={"/"}
+                href={"/about-us"}
                 onClick={handleLinkClick}
                 className="block px-4 py-2 text-sm text-gray-700 flex items-center font-bold"
               >
