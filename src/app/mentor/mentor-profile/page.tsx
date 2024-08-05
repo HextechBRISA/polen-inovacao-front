@@ -15,7 +15,7 @@ export default function MentorProfilePage() {
 
   return (
     <>
-      <div className="w-3/5 lg:w-4/6 sm:w-5/6 mt-[120px] mx-auto flex justify-between items-center xs:h-48">
+      <div className="w-3/5 lg:w-4/6 sm:w-5/6 mt-[120px] mx-auto flex justify-between items-center xs:h-44">
         <div className="w-auto h-full flex items-center sm:flex-col sm:items-start">
           <Image
             src={Mentor}
@@ -49,10 +49,7 @@ export default function MentorProfilePage() {
           </Link>
         </div>
       </div>
-      <div className="bg-[#eadcd3] bg-opacity-50 mt-[30px] xs:mt-[10px] mx-auto rounded-[20px] p-10 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 sm:w-5/6 mb-[50px]">
-        <h1 className="w-full font-bold text-[18px] xs:text-[16px] text-left mb-6">
-          Marcar reunião de mentoria:
-        </h1>
+      <div className="bg-[#eadcd3] bg-opacity-50 mt-[30px] xs:mt-3 mx-auto rounded-[20px] p-10 xs:p-6 shadow-lg flex flex-col items-center justify-center w-3/5 lg:w-4/6 sm:w-5/6 mb-[50px]">
         <MentorCalendar isMentor={false} />
       </div>
     </>

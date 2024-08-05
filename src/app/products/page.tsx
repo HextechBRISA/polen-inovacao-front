@@ -2,12 +2,18 @@
 import React, { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { Footer } from "../../components/Footer";
+import CoworkingIcon from "../../../public/CoworkingIcon.png";
+import MentoringIcon from "../../../public/MentoringIcon.png";
+import PodcastProductionIcon from "../../../public/PodcastProductionIcon.png";
+import InternationalImmersionIcon from "../../../public/InternationalImmersionIcon.png";
+import GerminationIncubationIcon from "../../../public/GerminationIncubationIcon.png";
+import Image, { StaticImageData } from "next/image";
 
 interface Product {
   id: number;
   name: string;
   description: string;
-  imgSrc: string;
+  imgSrc: string | StaticImageData;
   imgAlt: string;
   imgWidth: number;
   imgHeight: number;
@@ -19,8 +25,7 @@ const products: Product[] = [
     name: "Coworking",
     description:
       "O programa de incubação é direcionado para as startups que já atuam no mercado e possuem um MVP - Produto Mínimo Viável. Seu objetivo é orientar o processo de crescimento da marca, oferecendo mentorias nacionais e internacionais e todas as ferramentas necessárias para o empreendedor.",
-    imgSrc:
-      "https://poleninovacao.com.br/assets/images/home/icone-coworking.png",
+    imgSrc: CoworkingIcon,
     imgAlt: "Coworking",
     imgWidth: 80,
     imgHeight: 80,
@@ -30,8 +35,7 @@ const products: Product[] = [
     name: "Mentorias",
     description:
       "As mentorias acontecem de forma online com profissionais que atuam em diversas ramificações do mercado tais como: formalização, notas fiscais, MEI, modelo de negócios, redes sociais, contabilidade, comunicação empresarial, gestão de mídias, identidade de marca, visual, assessoria de imprensa, registro de marca no INPI ou até mesmo gastronomia!",
-    imgSrc:
-      "https://poleninovacao.com.br/assets/images/home/icone-mentoria.png",
+    imgSrc: MentoringIcon,
     imgAlt: "Mentorias",
     imgWidth: 80,
     imgHeight: 80,
@@ -41,8 +45,7 @@ const products: Product[] = [
     name: "Produção de Podcasts",
     description:
       "O programa de germinação é direcionada para os empreendedores que possuem uma ideia e desejam implementá-la! Seu objetivo é orientar a formalização e estruturação da startup!",
-    imgSrc:
-      "https://poleninovacao.com.br/assets/images/home/icone-podcasts.png",
+    imgSrc: PodcastProductionIcon,
     imgAlt: "Produção de Podcasts",
     imgWidth: 50,
     imgHeight: 80,
@@ -52,8 +55,7 @@ const products: Product[] = [
     name: "Imersões Internacionais",
     description:
       "A área internacional atua no desenvolvimento e expansão do processo de internacionalização do ecossistema, com o intuito de fomentar o ensino de qualidade, pesquisa e inovação através da imersão internacional.",
-    imgSrc:
-      "https://poleninovacao.com.br/assets/images/home/icone-imersoes.png",
+    imgSrc: InternationalImmersionIcon,
     imgAlt: "Imersões Internacionais",
     imgWidth: 80,
     imgHeight: 80,
@@ -63,8 +65,7 @@ const products: Product[] = [
     name: "Germinação e Incubação",
     description:
       "O programa de germinação é direcionada para os empreendedores que possuem uma ideia e desejam implementá-la! Seu objetivo é orientar a formalização e estruturação da startup! O programa de incubação é direcionado para as startups que já atuam no mercado e possuem um MVP - Produto Mínimo Viável. Seu objetivo é orientar o processo de crescimento da marca, oferecendo mentorias nacionais e internacionais e todas as ferramentas necessárias para o empreendedor.",
-    imgSrc:
-      "https://poleninovacao.com.br/assets/images/home/icone-germinacao.png",
+    imgSrc: GerminationIncubationIcon,
     imgAlt: "Germinação e Incubação",
     imgWidth: 80,
     imgHeight: 80,
@@ -90,7 +91,7 @@ const ProductSplash = ({
       <p className="text-justify leading-tight">{product.description}</p>
       <IoClose
         onClick={onClose}
-        className="mt-4 text-[27px] text-[#ee7a3c] absolute top-2 right-5 xs:top-0 xs:right-2 cursor-pointer"
+        className="mt-4 text-[27px] text-[#ee7a3c] absolute top-2 right-5 xs:top-0 xs:right-4 cursor-pointer"
       />
     </div>
   </div>
@@ -113,7 +114,7 @@ export default function PolenProducts() {
               onClick={() => setSelectedProduct(product)}
             >
               <div className="bg-[#eadcd3] bg-opacity-70 shadow-md rounded-full w-32 h-32 flex justify-center items-center p-4 mb-4">
-                <img
+                <Image
                   src={product.imgSrc}
                   alt={product.imgAlt}
                   width={product.imgWidth}

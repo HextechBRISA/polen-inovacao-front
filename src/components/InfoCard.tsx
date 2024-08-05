@@ -13,7 +13,7 @@ export default function InfoCard() {
         />
       </div>
       <div className="w-60 h-48 overflow-scroll">
-        <h1 className="text-[20px] xs:text-[17px] font-sans font-bold mb-4 mt-2 uppercase leading-tight">
+        <h1 className="text-[20px] xs:text-[18px] font-sans font-bold mb-4 mt-2 uppercase leading-tight">
           Somos o Pólen <br/> de Inovação!
         </h1>
         <p className="text-sm md:text-base leading-normal">

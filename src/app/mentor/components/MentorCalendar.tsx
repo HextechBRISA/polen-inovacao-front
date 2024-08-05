@@ -270,48 +270,55 @@ export default function MentorCalendar({ isMentor }: MentorCalendarProps) {
       {showSuccess ? (
         <MeetingSuccess />
       ) : (
-        <form
-          className="calendar-container"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSubmit();
-          }}
-        >
-          <Calendar
-            className="rbc-calendar"
-            localizer={localizer}
-            events={events}
-            startAccessor="start"
-            endAccessor="end"
-            selectable={!isMentor}
-            onSelectSlot={handleSelectSlot}
-            step={30}
-            timeslots={2}
-            view={view}
-            date={date}
-            onView={(view) => setView(view)}
-            onNavigate={(date) => setDate(date)}
-            views={["month", "day"]}
-            eventPropGetter={eventPropGetter}
-            longPressThreshold={false}
-            messages={messages}
-            formats={formats}
-            min={setMinutes(setHours(new Date(), 8), 0)}
-            max={setMinutes(setHours(new Date(), 18), 0)}
-            components={{
-              event: eventComponent,
-            }}
-          />
-
+        <>
           {!isMentor && (
-            <button
-              type="submit"
-              className="shadow-md mt-8 mx-auto w-[180px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
-            >
-              Salvar
-            </button>
+            <h1 className="w-full font-bold text-[18px] xs:text-[16px] text-left mb-6">
+              Marcar reunião de mentoria:
+            </h1>
           )}
-        </form>
+          <form
+            className="calendar-container"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit();
+            }}
+          >
+            <Calendar
+              className="rbc-calendar"
+              localizer={localizer}
+              events={events}
+              startAccessor="start"
+              endAccessor="end"
+              selectable={!isMentor}
+              onSelectSlot={handleSelectSlot}
+              step={30}
+              timeslots={2}
+              view={view}
+              date={date}
+              onView={(view) => setView(view)}
+              onNavigate={(date) => setDate(date)}
+              views={["month", "day"]}
+              eventPropGetter={eventPropGetter}
+              longPressThreshold={false}
+              messages={messages}
+              formats={formats}
+              min={setMinutes(setHours(new Date(), 8), 0)}
+              max={setMinutes(setHours(new Date(), 18), 0)}
+              components={{
+                event: eventComponent,
+              }}
+            />
+
+            {!isMentor && (
+              <button
+                type="submit"
+                className="shadow-md mt-8 mx-auto w-[180px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
+              >
+                Salvar
+              </button>
+            )}
+          </form>
+        </>
       )}
     </>
   );
