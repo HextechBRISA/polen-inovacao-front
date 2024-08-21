@@ -1,56 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import BackgroundLogo from "../../components/BackgroundLogo";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import validationLoginSchema from "./validationLoginSchema";
-import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import useLogin from "./useLogin";
 
 export default function Login() {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm();
-  const [formErrors, setFormErrors] = useState<{
-    email?: string;
-    password?: string;
-  }>({});
-  const router = useRouter();
-
-  const onSubmit = async (data) => {
-    try {
-      const validatedData = validationLoginSchema.parse(data);
-      console.log("Dados válidos:", validatedData);
-      handleLoginSuccess();
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const fieldErrors = {};
-        error.errors.forEach((err) => {
-          fieldErrors[err.path[0]] = err.message;
-        });
-        setFormErrors(fieldErrors);
-        console.error("Validation errors:", fieldErrors);
-      } else {
-        console.error("Error submitting form:", error);
-      }
-    }
-  };
-
-  const handleLoginSuccess = () => {
-    toast.success("Login feito com sucesso!", {
-      onClose: () => router.push("/resident"),
-      autoClose: 1000,
-    });
-  };
+  const { handleSubmit, register, errors, formErrors, onSubmit } = useLogin();
 
   return (
     <BackgroundLogo>
       <h1 className="text-3xl font-bold text-center mb-6">Login</h1>
-      <h2 className="mb-2 text-[17px] text-center font-sans">É mentor ou residente Pólen?</h2>
-      <h2 className="mb-4 text-[17px] text-center font-sans font-bold">Conecte-se:</h2>
+      <h2 className="mb-2 text-[17px] text-center font-sans">
+        É mentor ou residente Pólen?
+      </h2>
+      <h2 className="mb-4 text-[17px] text-center font-sans font-bold">
+        Conecte-se:
+      </h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col justify-center items-center w-full"
@@ -63,10 +28,10 @@ export default function Login() {
           id="email"
           placeholder="Insira seu e-mail"
           {...register("email")}
-          className="w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-4"
+          className="w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring-gray-300 mt-1 mb-4"
         />
         {formErrors.email && (
-          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
+          <p className="text-[#EA5E53] font-bold text-sm mb-4">
             {formErrors.email}
           </p>
         )}
@@ -82,7 +47,7 @@ export default function Login() {
           id="password"
           placeholder="Insira sua senha"
           {...register("password")}
-          className="w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring- #ccc mt-1 mb-4"
+          className="w-full h-[40px] p-2 text-center border bg-gray-100 rounded-[50px] px-4 py-2 focus:outline-none focus:ring-1 focus:ring-gray-300 mt-1 mb-4"
         />
         {formErrors.password && (
           <p className="text-[#EA5E53] font-bold text-sm mb-4">

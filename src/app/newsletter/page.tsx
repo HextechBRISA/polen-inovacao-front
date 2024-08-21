@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import BackgroundLogo from "../../components/BackgroundLogo";
 import NewsletterSubscriptSuccess from "./components/NewsletterSubscriptSuccess";
 import { IoMdArrowRoundForward } from "react-icons/io";
+import { ThreeDots } from "react-loader-spinner";
 import { z } from "zod";
 import axios from "axios";
 import { validationNewsletterSchema } from "./validationNewsletterSchema";
@@ -11,6 +12,7 @@ export default function NewsletterPage() {
   const [isSubscriptSuccessful, setIsSubscriptSuccessful] = useState(false);
   const [formData, setFormData] = useState({ email: "", radioOption: "" });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -31,12 +33,18 @@ export default function NewsletterPage() {
     try {
       validationNewsletterSchema.parse(formattedFormData);
       setErrors({});
+      setIsLoading(true);
 
       try {
-        const response = await axios.post('/api/send-email', { email: formData.email, userType: formData.radioOption });
+        const response = await axios.post("/api/send-email", {
+          email: formData.email,
+          userType: formData.radioOption,
+        });
         setIsSubscriptSuccessful(true);
       } catch (error) {
-        console.error('Erro ao enviar email:', error);
+        console.error("Erro ao enviar email:", error);
+      } finally {
+        setIsLoading(false);
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -48,6 +56,7 @@ export default function NewsletterPage() {
         });
         setErrors(formErrors);
       }
+      setIsLoading(false);
     }
   };
 
@@ -99,7 +108,7 @@ export default function NewsletterPage() {
                 />
                 <label
                   htmlFor="option2"
-                  className={` cursor-pointer p-2 text-left rounded-[50px] hover:bg-[#EE7A3C] flex ${
+                  className={`cursor-pointer p-2 text-left rounded-[50px] hover:bg-[#EE7A3C] flex ${
                     formData.radioOption === "option2"
                       ? "bg-[#EA5E53] text-white"
                       : ""
@@ -121,7 +130,7 @@ export default function NewsletterPage() {
                 />
                 <label
                   htmlFor="option3"
-                  className={` cursor-pointer p-2 text-left rounded-[50px] hover:bg-[#EE7A3C] flex ${
+                  className={`cursor-pointer p-2 text-left rounded-[50px] hover:bg-[#EE7A3C] flex ${
                     formData.radioOption === "option3"
                       ? "bg-[#EA5E53] text-white"
                       : ""
@@ -143,7 +152,7 @@ export default function NewsletterPage() {
                 />
                 <label
                   htmlFor="option4"
-                  className={` cursor-pointer p-2 text-left rounded-[50px] hover:bg-[#EE7A3C] flex ${
+                  className={`cursor-pointer p-2 text-left rounded-[50px] hover:bg-[#EE7A3C] flex ${
                     formData.radioOption === "option4"
                       ? "bg-[#EA5E53] text-white"
                       : ""
@@ -177,9 +186,20 @@ export default function NewsletterPage() {
             </>
             <button
               type="submit"
-              className="shadow-md mt-2 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
+              className="shadow-md mx-auto mt-6 w-[160px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-full flex justify-center items-center"
+              disabled={isLoading}
             >
-              Enviar
+              {isLoading ? (
+                <ThreeDots
+                  height="50"
+                  width="50"
+                  radius="9"
+                  color="#ffffff"
+                  ariaLabel="three-dots-loading"
+                />
+              ) : (
+                "Enviar"
+              )}
             </button>
           </form>
         </BackgroundLogo>

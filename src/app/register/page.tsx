@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import Dropzone from "react-dropzone";
+import { axiosInstance } from "../api/utils/env";
 
 export default function RegisterPage() {
   const [registerData, setRegisterData] = useState({
@@ -16,7 +18,7 @@ export default function RegisterPage() {
     confirmPassword: "",
     category: "",
     course: "",
-    picture: "",
+    image: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [previewImage, setPreviewImage] = useState<string>("");
@@ -33,13 +35,14 @@ export default function RegisterPage() {
       confirmPassword: registerData.confirmPassword.trim(),
       category: registerData.category,
       course: registerData.course,
-      picture: registerData.picture.trim(),
+      image: registerData.image,
     };
 
     try {
       validationRegisterSchema.parse(formattedRegisterData);
       setErrors({});
-      console.log("Dados válidos:", formattedRegisterData);
+
+      await axiosInstance.post("/api/user/sign-up", formattedRegisterData);
       handleRegisterSuccess();
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -49,6 +52,9 @@ export default function RegisterPage() {
         });
         setErrors(fieldErrors);
         console.error("Erros de validação:", fieldErrors);
+      } else {
+        console.error("Erro de registro:", error.message);
+        toast.error(error.message);
       }
     }
   }
@@ -60,16 +66,26 @@ export default function RegisterPage() {
     });
   };
 
-  function handleChange(e) {
-    const { name, value, files } = e.target;
+  const onDrop = (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    const reader = new FileReader();
 
-    if (name === "picture" && files.length > 0) {
-      const file = files[0];
-      setRegisterData({ ...registerData, picture: file.name });
+    reader.onloadend = () => {
+      setRegisterData((prev) => ({
+        ...prev,
+        image: reader.result as string,
+      }));
       setPreviewImage(URL.createObjectURL(file));
-    } else {
-      setRegisterData({ ...registerData, [name]: value });
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
     }
+  };
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setRegisterData((prev) => ({ ...prev, [name]: value }));
   }
 
   return (
@@ -207,48 +223,37 @@ export default function RegisterPage() {
           </p>
         )}
 
-        <label
-          htmlFor="picture"
-          className="w-full items-start font-medium mb-2"
-        >
-          Foto de perfil
+        <label htmlFor="image" className="w-full items-start font-medium mb-2">
+          Foto de perfil:
         </label>
-        <div className="flex items-center justify-center w-full mt-1 mb-4">
-          <label
-            htmlFor="dropzone-file"
-            className={
-              previewImage
-                ? "flex items-center justify-center w-full cursor-pointer"
-                : "flex items-center justify-center w-full h-[40px] border-2 border-white border-solid rounded-[50px] cursor-pointer"
-            }
-          >
-            <input
-              id="dropzone-file"
-              type="file"
-              name="picture"
-              onChange={handleChange}
-              className="hidden"
-            />
-            {previewImage ? (
-              <div className="flex justify-center items-start">
-                <Image
-                  src={previewImage}
-                  alt="Imagem de perfil"
-                  className="w-24 h-24 rounded-full object-cover border-2 border-white border-solid p-1"
-                  width={30}
-                  height={30}
-                />
-              </div>
-            ) : (
-              <p className="flex-auto text-xs text-center font-semibold">
-                Fazer Upload PNG ou JPG
-              </p>
-            )}
-          </label>
-        </div>
-        {errors.picture && (
-          <p className="text-[#EA5E53] font-bold text-sm mb-4">
-            {errors.picture}
+        <Dropzone onDrop={onDrop}>
+          {({ getRootProps, getInputProps }) => (
+            <div
+              className="flex items-center justify-center w-full mt-1 mb-4 cursor-pointer"
+              {...getRootProps()}
+            >
+              <input {...getInputProps()} />
+              {previewImage ? (
+                <div className="flex justify-center items-start">
+                  <Image
+                    src={previewImage}
+                    alt="Imagem de perfil"
+                    className="w-24 h-24 rounded-full object-cover border-2 border-white border-solid p-1"
+                    width={100}
+                    height={100}
+                  />
+                </div>
+              ) : (
+                <div className="flex items-center justify-center w-full h-[40px] border-2 border-white border-solid rounded-[50px] cursor-pointer text-xs font-semibold">
+                  <p>Arraste ou clique para selecionar uma imagem</p>
+                </div>
+              )}
+            </div>
+          )}
+        </Dropzone>
+        {errors.image && (
+          <p className="text-[#EA5E53] font-bold text-sm xs:mb-4">
+            {errors.image}
           </p>
         )}
 
@@ -258,14 +263,10 @@ export default function RegisterPage() {
         >
           Cadastrar
         </button>
-
-        <Link
-          href={"/login"}
-          className="text-center text-[15px] mt-6 underline"
-        >
-          Já possui uma conta? Faça Login!
-        </Link>
       </form>
+      <Link href={"/login"} className="text-center text-[15px] mt-6 underline">
+        Já possui uma conta? Faça Login!
+      </Link>
     </BackgroundLogo>
   );
 }
