@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import Image from "next/image";
 import Dropzone from "react-dropzone";
 import { axiosInstance } from "../api/utils/env";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function RegisterPage() {
   const [registerData, setRegisterData] = useState({
@@ -22,11 +23,13 @@ export default function RegisterPage() {
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [previewImage, setPreviewImage] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setIsLoading(true);
 
     const formattedRegisterData = {
       email: registerData.email.trim(),
@@ -56,6 +59,8 @@ export default function RegisterPage() {
         console.error("Erro de registro:", error.message);
         toast.error(error.message);
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -259,9 +264,20 @@ export default function RegisterPage() {
 
         <button
           type="submit"
-          className="shadow-md mt-2 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
+          className="shadow-md mt-2 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px] mx-auto flex justify-center items-center"
+          disabled={isLoading}
         >
-          Cadastrar
+          {isLoading ? (
+            <ThreeDots
+              height="50"
+              width="50"
+              radius="9"
+              color="#ffffff"
+              ariaLabel="three-dots-loading"
+            />
+          ) : (
+            "Cadastrar"
+          )}
         </button>
       </form>
       <Link href={"/login"} className="text-center text-[15px] mt-6 underline">

@@ -1,11 +1,23 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import BackgroundLogo from "../../components/BackgroundLogo";
 import Link from "next/link";
 import useLogin from "./useLogin";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function Login() {
   const { handleSubmit, register, errors, formErrors, onSubmit } = useLogin();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleFormSubmit = async (data) => {
+    setIsLoading(true);
+
+    try {
+      await onSubmit(data);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <BackgroundLogo>
@@ -17,7 +29,7 @@ export default function Login() {
         Conecte-se:
       </h2>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleFormSubmit)}
         className="flex flex-col justify-center items-center w-full"
       >
         <label htmlFor="email" className="w-full items-start font-medium mb-2">
@@ -57,9 +69,20 @@ export default function Login() {
 
         <button
           type="submit"
-          className="shadow-md mt-2 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px]"
+          className="shadow-md mt-2 w-[200px] h-[30px] bg-[#EA5E53] text-white text-sm font-bold rounded-[50px] mx-auto flex justify-center items-center"
+          disabled={isLoading}
         >
-          Entrar
+          {isLoading ? (
+            <ThreeDots
+              height="50"
+              width="50"
+              radius="9"
+              color="#ffffff"
+              ariaLabel="three-dots-loading"
+            />
+          ) : (
+            "Entrar"
+          )}
         </button>
 
         <Link href={"/register"}>
