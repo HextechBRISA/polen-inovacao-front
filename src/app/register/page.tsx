@@ -250,7 +250,7 @@ export default function RegisterPage() {
                 </div>
               ) : (
                 <div className="flex items-center justify-center w-full h-[40px] border-2 border-white border-solid rounded-[50px] cursor-pointer text-xs font-semibold">
-                  <p>Arraste ou clique para selecionar uma imagem</p>
+                  <p>Fazer Upload</p>
                 </div>
               )}
             </div>
